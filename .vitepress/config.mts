@@ -36,9 +36,9 @@ export default defineConfig({
       { text: '首頁', link: '/' },
       { text: '文檔內容',
       items:[
-      {text:'記錄類',link:''},
-      {text:'學習類',link:''},
-      {text:'雜項類',link:''}
+      {text:'記錄類',link:'shouye_jilu'},
+      {text:'學習類',link:'/shouye_xuexi'},
+      {text:'雜項類',link:'/shouye_zaxiang'}
       ] 
       },
       { text: '工具' ,items:[
@@ -49,7 +49,8 @@ export default defineConfig({
       ] 
       },
       {text:'友情鏈接',items:[
-      {text:'FREEBUF',link:'https://www.freebuf.com/'}
+      {text:'FREEBUF',link:'https://www.freebuf.com/'},
+      {text:'黄哥的博客',link:'http://jerryhuang.eu.org/'}
       ]
       }
     ],
@@ -58,7 +59,7 @@ export default defineConfig({
       {
         text: '學習類',
         items: [
-          { text: '介紹',link:''},
+          { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
@@ -66,14 +67,14 @@ export default defineConfig({
       {
        text:'記錄類',
        items:[
-       {text:'介紹',link:''}
-       //{text:}
+       {text:'介紹',link:'shouye_jilu'},
+       {text: 'C++随笔(1)',link:'/c++suibi_1' },
        ]
       },
       {
       text:'雜項類',
       items:[
-     {text:'介紹'}      
+     {text:'介紹',link:'/shouye_zaxiang'}      
      ]
       }
     ],
