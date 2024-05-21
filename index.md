@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: 首頁
-      link: /markdown-examples
+      link: /suibixuexi
     - theme: alt
       text: 放鬆一下吧
       link: https://www.bilibili.com/video/BV1uT4y1P7CX?p=1&vd_source=34dde2f2c727e84db53ba60a1814505f
