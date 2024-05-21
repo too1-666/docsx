@@ -58,6 +58,7 @@ export default defineConfig({
     sidebar: [
       {
         text: '學習類',
+        collapsed: false,
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
@@ -66,13 +67,16 @@ export default defineConfig({
       },
       {
        text:'記錄類',
+       collapsed: false,
        items:[
        {text:'介紹',link:'shouye_jilu'},
-       {text: 'C++随笔(1)',link:'/c++suibi_1' },
+       {text: 'C++(1)',link:'/c++suibi_1' },
+       {text: 'C++(2)',link:'/c++suibi_2'}
        ]
       },
       {
       text:'雜項類',
+      collapsed: false,//折叠
       items:[
      {text:'介紹',link:'/shouye_zaxiang'}      
      ]
