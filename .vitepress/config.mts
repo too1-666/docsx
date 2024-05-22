@@ -70,9 +70,11 @@ export default defineConfig({
        collapsed: false,
        items:[
        {text:'介紹',link:'shouye_jilu'},
-       {text: 'C++(1)',link:'/c++suibi_1' },
-       {text: 'C++(2)',link:'/c++suibi_2'}
+       {text: 'C++(1)',link:'/jilu/C++/c++_(1)' },
+       {text: 'C++(2)',link:'/jilu/C++/c++_(2)'},
+       {text:'C++(3)',link:'/jilu/C++/c++_(3)'}
        ]
+
       },
       {
       text:'雜項類',
