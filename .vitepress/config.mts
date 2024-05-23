@@ -58,7 +58,7 @@ export default defineConfig({
     sidebar: [
       {
         text: '學習類',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
@@ -67,22 +67,31 @@ export default defineConfig({
       },
       {
        text:'記錄類',
-       collapsed: false,
+       collapsed: true,
        items:[
        {text:'介紹',link:'shouye_jilu'},
-       {text: 'C++(1)',link:'/jilu/C++/c++_(1)' },
-       {text: 'C++(2)',link:'/jilu/C++/c++_(2)'},
-       {text:'C++(3)',link:'/jilu/C++/c++_(3)'}
+       {text:'C++',
+       collapsed: true,
+       items:[{text: 'C++(1)',link:'/jilu/C++/c++_(1)' },
+             {text: 'C++(2)',link:'/jilu/C++/c++_(2)'},
+             {text:'C++(3)',link:'/jilu/C++/c++_(3)'},
+       
+       ]},
+       
        ]
       },
       {
       text:'雜項類',
-      collapsed: false,//折叠
-      items:[
-     {text:'介紹',link:'/shouye_zaxiang'},     
-     {text:'ISCC 国赛的工业互联网流量分析题 题解 ',link:'/zaxiang/ISCC_gongye'}
-     ]
-      }
+      collapsed: true,//折叠
+      items:[{text:'介紹',link:'/shouye_zaxiang'},     
+              {text:'ISCC国赛题解', 
+              collapsed: true,
+              items:[{text:'2024ISCC 国赛的工业互联网流量分析题的题解 ',link:'/zaxiang/ISCC_gongye'},
+                    {text:'2024ISCC num_is_the_key',link:'/zaxiang/ISCC_num'},
+                                                                                    ]},
+                      
+    ]
+    }
     ],
 
     socialLinks: [
