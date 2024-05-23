@@ -74,13 +74,13 @@ export default defineConfig({
        {text: 'C++(2)',link:'/jilu/C++/c++_(2)'},
        {text:'C++(3)',link:'/jilu/C++/c++_(3)'}
        ]
-
       },
       {
       text:'雜項類',
       collapsed: false,//折叠
       items:[
-     {text:'介紹',link:'/shouye_zaxiang'}      
+     {text:'介紹',link:'/shouye_zaxiang'},     
+     {text:'ISCC 国赛的工业互联网流量分析题 题解 ',link:'/zaxiang/ISCC_gongye'}
      ]
       }
     ],
