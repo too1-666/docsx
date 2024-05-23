@@ -86,8 +86,8 @@ export default defineConfig({
       items:[{text:'介紹',link:'/shouye_zaxiang'},     
               {text:'ISCC国赛题解', 
               collapsed: true,
-              items:[{text:'2024ISCC 国赛的工业互联网流量分析题的题解 ',link:'/zaxiang/ISCC_gongye'},
-                    {text:'2024ISCC num_is_the_key',link:'/zaxiang/ISCC_num'},
+              items:[{text:'2024ISCC 国赛的工业互联网流量分析题的题解 ',link:'/zaxiang/ISCC/misc/ISCC_gongye'},
+                    {text:'2024ISCC num_is_the_key',link:'/zaxiang/ISCC/misc/ISCC_num'},
                                                                                     ]},
                       
     ]
