@@ -24,12 +24,12 @@ typora-root-url: ..\public
 
 
 
-![numiskey_1](/numiskey_1.png)
+![numiskey_1](/ISCCmisc/numiskey_1.png)
 
 替換加粗
 
 然后得到答案 (自己去修正行高列宽)
 
-![numiskey_2](/numiskey_2.png)
+![numiskey_2](/ISCCmisc/numiskey_2.png)
 
 得到flag

@@ -8,7 +8,7 @@ typora-root-url: public
 
 > 第一题很简单 由于 直接给你明牌了代表 数据包传输时候固定 大小的 是异常所以咱们看看他的IP
 
-![ISCCgongye](/ISCCgongye_1.png)
+![ISCCgongye](/ISCCmisc/ISCCgongye_1.png)
 
 
 
@@ -24,7 +24,7 @@ ip.src == 192.168.1.x
 
 过滤后发现 了 欸？ ip 为192.168.1.2 与 192.168.1.4 的IP通信之间不对劲啊 
 
-![ISCCgongye_2](/ISCCgongye_2.png)
+![ISCCgongye_2](/ISCCmisc/ISCCgongye_2.png)
 
 
 
@@ -54,7 +54,7 @@ data.data
 
 2024 就是这个题的解
 
-![ISCCgongye_3](/ISCCgongye_3.png)
+![ISCCgongye_3](/ISCCmisc/ISCCgongye_3.png)
 
  
 
@@ -72,7 +72,7 @@ data.data
 
 对的他说有时间规律 wireshark上有时间规律特性就是流量分组 他们可以做除法 算时间间隔 
 
-![ISCCgongye_4](/ISCCgongye_4.png)
+![ISCCgongye_4](/ISCCmisc/ISCCgongye_4.png)
 
 看到左面框没 这个就是分组了 
 
@@ -94,7 +94,7 @@ data.data
 
 然后我也是取巧 一些所以很大概率大于2 而流量分组2刚好是三个ip互传 所以我认为
 
-![ISCCgongye_5](/ISCCgongye_5.png)
+![ISCCgongye_5](/ISCCmisc/ISCCgongye_5.png)
 
 192.168.1.2 和.3 .6有关系
 
