@@ -86,8 +86,20 @@ export default defineConfig({
       items:[{text:'介紹',link:'/shouye_zaxiang'},     
               {text:'ISCC国赛题解', 
               collapsed: true,
-              items:[{text:'2024ISCC 国赛的工业互联网流量分析题的题解 ',link:'/zaxiang/ISCC/misc/ISCC_gongye'},
+              items:[{text:'msic',
+              collapsed: true,
+              items:[
+              {text:'2024ISCC 国赛的工业互联网流量分析题的题解 ',link:'/zaxiang/ISCC/misc/ISCC_gongye'},
                     {text:'2024ISCC num_is_the_key',link:'/zaxiang/ISCC/misc/ISCC_num'},
+                    
+                    ]},
+                                                                                    
+              {text:'re',
+              collapsed: true,
+              items:[
+              {text:'2024ISCC re 迷失之门' , link:'/zaxiang/ISCC/re/mishi'},
+              
+              ]},                                                                      
                                                                                     ]},
                       
     ]
