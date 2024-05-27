@@ -75,7 +75,7 @@ export default defineConfig({
        items:[{text: 'C++(1)',link:'/jilu/C++/c++_(1)' },
              {text: 'C++(2)',link:'/jilu/C++/c++_(2)'},
              {text:'C++(3)',link:'/jilu/C++/c++_(3)'},
-       
+             {text:'C++(4)',link:'/jilu/C++/c++_(3)'}
        ]},
        
        ]
