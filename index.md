@@ -17,11 +17,12 @@ hero:
       text: 放鬆一下吧
       link: https://www.bilibili.com/video/BV1uT4y1P7CX?p=1&vd_source=34dde2f2c727e84db53ba60a1814505f
 features:
-  - title: 這是圖書館不要干別的啊
-    details: 不要對網站做一些奇怪的事情
-  - title: 學習用的圖書館
-    details: 不要干奇怪的事情 
-  - title: 還有就是記錄一些奇怪的東西
+  - title: 推荐使用VIM 
+    details: 越先进的东西他越慢 越古老的东西他运行越快
+  - title: 你可以认为 古老的东西是先进的
+    details: 所以越古老的东西他越先进
+  - title: 此库文档是记录的
     details: 記錄什麼我不知道
 ---
+
 
