@@ -77,7 +77,7 @@ export default defineConfig({
              {text:'C++(3)',link:'/jilu/C++/c++_(3)'},
              {text:'C++(4)',link:'/jilu/C++/c++_(4)'},
              {text:'C++(5)',link:'/jilu/C++/c++_(5)'},
-             {text:'C++文件篇',link:'/jilu/C++/c++_h(1)'}
+             
        ]},
        
        ]
