@@ -22,7 +22,7 @@ features:
   - title: 你可以认为 古老的东西是先进的
     details: 所以越古老的东西他越先进
   - title: 此库文档是记录的
-    details: 記錄什麼我不知道
+    details: 有事情直接 email 给我 有时间我会回信的 在页脚
 ---
 
 

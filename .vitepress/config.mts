@@ -82,7 +82,8 @@ export default defineConfig({
              {text:'C++(4)',link:'/jilu/C++/c++_(4)'},
              {text:'C++(5)',link:'/jilu/C++/c++_(5)'},
              {text:'C++(6)',link:'/jilu/C++/c++_(6)'},
-             {text:'C++文件篇',link:'/jilu/C++/c++_h(1)'}
+             {text:'C++文件篇一',link:'/jilu/C++/c++_h(1)'},
+             {text:'C++文件篇二',link:'/jilu/C++/c++_h(2)'}
        ]},
        {text:'Python预告',
         collapsed: true,
@@ -126,7 +127,8 @@ export default defineConfig({
       
     ],
     footer:{
-    copyright:"Copyright © 2024 by T"
+    copyright:"Copyright © 2024 by me  email:whynotplaygenshinimpart.com"
+    
     }
   }
 })
