@@ -85,6 +85,7 @@ export default defineConfig({
              {text:'C++文件篇1',link:'/jilu/C++/c++_h(1)'},
             
        ]},
+       
        {text:'Python预告',
         collapsed: true,
         items:[{text:'空'},
@@ -126,10 +127,7 @@ export default defineConfig({
       },
       
     ],
-    footer:{
-    copyright:"Copyright © 2024 by T"
-    
-    }
+
   }
 })
 //.....
