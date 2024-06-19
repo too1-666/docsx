@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Library"
+  name: "MyLibrary"
   text: "MyLibrary"
   tagline: 私人的圖書館
   image :
@@ -11,8 +11,8 @@ hero:
     alt: 背景圖
   actions:
     - theme: brand
-      text: 有问题直接email whynotplaygenshinimpart.com 我
-      
+      text: 有问题直接email 我
+      link: /email
     - theme: alt
       text: 放鬆一下吧
       link: https://www.bilibili.com/video/BV1uT4y1P7CX?p=1&vd_source=34dde2f2c727e84db53ba60a1814505f
