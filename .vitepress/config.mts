@@ -82,12 +82,15 @@ export default defineConfig({
              {text:'C++(4)',link:'/jilu/C++/c++_(4)'},
              {text:'C++(5)',link:'/jilu/C++/c++_(5)'},
              {text:'C++(6)',link:'/jilu/C++/c++_(6)'},
-             {text:'C++文件篇1',link:'/jilu/C++/c++_h(1)'},
-            
+             {text:'C++文件篇',link:'/jilu/C++/c++_h(1)'}
        ]},
-     
-   
-      
+       {text:'Python预告',
+        collapsed: true,
+        items:[{text:'空'},
+        
+        ]},
+       ]
+      },
       {
       text:'雜項類',
       collapsed: true,//折叠
@@ -124,7 +127,6 @@ export default defineConfig({
     ],
     footer:{
     copyright:"Copyright © 2024 by T"
-    
     }
   }
 })
