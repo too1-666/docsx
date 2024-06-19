@@ -57,16 +57,20 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '學習類',
+        text: '学习类',
         collapsed: true,
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          {text:'网络安全方面预告',
+        collapsed: true,
+        items:[{text:'空'},
+        
+        ]},
         ]
       },
       {
-       text:'記錄類',
+       text:'记录类',
        collapsed: true,
        items:[
        {text:'介紹',link:'shouye_jilu'},
@@ -77,9 +81,14 @@ export default defineConfig({
              {text:'C++(3)',link:'/jilu/C++/c++_(3)'},
              {text:'C++(4)',link:'/jilu/C++/c++_(4)'},
              {text:'C++(5)',link:'/jilu/C++/c++_(5)'},
+             {text:'C++(6)',link:'/jilu/C++/c++_(6)'},
              {text:'C++文件篇',link:'/jilu/C++/c++_h(1)'}
        ]},
-       
+       {text:'Python预告',
+        collapsed: true,
+        items:[{text:'空'},
+        
+        ]},
        ]
       },
       {
@@ -117,7 +126,7 @@ export default defineConfig({
       
     ],
     footer:{
-    copyright:"Copyright © 2024 "
+    copyright:"Copyright © 2024 by T"
     }
   }
 })
