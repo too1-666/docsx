@@ -127,7 +127,10 @@ export default defineConfig({
       },
       
     ],
-
+    footer:{
+    copyright:"Copyright © 2024 by T"
+    
+    }
   }
 })
 //.....
