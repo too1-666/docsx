@@ -127,7 +127,7 @@ export default defineConfig({
       
     ],
     footer:{
-    copyright:"Copyright © 2024 by me  email:whynotplaygenshinimpart.com"
+    copyright:"Copyright © 2024 by me "
     
     }
   }

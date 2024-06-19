@@ -11,7 +11,7 @@ hero:
     alt: 背景圖
   actions:
     - theme: brand
-      text: 这是首頁
+      text: 有问题直接email whynotplaygenshinimpart.com 我
       
     - theme: alt
       text: 放鬆一下吧
@@ -21,8 +21,8 @@ features:
     details: 越先进的东西他越慢 越古老的东西他运行越快
   - title: 你可以认为 古老的东西是先进的
     details: 所以越古老的东西他越先进
-  - title: 此库文档是记录的
-    details: 有事情直接 email 给我 有时间我会回信的 在页脚
+  - title: 此库文档是记录
+    details: 有事情直接 email 给我 有时间我会回信的 
 ---
 
 
