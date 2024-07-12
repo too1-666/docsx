@@ -62,7 +62,11 @@ export default defineConfig({
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
-          { text: 'RE 入门(1)',link:'/study/re/rumen1'}
+          { text: 'RE',
+            collapsed: true,
+            items:[
+            {text : 're入门1',link:'/study/re/rumen1'},
+            ]},
         ]
       },
       {
