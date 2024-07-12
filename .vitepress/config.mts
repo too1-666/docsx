@@ -62,7 +62,7 @@ export default defineConfig({
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'RE 入门(1)',link:'/study/re/rumen1'}
         ]
       },
       {
