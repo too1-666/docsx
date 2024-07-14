@@ -66,6 +66,7 @@ export default defineConfig({
             collapsed: true,
             items:[
             {text : 're入门1',link:'/study/re/rumen1'},
+            {text :'re入门2' ,link:'/study/re/rumen2'},
             ]},
         ]
       },
