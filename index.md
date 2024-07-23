@@ -19,8 +19,8 @@ hero:
 features:
   - title: 推荐使用VIM 
     details: 越先进的东西他越慢 越古老的东西他运行越快
-  - title: 你可以认为 古老的东西是先进的
-    details: 所以越古老的东西他越先进
+  - title: 梅琳娜我的梅琳娜
+    details: 我应该走癫火金针的
   - title: 此库文档是记录
     details: 有事情直接 email 给我 有时间我会回信的 
 ---
