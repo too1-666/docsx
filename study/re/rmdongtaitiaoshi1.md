@@ -121,7 +121,7 @@ IDA是按区块装载 PE 文件的例如 代码块 数据块 资源块 输入表
 
 通过交叉参考可以知道代码相互调用的关系 
 
-![]()![XREFcankao](/studyre/XREFcankao.png)
+![XREFcankao](/studyre/XREFcankao.png)
 
 该XREF(交叉参考) 为调用__do_global_dtors_aux  j的意思是跳转 o表示偏移量 p是子程序 enter此处即可跳转 双击也可以
 
