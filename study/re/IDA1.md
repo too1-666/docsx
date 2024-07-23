@@ -11,9 +11,6 @@ typora-root-url: ..\..\public
 ![](/studyre/pressNjiehsi.png)
 
 
-
-[首页](http://localhost:27232/#/)[发现](http://localhost:27232/#/explore)[音乐库](http://localhost:27232/#/library))
-
 如图  我解释一下 下面的选项的作用
 
 * Local name 句不符合的作用域 仅限于当前函数
