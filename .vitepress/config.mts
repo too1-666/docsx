@@ -70,6 +70,11 @@ export default defineConfig({
             {text:'re工具使用',link:'/study/re/rmdongtaitiaoshi1'},
             {text :'部分IDA使用',link :'/study/re/IDA1'},
             ]},
+        { text: 'Windows_SDK',
+            collapsed: true,
+            items:[
+           {text:'WinSdK',link :'/study/winsdk/myWrong'},
+            ]},
         ]
       },
       {
