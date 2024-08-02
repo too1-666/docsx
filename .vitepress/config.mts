@@ -44,8 +44,8 @@ export default defineConfig({
       { text: '工具' ,items:[
       {text:'CTFtools',link:'http://www.hiencode.com/'},
       {text:'HEx在線',link:'https://hexed.it/zh/'},
-      {text:'python引導',link:'https://docs.python.org/zh-cn/3.11/'}
-      
+      {text:'python引導',link:'https://docs.python.org/zh-cn/3.11/'},
+      {text :'excalidraw',link :'https://excalidraw.com/'},
       ] 
       },
       {text:'友情鏈接',items:[
