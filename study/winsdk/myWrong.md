@@ -248,3 +248,137 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 ```
 
 多看几遍
+
+
+
+### 窗口拓展
+
+| 常量/值                                                      | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| **WS_EX_ACCEPTFILES**0x00000010L                             | 窗口接受拖放文件。                                           |
+| **WS_EX_APPWINDOW**0x00040000L                               | 在顶级窗口可见时强行将其放在任务栏上。                       |
+| **WS_EX_CLIENTEDGE**0x00000200L                              | 窗口有一个带有凹陷边缘的边框。                               |
+| **WS_EX_COMPOSITED**0x02000000L                              | 使用双缓冲按从下到上绘制顺序绘制窗口的所有后代。 从下到上绘制顺序允许后代窗口具有半透明 (alpha) 和透明度 (颜色键) 效果，但前提是后代窗口还设置了WS_EX_TRANSPARENT位。 通过双重缓冲，可以在不闪烁的情况下绘制窗口及其后代。 如果窗口的 [类样式](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/about-window-classes) 为 **CS_OWNDC** 或 **CS_CLASSDC**，则无法使用此选项。 **Windows 2000：** 不支持此样式。 |
+| **WS_EX_CONTEXTHELP**0x00000400L                             | 窗口的标题栏包含问号。 当用户单击该问号时，光标将变成带指针的问号。 如果用户随后单击子窗口，则子窗口将收到 [**WM_HELP**](https://learn.microsoft.com/zh-cn/windows/win32/shell/wm-help) 消息。 子窗口应将消息传递到父窗口过程，父窗口过程应使用 **HELP_WM_HELP** 命令调用 [**WinHelp**](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-winhelpa) 函数。 帮助应用程序显示一个弹出窗口，该窗口通常包含子窗口的帮助。 **WS_EX_CONTEXTHELP** 不能与 **WS_MAXIMIZEBOX** 或 **WS_MINIMIZEBOX** 样式一起使用。 |
+| **WS_EX_CONTROLPARENT**0x00010000L                           | 窗口本身包含应参与对话框导航的子窗口。 如果指定了此样式，则执行导航操作（例如处理 TAB 键、箭头键或键盘助记键）时，对话管理器将递归为此窗口的子级。 |
+| **WS_EX_DLGMODALFRAME**0x00000001L                           | 窗口有一个双边框：（可选）可以通过在 *dwStyle* 参数中指定**WS_CAPTION**样式来创建带有标题栏的窗口。 |
+| **WS_EX_LAYERED**0x00080000                                  | 该窗口是一个[分层窗口](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/window-features)。 如果窗口的 [类样式](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/about-window-classes) 为 **CS_OWNDC** 或 **CS_CLASSDC**，则不能使用此样式。 **Windows 8：**顶级窗口和子窗口支持**WS_EX_LAYERED**样式。 以前的 Windows 版本仅支持 **顶级窗口WS_EX_LAYERED** 。 |
+| **WS_EX_LAYOUTRTL**0x00400000L                               | 如果 shell 语言是希伯来语、阿拉伯语或其他支持阅读顺序对齐的语言，则窗口的水平原点位于右边缘。 增加水平值后向左。 |
+| **WS_EX_LEFT**0x00000000L                                    | 窗口具有泛型左对齐属性。 这是默认设置。                      |
+| **WS_EX_LEFTSCROLLBAR**0x00004000L                           | 如果 shell 语言是希伯来语、阿拉伯语或其他支持阅读顺序对齐的语言，则垂直滚动条 (（如果存在) ）位于工作区左侧。 对于其他语言，将忽略该样式。 |
+| **WS_EX_LTRREADING**0x00000000L                              | 窗口文本使用从左到右的阅读顺序属性显示。 这是默认值。        |
+| **WS_EX_MDICHILD**0x00000040L                                | 该窗口是 MDI 子窗口。                                        |
+| **WS_EX_NOACTIVATE**0x08000000L                              | 用户单击时，使用此样式创建的顶级窗口不会成为前台窗口。 当用户最小化或关闭前台窗口时，系统不会将此窗口带到前台。 不应通过编程访问或通过键盘导航（如讲述人）激活窗口。 若要激活窗口，请使用 [**SetActiveWindow**](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setactivewindow) 或 [**SetForegroundWindow**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow) 函数。 默认情况下，窗口不会显示在任务栏上。 若要强制窗口显示在任务栏上，请使用 **WS_EX_APPWINDOW** 样式。 |
+| **WS_EX_NOINHERITLAYOUT**0x00100000L                         | 窗口不将其窗口布局传递给其子窗口。                           |
+| **WS_EX_NOPARENTNOTIFY**0x00000004L                          | 使用此样式创建的子窗口在创建或销毁时不会将 [**WM_PARENTNOTIFY**](https://learn.microsoft.com/zh-cn/previous-versions/windows/desktop/inputmsg/wm-parentnotify) 消息发送到其父窗口。 |
+| **WS_EX_NOREDIRECTIONBITMAP**0x00200000L                     | 窗口不会呈现到重定向图面。 这适用于没有可见内容或使用表面以外的机制提供其视觉对象的窗口。 |
+| **WS_EX_OVERLAPPEDWINDOW**(WS_EX_WINDOWEDGE \|WS_EX_CLIENTEDGE) | 窗口是重叠的窗口。                                           |
+| **WS_EX_PALETTEWINDOW**(WS_EX_WINDOWEDGE \|WS_EX_TOOLWINDOW \|WS_EX_TOPMOST) | 窗口是调色板窗口，它是一个无模式对话框，显示命令数组。       |
+| **WS_EX_RIGHT**0x00001000L                                   | 窗口具有通用的“右对齐”属性。 这依赖于窗口类。 仅当 shell 语言是希伯来语、阿拉伯语或其他支持阅读顺序对齐的语言时，此样式才有效;否则，将忽略该样式。 对静态控件或编辑控件使用 **WS_EX_RIGHT** 样式的效果与分别使用 **SS_RIGHT** 或 **ES_RIGHT** 样式的效果相同。 将此样式用于按钮控件的效果与使用 **BS_RIGHT** 和 **BS_RIGHTBUTTON** 样式的效果相同。 |
+| **WS_EX_RIGHTSCROLLBAR**0x00000000L                          | 如果) 位于工作区右侧，则垂直滚动条 (。 这是默认值。          |
+| **WS_EX_RTLREADING**0x00002000L                              | 如果 shell 语言是希伯来语、阿拉伯语或其他支持阅读顺序对齐的语言，则使用从右到左的阅读顺序属性显示窗口文本。 对于其他语言，将忽略该样式。 |
+| **WS_EX_STATICEDGE**0x00020000L                              | 窗口具有三维边框样式，旨在用于不接受用户输入的项。           |
+| **WS_EX_TOOLWINDOW**0x00000080L                              | 该窗口旨在用作浮动工具栏。 工具窗口具有短于普通标题栏的标题栏和使用较小的字体绘制的窗口标题。 工具窗口不会显示在任务栏中，也不会显示在用户按 Alt+TAB 时显示的对话框中。 如果工具窗口具有系统菜单，则其图标不会显示在标题栏上。 但是，可以通过右键单击或键入 ALT+SPACE 来显示系统菜单。 |
+| **WS_EX_TOPMOST**0x00000008L                                 | 窗口应放置在所有非最顶部窗口的上方，并且应保持在窗口上方，即使窗口已停用也是如此。 若要添加或删除此样式，请使用 [**SetWindowPos**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setwindowpos) 函数。 |
+| **WS_EX_TRANSPARENT**0x00000020L                             | 在绘制由同一线程) 创建的窗口下的同级 (之前，不应绘制窗口。 该窗口显示为透明，因为基础同级窗口的位已被绘制。 若要在不受这些限制的情况下实现透明度，请使用 [**SetWindowRgn**](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setwindowrgn) 函数。 |
+| **WS_EX_WINDOWEDGE**0x00000100L                              | 窗口的边框带有凸起的边缘。                                   |
+
+### 窗口样式(不是EX)
+
+| 常用名称                | 常数值                                                       | 描述                                                         |
+| :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| **WS_BORDER**           | 0x00800000L                                                  | 窗口有细线边框                                               |
+| **WS_CAPTION**          | 0x00C00000L                                                  | 该窗口有一个标题栏（包括**WS_BORDER**样式）。                |
+| **WS_CHILD**            | 0x40000000L                                                  | **该窗口是子窗口。具有该样式的窗口不能有菜单栏。该样式不能与WS_POPUP**样式一起使用。 |
+| **WS_CHILDWINDOW**      | 0x40000000L                                                  | **与WS_CHILD**样式相同。                                     |
+| **WS_CLIPCHILDREN**     | 0x02000000L                                                  | 在父窗口内进行异构时排除子窗口所占领的区域。此样式在创建父窗口时使用。 |
+| **WS_CLIPSIBLINGS**     | 0x04000000L                                                  | [**相对于黄昏**](https://learn.microsoft.com/en-us/windows/win32/gdi/wm-paint)子窗口剪切出要的子窗口区域；若未指定**WS_CLIPSIBLINGS****且**子窗口重叠，则在子窗口的客户不平等时，可能会在子窗口的客户不平等。 |
+| **WS_DISABLED**         | 0x08000000L                                                  | 窗口最初取消状态。禁止的窗口无法接收用户的输入。要在创建窗口后更改此设置，请使用[**EnableWindow**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enablewindow)函数。 |
+| **WS_DLGFRAME**         | 0x00400000L                                                  | 窗口的熟悉样式通常用于对话框。具有此样式的窗口不能有标题栏。 |
+| **WS_GROUP**            | 0x00020000L                                                  | 窗口是控件组中的第一个控件。该组由第一个控件及其后面定义的所有控件组成，直到下一个具有**WS_GROUP**样式的控件。每个组中的第一个控件通常具有**WS_TABSTOP**样式，以便用户可以在组之间移动。另外，用户可以通过使用方向键将键盘焦点从组中的一个控件更改为组中的下一个控件。 您可以打开或关闭此样式以更改对话框导航。在创建窗口后更改此样式，请使用[**SetWindowLong**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlonga)函数。 |
+| **WS_HSCROLL**          | 0x00100000L                                                  | 窗口有一个水平滚动条。                                       |
+| **主題**                | 0x20000000L                                                  | 窗口最初是最小化的。与**WS_MINIMIZE**样式相同。              |
+| **WS_MAXIMIZE**         | 0x01000000L                                                  | Window最初是最大化的。                                       |
+| **WS_MAXIMIZEBOX**      | 0x00010000L                                                  | 窗口有一个提升按钮。不能与**WS_EX_CONTEXTHELP**样式结合使用。还必须指定**WS_SYSMENU样式。** |
+| **WS_MINIMIZE**         | 0x20000000L                                                  | 窗口最初是最小化的。与**WS_ICONIC**样式相同。                |
+| **WS_MINIMIZEBOX**      | 0x00020000L                                                  | 窗口有一个最小化按钮。不能与**WS_EX_CONTEXTHELP**样式结合使用。还必须指定**WS_SYSMENU样式。** |
+| **WS_OVERLAPPED**       | 0x00000000L                                                  | 该窗口是重叠窗口。重叠窗口有标题栏和彼此。与**WS_TILED**样式相同。 |
+| **WS_OVERLAPPEDWINDOW** | （WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX） | 该窗口是重叠窗口。与**WS_TILEDWINDOW**风格相同。             |
+| **视频**                | 0x80000000L                                                  | 该窗口是弹出窗口。此样式不能与**WS_CHILD**样式一起使用。     |
+| **WS_POPUPWINDOW**      | （WS_POPUP \| WS_BORDER \| WS_SYSMENU）                      | 该窗口是弹出窗口。必须结合使用**WS_CAPTION**和**WS_POPUPWINDOW**样式才能使窗口菜单可见。 |
+| **WS_SIZEBOX**          | 0x00040000L                                                  | 具有可调整大小的窗口。与**WS_THICKFRAME**样式相同。          |
+| **系统菜单**            | 0x00080000L                                                  | 窗口的标题栏上有窗口菜单。还必须指定**WS_CAPTION样式。**     |
+| **停止标签页**          | 0x00010000L                                                  | 窗口是当用户按 TAB 键时可以接收键盘焦点的控件。按 TAB 键将键盘焦点更改为下一个具有**WS_TABSTOP**样式的控件。 您可以打开或关闭此样式来更改对话框导航。在创建窗口后更改此样式，请使用[**SetWindowLong**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlonga)函数。要使用户创建的窗口和非模式对话框能够与制表位一起工作，请更改消息循环以调用[**IsDialogMessage**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-isdialogmessagea)函数。 |
+| **WS_THICKFRAME**       | 0x00040000L                                                  | 具有可调整大小的窗口。与**WS_SIZEBOX**样式相同。             |
+| **WS_TILED**            | 0x00000000L                                                  | 该窗口是重叠窗口。重叠窗口有标题栏和边框。与**WS_OVERLAPPED**样式相同。 |
+| **WS_TILEDWINDOW**      | （WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX） | 该窗口是重叠窗口。与**WS_OVERLAPPEDWINDOW**样式相同。        |
+| **WS_VISIBLE**          | 0x10000000L                                                  | 窗口最初是可见的。可以使用[**ShowWindow**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow)或[**SetWindowPos**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos) 函数打开或关闭此样式。 |
+| **WS_VSCROLL**          | 0x00200000L                                                  | 窗口有一个垂直滚动条。                                       |
+
+
+
+### 窗口内容
+
+```c
+HWND WINAPI CreateWindow(
+  _In_opt_  LPCTSTR lpClassName,    // 窗口类名称
+  _In_opt_  LPCTSTR lpWindowName,   // 窗口标题
+  _In_      DWORD dwStyle,          // 窗口风格，或称窗口格式
+  _In_      int x,                  // 初始 x 坐标
+  _In_      int y,                  // 初始 y 坐标
+  _In_      int nWidth,             // 初始 x 方向尺寸
+  _In_      int nHeight,            // 初始 y 方向尺寸
+  _In_opt_  HWND hWndParent,        // 父窗口句柄
+  _In_opt_  HMENU hMenu,            // 窗口菜单句柄
+  _In_opt_  HINSTANCE hInstance,    // 程序实例句柄
+  _In_opt_  LPVOID lpParam          // 创建参数
+);
+```
+
+### 风格
+
+| **类风格**         | **含义**                                                     |
+| ------------------ | ------------------------------------------------------------ |
+| CS_VREDRAW         | 移动或者调整窗口的高度（垂直方向）时，重绘整个窗口           |
+| CS_HREDRAW         | 移动或者调整窗口的宽度（水平方向）时，重绘整个窗口           |
+| CS_DBLCLKS         | 当用户光标在窗口内双击时，允许发送双击消息给窗口过程         |
+| CS_OWNDC           | 给予每个窗口实例分配一个唯一的 DC（注意，尽管这样是很方便，但它必须慎重使用，因为每个 DC 大约要占 800 个字节的内存） |
+| CS_CLASSDC         | 该窗口类的所有窗口实例都共享一个窗口类 DC                    |
+| CS_PARENTDC        | 1. 将子窗口的裁剪区域设置到父窗口的 DC 中去，这样子窗口便可以在父窗口上绘制自身。（注意，这是子窗口从系统缓存中获取 DC，而不是使用父窗口的 DC。） 2. 指定该风格可以提高系统性能 |
+| CS_NOCLOSE         | 禁止系统菜单的关闭选项                                       |
+| CS_SAVEBITS        | 1. 以位图形式保存被该窗口遮挡的屏幕部分，当给窗口移动以后，系统便可以用该保存的位图恢复屏幕移动的相应部分，从而系统不用向被该窗口遮挡的窗口发送 WM_PAINT 消息 2. 该特性对于菜单类型的窗口比较合适，因为它通常是简短的显示一下之后便消失 3. 设置该特性将增加显示该窗口的时间，因为它通常要先分配保存位图的内存 |
+| CS_BYTEALIGNCLIENT | 在字节边界上（在 x 方向上）定位窗口的用户区域的位置          |
+| CS_BYTEALIGNWINDOW | 在字节边界上（在 x 方向上）定位窗口的位置                    |
+| CS_GLOBALCLASS     | 1. 当调用 CreateWindow 或 CreateWindowEx 函数来创建窗口时允许它的 hInstance 参数和注册窗口类时传递给 RegisterClass 的 hInstance 参数不同 2. 如果不指定该风格，则这两个 hInstance 必须相同 |
+
+### 各类的前缀
+
+| **前缀** | **含义**                     |
+| -------- | ---------------------------- |
+| CS       | 类风格选项（ClassStyle）     |
+| CW       | 创建窗口选项（CreateWindow） |
+| DT       | 文本绘制选项（DrawText）     |
+| IDI      | 图标的 ID 号（IDIcon）       |
+| IDC      | 光标的 ID 号（IDCursor）     |
+| MB       | 消息框选项（MessageBox）     |
+| SND      | 声音选项（Sound）            |
+| WM       | 窗口消息（WindowsMessage）   |
+| WS       | 窗口风格（WindowStyles）     |
+
+```c++
+wndclass.cbSize = sizeof(WNDCLASSEX);
+wndclass.style = NULL;
+wndclass.lpfnWndProc = MainWindowProc; //回调函数
+wndclass.cbClsExtra = NULL;//分配存储空间
+wndclass.cbClsExtra = NULL; //分配存储空间
+wndclass.hInstance = hInstance; //实例句柄赋给窗口
+wndclass.hIcon = NULL; //icon 为null
+wndclass.hCursor = NULL;
+wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW; //设置北京颜色
+wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW;
+wndclass.lpszMenuName = NULL;
+wndclass.lpszClassName = L"示例程序";
+wndclass.hIconSm = NULL; 
+if (!RegisterClassEx(&wndclass)) {
+```
+
