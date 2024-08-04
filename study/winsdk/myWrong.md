@@ -382,3 +382,197 @@ wndclass.hIconSm = NULL;
 if (!RegisterClassEx(&wndclass)) {
 ```
 
+### 窗口拓展参数
+
+```c++
+HWND CreateWindowExA(
+  [in]           DWORD     dwExStyle,
+  [in, optional] LPCSTR    lpClassName,
+  [in, optional] LPCSTR    lpWindowName,
+  [in]           DWORD     dwStyle,
+  [in]           int       X,
+  [in]           int       Y,
+  [in]           int       nWidth,
+  [in]           int       nHeight,
+  [in, optional] HWND      hWndParent,
+  [in, optional] HMENU     hMenu,
+  [in, optional] HINSTANCE hInstance,
+  [in, optional] LPVOID    lpParam
+);
+```
+
+## ShowWindow
+
+```c++
+BOOL ShowWindow(
+HWND hwnd;
+int  nCmdShow
+)
+```
+
+### nCmdShow的可选参数
+
+| 值                                     | 含义                                                         |
+| :------------------------------------- | :----------------------------------------------------------- |
+| **SW_HIDE** 0                          | 隐藏窗口并激活另一个窗口。                                   |
+| **SW_SHOWNORMAL** **SW_NORMAL** 1      | 激活并显示窗口。 如果窗口最小化、最大化或排列，系统会将其还原到其原始大小和位置。 应用程序应在首次显示窗口时指定此标志。 |
+| **SW_SHOWMINIMIZED** 2                 | 激活窗口并将其显示为最小化窗口。                             |
+| **SW_SHOWMAXIMIZED** **SW_MAXIMIZE** 3 | 激活窗口并显示最大化的窗口。                                 |
+| **SW_SHOWNOACTIVATE** 4                | 以最近的大小和位置显示窗口。 此值类似于 **SW_SHOWNORMAL**，只是窗口未激活。 |
+| **SW_SHOW** 5                          | 激活窗口并以当前大小和位置显示窗口。                         |
+| **SW_MINIMIZE** 6                      | 最小化指定的窗口，并按 Z 顺序激活下一个顶级窗口。            |
+| **SW_SHOWMINNOACTIVE** 7               | 将窗口显示为最小化窗口。 此值类似于 **SW_SHOWMINIMIZED**，但窗口未激活。 |
+| **SW_SHOWNA** 8                        | 以当前大小和位置显示窗口。 此值类似于 **SW_SHOW**，只是窗口未激活。 |
+| **SW_RESTORE** 9                       | 激活并显示窗口。 如果窗口最小化、最大化或排列，系统会将其还原到其原始大小和位置。 还原最小化窗口时，应用程序应指定此标志。 |
+| **SW_SHOWDEFAULT** 10                  | 根据启动应用程序的程序传递给 [CreateProcess](https://learn.microsoft.com/zh-cn/windows/desktop/api/processthreadsapi/nf-processthreadsapi-createprocessa) 函数的 [STARTUPINFO](https://learn.microsoft.com/zh-cn/windows/desktop/api/processthreadsapi/ns-processthreadsapi-startupinfoa) 结构中指定的**SW_**值设置显示状态。 |
+| **SW_FORCEMINIMIZE** 11                | 最小化窗口，即使拥有窗口的线程没有响应。 仅当最小化不同线程的窗口时，才应使用此标志。 |
+
+#### 返回值
+
+1是显示 0是不显示
+
+###窗口更新
+
+```c++
+BOOL UpdateWindow(
+  [in] HWND hWnd
+);
+```
+
+成功返回非0
+
+
+
+
+
+## BOOL GetMessage()
+
+```c++
+BOOL GetMessage(
+  [out]          LPMSG lpMsg,
+  [in, optional] HWND  hWnd,
+  [in]           UINT  wMsgFilterMin,
+  [in]           UINT  wMsgFilterMax
+);
+```
+
+## 参数
+
+```
+[out] lpMsg
+```
+
+类型： **LPMSG**
+
+指向 [MSG](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/ns-winuser-msg) 结构的指针，该结构从线程的消息队列接收消息信息。
+
+```
+[in, optional] hWnd
+```
+
+类型：**HWND**
+
+要检索其消息的窗口的句柄。 窗口必须属于当前线程。
+
+如果 *hWnd* 为 **NULL，GetMessage** 将检索属于当前线程的任何窗口的消息，以及当前线程的消息队列中 **hwnd** 值为 **NULL** 的任何消息， () 看到 [MSG](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/ns-winuser-msg) 结构。 因此，如果 hWnd 为 **NULL**，则同时处理窗口消息和线程消息。
+
+如果 *hWnd* 为 -1，**则 GetMessage** 仅检索当前线程的消息队列中 **hwnd** 值为 **NULL** 的消息，即当 *hWnd* 参数为 **NULL**) 或 [PostThreadMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-postthreadmessagea) 时，[PostMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-postmessagea) (发布的线程消息。
+
+```
+[in] wMsgFilterMin
+```
+
+类型： **UINT**
+
+要检索的最低消息值的整数值。 使用 **WM_KEYFIRST** (0x0100) 指定第一条键盘消息， **或使用WM_MOUSEFIRST** (0x0200) 指定第一条鼠标消息。
+
+在此处和 *wMsgFilterMax* 中使用[WM_INPUT](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/wm-input)仅指定**WM_INPUT**消息。
+
+如果 *wMsgFilterMin* 和 *wMsgFilterMax* 均为零， **则 GetMessage** 将返回所有可用消息 (即不) 执行范围筛选。
+
+```
+[in] wMsgFilterMax
+```
+
+类型： **UINT**
+
+要检索的最高消息值的整数值。 使用 **WM_KEYLAST** 指定最后一条键盘消息， **WM_MOUSELAST** 指定最后一条鼠标消息。
+
+在此处和 *wMsgFilterMin* 中使用[WM_INPUT](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/wm-input)，仅指定**WM_INPUT**消息。
+
+如果 *wMsgFilterMin* 和 *wMsgFilterMax* 均为零， **则 GetMessage** 将返回所有可用消息 (即不) 执行范围筛选。
+
+_转自微软官方_ 
+
+> 设置的类名和 CreateWindowEx 的类名一致
+
+
+
+# 补充
+
+ 我制作了个简易的方便观看
+
+```c++
+#include <Windows.h>
+ LRESULT CALLBACK MainWindowProc(HWND, UINT, WPARAM, LPARAM);
+INT WINAPI WinMain (HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{   // 注册窗口
+	WNDCLASSEX wndclass = { 0 };
+	wndclass.cbSize = sizeof(WNDCLASSEX);
+	wndclass.style = NULL;
+	wndclass.lpfnWndProc = MainWindowProc; //回调函数
+	wndclass.cbClsExtra = NULL;//分配存储空间
+	wndclass.cbClsExtra = NULL; //分配存储空间
+	wndclass.hInstance = hInstance; //实例句柄赋给窗口
+	wndclass.hIcon = NULL; //icon 为null
+	wndclass.hCursor = NULL;
+	wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW; //设置北京颜色
+	wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW;
+	wndclass.lpszMenuName = NULL;
+	wndclass.lpszClassName = L"示例程序";
+	wndclass.hIconSm = NULL; 
+	if (!RegisterClassEx(&wndclass)) {
+
+		MessageBox(NULL, TEXT("失败"), TEXT("失败"), MB_OK);
+		return 1;
+	}
+		HWND hwnd = CreateWindowEx(
+		WS_EX_CLIENTEDGE,
+		L"示例程序",
+		L"计算器啊",
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		NULL,
+		NULL,
+		hInstance,
+		NULL
+	);
+		ShowWindow(hwnd, SW_SHOWDEFAULT);
+		UpdateWindow(hwnd);
+		MSG msg = {};
+		while (GetMessage(&msg, hwnd, 0, 0)) {
+			TranslateMessage(&msg);//字符消息转换
+			DispatchMessage(&msg);//消息调度窗口派发
+
+
+		}
+	
+	return 0;
+}
+
+ 
+
+
+// 注册窗口 
+ //创建窗口
+//显示
+//更新
+//消息处理
+/*窗口过程 句柄 标识 特定附加信息 *2 */ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+```
+
