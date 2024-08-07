@@ -39,7 +39,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
  MB_OK参数
 
-utype 
+### utype 按钮 MB
 
 ![](/winSDK/4B64AC0EB8DDCFDC78F1225C6479A621.jpg)
 
@@ -67,57 +67,56 @@ gcc -c 1.c -o 1.obj 编译了
 
 ### 匈牙利命名法
 
-前缀	类型	描述
-a	 Array	数组
-b		BOOL (int)
-by	Unsigned Char (Byte)	无符号字(字节)
-c	Char	字符(字节)
-cb	Count of bytes	字节数
-cr	Color reference value	颜色(参考)值
-cx	Count of x (Short)	x的集合(短整数)
-dw	DWORD(unsigned long)	双字(无符号长整数)
-f	Flags (usually multiple bit values)	标志(一般是有多位的数值)
-fn	Function	函数
-g_	global	全局的
-h	Handle	句柄
-i	Integer	整数
-l	Long	长整数
-lp	Long pointer	长指针
-m_	Data member of a class	一个类的数据成员
-n	Short int	短整数
-p	Pointer	指针
-s	String	字符串
-sz	Zero terminated String	以0结尾的字符串
-tm	Text metric	文本规则
-u	Unsigned int	无符号整数
-ul	Unsigned long (ULONG)	无符号长整数
-w	WORD (unsigned short)	无符号短整数
-x,y	x, y coordinates (short)	坐标值/短整数
-v	void	空
-有关项目的全局变量用g_开始，类成员变量用m_，局部变量若函数较大则可考虑用l_用以显示说明其是局部变量。
+- 前缀	类型	描述
+- a	 Array	数组
+- b		BOOL (int)
+- by	Unsigned Char (Byte)	无符号字(字节)
+- c	Char	字符(字节)
+- cb	Count of bytes	字节数
+- cr	Color reference value	颜色(参考)值
+- cx	Count of x (Short)	x的集合(短整数)
+- dw	DWORD(unsigned long)	双字(无符号长整数)
+- f	Flags (usually multiple bit values)	标志(一般是有多位的数值)
+- fn	Function	函数
+- g_	global	全局的
+- h	Handle	句柄
+- i	Integer	整数
+- l	Long	长整数
+- lp	Long pointer	长指针
+- m_	Data member of a class	一个类的数据成员
+- n	Short int	短整数
+- p	Pointer	指针
+- s	String	字符串
+- sz	Zero terminated String	以0结尾的字符串
+- tm	Text metric	文本规则
+- u	Unsigned int	无符号整数
+- ul	Unsigned long (ULONG)	无符号长整数
+- w	WORD (unsigned short)	无符号短整数
+- x,y	x, y coordinates (short)	坐标值/短整数
+- v	void	空
+- 有关项目的全局变量用g_开始，类成员变量用m_，局部变量若函数较大则可考虑用l_用以显示说明其是局部变量。
 
+- 前缀	类型	例子
+- g_	全局变量	g_Servers
+- C	类或者结构体	CDocument，CPrintInfo
+- m_	成员变量	m_pDoc，m_nCustomers
+- |VC常用前缀列表：
 
-前缀	类型	例子
-g_	全局变量	g_Servers
-C	类或者结构体	CDocument，CPrintInfo
-m_	成员变量	m_pDoc，m_nCustomers
-|VC常用前缀列表：
-
-前缀	类型	描述	例子
-ch	char	8位字符	chGrade
-ch	TCHAR	16位UNICODE类型字符	chName
-b	BOOL	布尔变量	bEnabled
-n	int	整型（其大小由操作系统决定）	nLength
-n	UINT	无符号整型（其大小由操作系统决定）	nLength
-w	WORD	16位无符号整型	wPos
-l	LONG	32位有符号整型	lOffset
-dw	DWORD	32位无符号整型	dwRange
-p	*	Ambient memory model pointer 内存模块指针，指针变量	pDoc
-lp	FAR*	长指针	lpDoc
-lpsz	LPSTR	32位字符串指针	lpszName
-lpsz	LPCSTR	2位常量字符串指针	lpszName
-lpsz	LPCTSTR	32位UNICODE类型常量指针	lpszName
-h	handle	Windows对象句柄	hWnd
+* 前缀	类型	描述	例子
+* ch	char	8位字符	chGrade
+* ch	TCHAR	16位UNICODE类型字符	chName
+* b	BOOL	布尔变量	bEnabled
+* n	int	整型（其大小由操作系统决定）	nLength
+* n	UINT	无符号整型（其大小由操作系统决定）	nLength
+* w	WORD	16位无符号整型	wPos
+* l	LONG	32位有符号整型	lOffset
+* dw	DWORD	32位无符号整型	dwRange
+* p	*	Ambient memory model pointer 内存模块指针，指针变量	pDoc
+* lp	FAR*	长指针	lpDoc
+* lpsz	LPSTR	32位字符串指针	lpszName
+* lpsz	LPCSTR	2位常量字符串指针	lpszName
+* lpsz	LPCTSTR	32位UNICODE类型常量指针	lpszName
+* h	handle	Windows对象句柄	hWnd
 
 ### 继续win窗口
 
@@ -251,7 +250,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 
 
-### 窗口拓展
+### 窗口拓展 WS
 
 | 常量/值                                                      | 说明                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -283,7 +282,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 | **WS_EX_TRANSPARENT**0x00000020L                             | 在绘制由同一线程) 创建的窗口下的同级 (之前，不应绘制窗口。 该窗口显示为透明，因为基础同级窗口的位已被绘制。 若要在不受这些限制的情况下实现透明度，请使用 [**SetWindowRgn**](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setwindowrgn) 函数。 |
 | **WS_EX_WINDOWEDGE**0x00000100L                              | 窗口的边框带有凸起的边缘。                                   |
 
-### 窗口样式(不是EX)
+### 窗口样式
 
 | 常用名称                | 常数值                                                       | 描述                                                         |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -571,8 +570,19 @@ INT WINAPI WinMain (HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine
 //显示
 //更新
 //消息处理
-/*窗口过程 句柄 标识 特定附加信息 *2 */ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+/*窗口过程 句柄 标识 特定附加信息 *2 */
+LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	TCHAR szBuffer[0xFF] = {};
+	wsprintf(szBuffer, TEXT("Msg -> %x\r\n"), uMsg);
+	OutputDebugString(szBuffer); //输出 拦截下来的UINT uMSG
+	
+	
+	
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
 }
 ```
 
+### 窗口通知快速跳转
+
+[WM](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/window-notifications) 快速跳转点击即可进入

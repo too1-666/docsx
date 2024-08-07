@@ -73,7 +73,8 @@ export default defineConfig({
         { text: 'Windows_SDK',
             collapsed: true,
             items:[
-           {text:'WinSdK',link :'/study/winsdk/myWrong'},
+            {text:'WinSdK',link :'/study/winsdk/myWrong'},
+            {text:'Win2SdK',link :'/study/winsdk/My2Wrong'},
             ]},
         ]
       },
