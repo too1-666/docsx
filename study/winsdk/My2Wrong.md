@@ -337,3 +337,242 @@ case WM_COMMAND:
 例子 识别到按按钮会自动弹错误的MessageBox
 
 0 0 0 0 是错误消息的意思
+
+```c++
+		HWND hRADIOBUTTON2 = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme0"),
+			WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+			10,
+			60,
+			150,
+			40,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL, );
+		HWND hRADIOBUTTON1 = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme1"),
+			WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+			10,
+			160,
+			150,
+			60,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL, );
+		
+```
+
+选择按钮 但是选择但是没有翻译 那是因为 没有做设置状态
+
+接收消息就得要收到特定的消息 我列表
+
+#### **按钮消息**
+
+| 主题                                                         | 目录                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**BCM_GETIDEALSIZE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-getidealsize) | 获取最适合文本和图像的按钮的大小（如果存在图像列表）。 可以显式发送此消息，也可以使用 [**Button_GetIdealSize**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_getidealsize) 宏发送。 |
+| [**BCM_GETIMAGELIST**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-getimagelist) | 获取描述分配给按钮控件的图像列表的 [**BUTTON_IMAGELIST**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/ns-commctrl-button_imagelist) 结构。 可以显式发送此消息，也可以使用 [**Button_GetImageList**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_getimagelist) 宏发送。 |
+| [**BCM_GETNOTE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-getnote) | 获取与命令链接按钮关联的注释的文本。 可以显式发送此消息，也可以使用 [**Button_GetNote**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_getnote) 宏发送。 |
+| [**BCM_GETNOTELENGTH**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-getnotelength) | 获取可在命令链接按钮的说明中显示的注释文本的长度。 显式发送此消息，也可以使用 [Button_GetNoteLength](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_getnotelength) 宏发送。 |
+| [**BCM_GETSPLITINFO**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-getsplitinfo) | 获取拆分按钮控件的信息。 显式发送此消息，也可以使用 [Button_GetSplitInfo](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_getsplitinfo) 宏发送。 |
+| [**BCM_GETTEXTMARGIN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-gettextmargin) | 获取用于在按钮控件中绘制文本的边距。 可以显式发送此消息，也可以使用 [**Button_GetTextMargin**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_gettextmargin) 宏发送。 |
+| [**BCM_SETDROPDOWNSTATE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-setdropdownstate) | 使用 [**TBSTYLE_DROPDOWN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/toolbar-control-and-button-styles) 样式设置按钮的下拉状态。 显式发送此消息，也可以使用 [Button_SetDropDownState](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_setdropdownstate) 宏发送。 |
+| [**BCM_SETIMAGELIST**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-setimagelist) | 将图像列表分配给按钮控件。 可以显式发送此消息，也可以使用 [**Button_SetImageList**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_setimagelist) 宏发送。 |
+| [**BCM_SETNOTE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-setnote) | 设置与命令链接按钮关联的注释的文本。 可以显式发送此消息，也可以使用 [**Button_SetNote**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_setnote) 宏发送。 |
+| [**BCM_SETSHIELD**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-setshield) | 设置指定按钮或命令链接的提升所需状态以显示提升的图标。 显式发送此消息，也可以使用 [**Button_SetElevationRequiredState**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_setelevationrequiredstate) 宏发送。 |
+| [**BCM_SETSPLITINFO**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-setsplitinfo) | 设置拆分按钮控件的信息。 显式发送此消息，也可以使用 [**Button_SetSplitInfo**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Commctrl/nf-commctrl-button_setsplitinfo) 宏发送。 |
+| [**BCM_SETTEXTMARGIN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-settextmargin) | [**BCM_SETTEXTMARGIN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcm-settextmargin) 消息设置按钮控件中绘制文本的边距。 |
+| [**BM_CLICK**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-click) | 模拟用户单击按钮。 此消息导致该按钮接收 [**WM_LBUTTONDOWN**](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/wm-lbuttondown) 和 [**WM_LBUTTONUP**](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/wm-lbuttonup) 消息，该按钮的父窗口接收 [BN_CLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-clicked) 通知代码。 |
+| [**BM_GETCHECK**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-getcheck) | 获取单选按钮或复选框的选中状态。 可以显式发送此消息，也可以使用 [**Button_GetCheck**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Windowsx/nf-windowsx-button_getcheck) 宏发送。 |
+| [**BM_GETIMAGE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-getimage) | 检索与按钮关联的图像（图标或位图）的句柄。                   |
+| [**BM_GETSTATE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-getstate) | 检索按钮或复选框的状态。 可以显式发送此消息，也可以使用 [**Button_GetState**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Windowsx/nf-windowsx-button_getstate) 宏发送。 |
+| [**BM_SETCHECK**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-setcheck) | 设置单选按钮或复选框的选中状态。 可以显式发送此消息，也可以使用 [**Button_SetCheck**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Windowsx/nf-windowsx-button_setcheck) 宏发送。 |
+| [**BM_SETDONTCLICK**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-setdontclick) | 在单选按钮上设置一个标志，用于在按钮接收焦点时控制 [BN_CLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-clicked) 消息生成。 |
+| [**BM_SETIMAGE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-setimage) | 将新图像（图标或位图）与按钮相关联。                         |
+| [**BM_SETSTATE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-setstate) | 设置按钮的突出显示状态。 突出显示状态指示按钮是否突出显示，就像用户已按下按钮一样。 可以显式发送此消息，也可以使用 [**Button_SetState**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Windowsx/nf-windowsx-button_setstate) 宏发送。 |
+| [**BM_SETSTYLE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/bm-setstyle) | 设置按钮的样式。 可以显式发送此消息，也可以使用 [**Button_SetStyle**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Windowsx/nf-windowsx-button_setstyle) 宏发送。 |
+
+_点击表格上的按钮消息即可查看返回值_
+
+消息和消息队列的定义列表 豪华版
+
+| 前缀                                 | 邮件类别             | 文档                                                         |
+| :----------------------------------- | :------------------- | :----------------------------------------------------------- |
+| **ABM** 和 **ABN**                   | 应用程序桌面工具栏   | [Shell 消息和通知](https://learn.microsoft.com/zh-cn/windows/desktop/shell/control-panel-applications) |
+| **ACM** 和 **ACN**                   | 动画控件             | [动画控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-animation-control-reference-messages) 和 [动画控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-animation-control-reference-notifications) |
+| **BCM**、 **BCN**、 **BM** 和 **BN** | Button 控件          | [按钮控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-button-control-reference-messages) 和 [按钮控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-button-control-reference-notifications) |
+| **CB** 和 **CBN**                    | ComboBox 控件        | [ComboBox 控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-combobox-control-reference-messages) 和 [ComboBox 控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-combobox-control-reference-notifications) |
+| **CBEM** 和 **CBEN**                 | ComboBoxEx 控件      | [ComboBoxEx 消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-comboboxex-control-reference-messages) 和 [ComboBoxEx 通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-comboboxex-control-reference-notifications) |
+| **Ccm**                              | 常规控制             | [控制消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-general-control-reference-messages) |
+| **CDM**                              | “通用”对话框         | [通用对话框消息](https://learn.microsoft.com/zh-cn/windows/desktop/dlgbox/common-dialog-box-messages) |
+| **Dfm**                              | 默认上下文菜单       | [Shell 消息和通知](https://learn.microsoft.com/zh-cn/windows/desktop/shell/control-panel-applications) |
+| **Dl**                               | 拖动列表框           | [拖动列表框通知](https://learn.microsoft.com/zh-cn/previous-versions//ff485914(v=vs.85)) |
+| **DM**                               | 默认按钮控件         | [对话框消息](https://learn.microsoft.com/zh-cn/windows/desktop/dlgbox/dialog-box-messages) |
+| **DTM** 和 **DTN**                   | 日期和时间选取器控件 | [日期和时间选取器消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-date-and-time-picker-control-reference-messages)[以及日期和时间选取器通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-date-and-time-picker-control-reference-notifications) |
+| **EM** 和 **EN**                     | 编辑控件             | [编辑控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-edit-control-reference-messages)、 [编辑控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-edit-control-reference-notifications)、 [丰富编辑消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-rich-edit-control-reference-messages)和 [丰富编辑通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-rich-edit-control-reference-notifications) |
+| **HDM** 和 **HDN**                   | 标头控件             | [标头控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-header-control-reference-messages) 和 [标头控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-header-control-reference-notifications) |
+| **HKM**                              | 热键控制             | [热键控制消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-hot-key-control-reference-messages) |
+| **IPM** 和 **IPN**                   | IP 地址控件          | [IP 地址消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-ip-address-control-reference-messages) 和 [IP 地址通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-ip-address-control-reference-notifications) |
+| **LB** 和 **LBN**                    | 列表框控件           | [列出框消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-list-box-control-reference-messages) 和 [列表框通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-list-box-control-reference-notifications) |
+| **LM**                               | SysLink 控件         | [SysLink 控制消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-syslink-control-reference-messages) |
+| **LVM** 和 **LVN**                   | 列表视图控件         | [列表视图消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-list-view-control-reference-messages) 和 [列表视图通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-list-view-control-reference-notifications) |
+| **MCM** 和 **MCN**                   | 月历控件             | [月历消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-month-calendar-control-reference-messages) 和 [月历通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-month-calendar-control-reference-notifications) |
+| **PBM**                              | 进度条               | [进度栏消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-progress-bar-control-reference-messages) |
+| **PGM** 和 **PGN**                   | Pager 控件           | [寻呼控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-pager-control-reference-messages) 和 [寻呼控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-pager-control-reference-notifications) |
+| **PSM** 和 **PSN**                   | 属性表               | [属性表消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-property-sheets-reference-messages) 和 [属性表通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-property-sheets-reference-notifications) |
+| **RB** 和 **RBN**                    | Rebar 控件           | [Rebar 控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-rebar-control-reference-messages) 和 [Rebar 控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-rebar-control-reference-notifications) |
+| **SB** 和 **SBN**                    | 状态栏窗口           | [状态栏消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-status-bars-reference-messages) 和 [状态栏通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-status-bars-reference-notifications) |
+| **SBM**                              | 滚动条控件           | [滚动条消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-scroll-bars-reference-messages) |
+| **Smc**                              | Shell 菜单           | [Shell 消息和通知](https://learn.microsoft.com/zh-cn/windows/desktop/shell/control-panel-applications) |
+| **STM** 和 **STN**                   | 静态控件             | [静态控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-static-control-reference-messages) 和 [静态控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-static-control-reference-notifications) |
+| **TB** 和 **TBN**                    | 工具栏               | [工具栏控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-toolbar-control-reference-messages) 和 [工具栏控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-toolbar-control-reference-notifications) |
+| **TBM** 和 **TRBN**                  | 跟踪条控件           | [跟踪条控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-trackbar-control-reference-messages) 和 [跟踪条控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-trackbar-control-reference-notifications) |
+| **TCN**                              | Tab 控件             | [选项卡控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tab-control-reference-messages) 和 [选项卡控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tab-control-reference-notifications) |
+| **TDM** 和 **TDN**                   | “任务”对话框         | [任务对话框消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-task-dialogs-reference-messages) 和 [任务对话框通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-task-dialogs-reference-notifications) |
+| **TTM** 和 **TTN**                   | 工具提示控件         | [工具提示控件消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tooltip-control-reference-messages) 和 [工具提示控件通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tooltip-control-reference-notifications) |
+| **TVM** 和 **TVN**                   | 树视图控件           | [树视图消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tree-view-control-reference-messages) 和 [树视图通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-tree-view-control-reference-notifications) |
+| **UDM** 和 **UDN**                   | 向上-向下控制        | [向上-向下消息](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-up-down-control-reference-messages) 和 [向上-向下通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-up-down-control-reference-notifications) |
+| **Wm**                               | 常规                 | [剪贴板消息](https://learn.microsoft.com/zh-cn/windows/desktop/dataxchg/clipboard-messages),[剪贴板通知](https://learn.microsoft.com/zh-cn/windows/desktop/dataxchg/clipboard-notifications),[通用对话框通知](https://learn.microsoft.com/zh-cn/windows/desktop/dlgbox/common-dialog-box-notifications),[游标通知](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/cursor-notifications),[数据复制消息](https://learn.microsoft.com/zh-cn/windows/desktop/dataxchg/wm-copydata)[桌面窗口管理器消息](https://learn.microsoft.com/zh-cn/windows/desktop/dwm/dwm-messages),[设备管理消息](https://learn.microsoft.com/zh-cn/windows/desktop/DevIO/device-management-messages),[对话框通知](https://learn.microsoft.com/zh-cn/windows/desktop/dlgbox/dialog-box-notifications),[动态数据交换消息](https://learn.microsoft.com/zh-cn/windows/desktop/dataxchg/dynamic-data-exchange-messages),[动态数据交换通知](https://learn.microsoft.com/zh-cn/windows/desktop/dataxchg/dynamic-data-exchange-notifications),[挂钩通知](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/hook-notifications),[键盘快捷键消息](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/keyboard-accelerator-messages),[键盘快捷键通知](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/keyboard-accelerator-notifications),[键盘输入消息](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/keyboard-input-messages),[键盘输入通知](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/keyboard-input-notifications),[菜单通知](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/menu-notifications),[鼠标输入通知](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/mouse-input-notifications),[多个文档接口消息](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/multiple-document-interface-messages),[原始输入通知](https://learn.microsoft.com/zh-cn/windows/desktop/inputdev/raw-input-notifications),[滚动条通知](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/bumper-scroll-bars-reference-notifications),[计时器通知](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/timer-notifications),[窗口消息](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/window-messages),[窗口通知](https://learn.microsoft.com/zh-cn/windows/win32/winmsg/window-notifications) |
+
+### 使用SendMessage设置状态
+
+```c++
+LRESULT SendMessage(
+  [in] HWND   hWnd,
+  [in] UINT   Msg,
+  [in] WPARAM wParam,
+  [in] LPARAM lParam
+);
+```
+
+```
+[in] hWnd
+```
+
+类型：**HWND**
+
+窗口的句柄，其窗口过程将接收消息。 如果此参数 **HWND_BROADCAST** ( (HWND) 0xffff) ，则消息将发送到系统中的所有顶级窗口，包括禁用或不可见的无所有者窗口、重叠窗口和弹出窗口;但消息不会发送到子窗口。
+
+消息发送受 UIPI 约束。 进程线程只能将消息发送到完整性级别较低或相等进程的线程的消息队列。
+
+```
+[in] Msg
+```
+
+类型： **UINT**
+
+要发送的消息。
+
+有关系统提供的消息的列表，请参阅 [系统定义的消息](https://learn.microsoft.com/zh-cn/windows/desktop/winmsg/about-messages-and-message-queues)。
+
+```
+[in] wParam
+```
+
+类型：WPARAM
+
+其他的消息特定信息。
+
+```
+[in] lParam
+```
+
+类型：LPARAM
+
+其他的消息特定信息。
+
+
+
+## 返回值
+
+类型： **LRESULT**
+
+返回值指定消息处理的结果;这取决于发送的消息。
+
+举例
+
+```c++
+LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	/* TCHAR szBuffer[0xFF] = {};
+	wsprintf(szBuffer, TEXT("Msg -> %x\r\n"), uMsg);
+	OutputDebugString(szBuffer); //输出 拦截下来的UINT uMSG */
+	switch (uMsg) {
+	case WM_CREATE:
+	{   //创建控件
+		HWND hButton = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme"),
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON ,
+			10,
+			10,
+			150,
+			40,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL);
+		HWND hRADIOBUTTON2 = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme0"),
+			WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+			10,
+			60,
+			150,
+			40,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL,);
+		HWND hRADIOBUTTON1 = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme1"),
+			WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+			10,
+			160,
+			150,
+			60,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL );
+		HWND hCheck = CreateWindow(
+			TEXT("BUTTON"),
+			TEXT("clickme"),
+			WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
+			10,
+			250,
+			150,
+			40,
+			hwnd,
+			(HMENU)ID_BUTTON_PUSH1,
+			ghInstance,
+			NULL );
+		//设置初始控件
+		SendMessage(hCheck, BM_SETCHECK, BST_CHECKED, 0);
+		
+		break;
+```
+
+###  **按钮通知**
+
+| 主题                                                         | 目录                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [BCN_DROPDOWN](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcn-dropdown) | 当用户单击按钮上的下拉箭头时发送。 控件的父窗口以 [**WM_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-notify) 消息的形式接收此通知代码。 |
+| [BCN_HOTITEMCHANGE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bcn-hotitemchange) | 通知按钮控件所有者鼠标正在进入或离开按钮控件的工作区。 该按钮控件会以 [**WM_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-notify) 消息的形式发送此通知代码。 |
+| [BN_CLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-clicked) | 当用户单击按钮时发送。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_CLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-clicked) 通知代码。 |
+| [BN_DBLCLK](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-dblclk) | 当用户双击按钮时发送。 此通知代码会自动为 [BS_USERBUTTON](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles)、[BS_RADIOBUTTON](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 和 [BS_OWNERDRAW](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮发送。 仅当其他按钮类型具有 [**BS_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 样式时，才会发送 [BN_DBLCLK](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-dblclk)。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_DBLCLK](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-dblclk) 通知代码。 |
+| [BN_DISABLE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-disable) | 禁用按钮时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_DISABLE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-disable) 通知代码。 |
+| [BN_DOUBLECLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-doubleclicked) | 当用户双击按钮时发送。 此通知代码会自动为 [**BS_USERBUTTON**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles)、[**BS_RADIOBUTTON**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 和 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮发送。 仅当其他按钮类型具有 [**BS_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 样式时，才会发送 [BN_DOUBLECLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-doubleclicked)。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_DOUBLECLICKED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-doubleclicked) 通知代码。 |
+| [BN_HILITE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-hilite) | 当用户选择按钮时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_HILITE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-hilite) 通知代码。 |
+| [BN_KILLFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-killfocus) | 当按钮失去键盘焦点时发送。 该按钮必须具有 [BS_NOTIFY](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 样式才能发送此通知代码。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_KILLFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-killfocus) 通知代码。 |
+| [BN_PAINT](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-paint) | 在应该绘制按钮时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_PAINT](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-paint) 通知代码。 |
+| [BN_PUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-pushed) | 当按钮的推送状态设置为已推送时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_PUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-pushed) 通知代码。 |
+| [BN_SETFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-setfocus) | 当按钮接收键盘焦点时发送。 该按钮必须具有 [**BS_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 样式才能发送此通知代码。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_SETFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-setfocus) 通知代码。 |
+| [BN_UNHILITE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unhilite) | 当应从按钮中移除突出显示时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_UNHILITE](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unhilite) 通知代码。 |
+| [BN_UNPUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unpushed) | 当按钮的推送状态设置为取消推送时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_UNPUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unpushed) 通知代码。 |
+| [NM_CUSTOMDRAW（按钮）](https://learn.microsoft.com/zh-cn/windows/win32/controls/nm-customdraw-button) | 通知按钮控件的父窗口按钮上的自定义绘图操作。 该按钮控件会以 [**WM_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-notify) 消息的形式发送此通知代码。 |
+| [**WM_CTLCOLORBTN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-ctlcolorbtn) | 在绘制按钮之前，[**WM_CTLCOLORBTN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-ctlcolorbtn) 消息将发送到按钮的父窗口。 父窗口可以更改按钮的文本和背景色。 但是，只有所有者绘制的按钮响应处理此消息的父窗口。 |
