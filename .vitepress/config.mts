@@ -69,6 +69,7 @@ export default defineConfig({
             {text :'re入门2' ,link:'/study/re/rumen2'},
             {text:'re工具使用',link:'/study/re/rmdongtaitiaoshi1'},
             {text :'部分IDA使用',link :'/study/re/IDA1'},
+            {text :'HowToFindMain',link :'/study/re/How_to_find_main'}
             ]},
         { text: 'Windows_SDK',
             collapsed: true,
