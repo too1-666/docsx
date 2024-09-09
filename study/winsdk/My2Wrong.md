@@ -576,3 +576,195 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 | [BN_UNPUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unpushed) | 当按钮的推送状态设置为取消推送时发送。 **注意：**此通知代码仅在与低于版本 3.0 的 16 位版本的 Windows 兼容时提供。 应用程序应为此任务使用 [**BS_OWNERDRAW**](https://learn.microsoft.com/zh-cn/windows/win32/controls/button-styles) 按钮样式和 [**DRAWITEMSTRUCT**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-drawitemstruct) 结构。 该按钮的父窗口通过 [**WM_COMMAND**](https://learn.microsoft.com/zh-cn/windows/desktop/menurc/wm-command) 消息接收 [BN_UNPUSHED](https://learn.microsoft.com/zh-cn/windows/win32/controls/bn-unpushed) 通知代码。 |
 | [NM_CUSTOMDRAW（按钮）](https://learn.microsoft.com/zh-cn/windows/win32/controls/nm-customdraw-button) | 通知按钮控件的父窗口按钮上的自定义绘图操作。 该按钮控件会以 [**WM_NOTIFY**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-notify) 消息的形式发送此通知代码。 |
 | [**WM_CTLCOLORBTN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-ctlcolorbtn) | 在绘制按钮之前，[**WM_CTLCOLORBTN**](https://learn.microsoft.com/zh-cn/windows/win32/controls/wm-ctlcolorbtn) 消息将发送到按钮的父窗口。 父窗口可以更改按钮的文本和背景色。 但是，只有所有者绘制的按钮响应处理此消息的父窗口。 |
+
+SendMessage(按钮函数 , 按钮消息,Wparam,LPARAM)
+
+也可以LRESULT ret =SendMessage()
+
+这样直接用if 判断 ret的返回值就可以了
+
+例如
+
+> LRESULT ret = SendMessage(hCheckBox, BM_GETCHECK, 0, 0);
+> if (ret == BST_CHECKED) {
+> 	MessageBox(NULL, TEXT("check1"), 0, MB_OK);
+> }
+
+也就是按钮消息的返回值可以通过点击 本网站的表格跳转微软官方文档看返回值
+
+```c++
+static HWND hButton1, hButton2, hCheckBox, hRADIOBUTTON1, hRADIOBUTTON2;
+switch (uMsg) {
+case WM_CREATE:
+{   //创建控件
+	hButton1 = CreateWindow(
+		TEXT("BUTTON"),
+		TEXT("clickme"),
+		WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON ,
+		10,
+		10,
+		150,
+		40,
+		hwnd,
+		(HMENU)ID_BUTTON_PUSH1,
+		ghInstance,
+		NULL);
+	hButton2 = CreateWindow(
+		TEXT("BUTTON"),
+		TEXT("clickme"),
+		WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+		10,
+		300,
+		150,
+		40,
+		hwnd,
+		(HMENU)ID_BUTTON_PUSH2,
+		ghInstance,
+		NULL);
+	hRADIOBUTTON1 = CreateWindow(
+		TEXT("BUTTON"),
+		TEXT("clickme0"),
+		WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+		10,
+		60,
+		150,
+		40,
+		hwnd,
+		(HMENU)ID_BUTTON_RADIOBUTTON1,
+		ghInstance,
+		NULL,);
+	hRADIOBUTTON2 = CreateWindow(
+		TEXT("BUTTON"),
+		TEXT("clickme1"),
+		WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+		10,
+		160,
+		150,
+		60,
+		hwnd,
+		(HMENU)ID_BUTTON_RADIOBUTTON2,
+		ghInstance,
+		NULL );
+	hCheckBox = CreateWindow(
+		TEXT("BUTTON"),
+		TEXT("clickme"),
+		WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
+		10,
+		250,
+		150,
+		40,
+		hwnd,
+		(HMENU)ID_BUTTON_CHECK,
+		ghInstance,
+		NULL );
+	//设置初始控件
+	SendMessage(hCheckBox, BM_SETCHECK, BST_CHECKED, 0);
+	SendMessage(hRADIOBUTTON1, BM_SETCHECK, BST_CHECKED, 0);
+	break;
+
+}
+case WM_COMMAND:
+{
+	switch (LOWORD(wParam)) //低字节控件ID (控制标志符号)
+	{
+	case ID_BUTTON_PUSH1:
+	{
+	
+		MessageBox(NULL, TEXT("666"), NULL, MB_OK);
+		break;
+	}
+	case ID_BUTTON_PUSH2:
+	{
+		SendMessage(hButton1, BM_CLICK, 0, 0);
+	}
+	{
+		MessageBox(
+			0, 0, 0, 0);
+	} 
+	case ID_BUTTON_CHECK:
+	{
+		LRESULT ret = SendMessage(hCheckBox, BM_GETCHECK, 0, 0);
+		if (ret == BST_CHECKED) {
+			MessageBox(NULL, TEXT("check1"), 0, MB_OK);
+		}
+		GetDlgItem()
+		break;
+	}
+	default:
+		break;
+	}
+}  
+
+case WM_DESTROY:
+{
+	PostQuitMessage(0);
+	return 0;
+
+}
+
+default:
+	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+```
+
+每次写句柄的时候 都得 设置static HWND 十分的麻烦 有个函数很省事该用的时候用很方便(由于static的生命周期 他只创建一次不会重复创建)
+
+**GetDlgItem()** 这个函数可以使用 调用他
+
+比如
+
+```c++
+HWND rett= GetDigItem(hwnd,ID)//主窗口句柄,控件ID 
+ // 然后你以后调用句柄的时候 就可以使用rett 变量了 
+SendMessage(rett,BN_SETCHECK,BST_CHECKED,0) // 示例一下
+```
+
+示例
+
+```c++
+case ID_BUTTON_CHECK:
+{
+	BOOL ret = SendMessage(hCheckBox, BM_GETCHECK, 0, 0) == BST_CHECKED;
+	HWND hChe = GetDlgItem(hwnd, ID_BUTTON_CHECK);
+	SendMessage(hChe, BM_SETCHECK, ret ? BST_UNCHECKED : BST_CHECKED, 0);
+
+
+	break;
+}  // 实现了 按钮的勾选
+```
+
+
+
+### 控件ID
+
+```c++
+#define ID_BUTTON_PUSH1				1
+#define ID_BUTTON_PUSH2				2
+#define ID_BUTTON_RADIOBUTTON1		3
+#define ID_BUTTON_RADIOBUTTON2		4
+#define ID_BUTTON_CHECK				5
+
+```
+
+设置宏定义并且设置识别码 ID在
+
+>HWND WINAPI CreateWindow(
+>  _In_opt_  LPCTSTR lpClassName,    // 窗口类名称
+>  _In_opt_  LPCTSTR lpWindowName,   // 窗口标题
+>  _In_      DWORD dwStyle,          // 窗口风格，或称窗口格式
+>  _In_      int x,                  // 初始 x 坐标
+>  _In_      int y,                  // 初始 y 坐标
+>  _In_      int nWidth,             // 初始 x 方向尺寸
+>  _In_      int nHeight,            // 初始 y 方向尺寸
+>  _In_opt_  HWND hWndParent,        // 父窗口句柄
+>  **_In_opt_  HMENU hMenu,            // 窗口菜单句柄**
+>  _In_opt_  HINSTANCE hInstance,    // 程序实例句柄
+>  _In_opt_  LPVOID lpParam          // 创建参数
+>);
+
+创建控件函数这里使用 已经加粗了 然后 就是检测触发没 就可以调用这个ID了  比如WM_COMMAND 的Wparam 的**LOWORD**(低字节)使用 返回值是控件ID值		
+
+### 如何处理单选框
+
+> **二选一单选框**
