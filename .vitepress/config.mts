@@ -76,6 +76,8 @@ export default defineConfig({
             items:[
             {text:'WinSdK',link :'/study/winsdk/myWrong'},
             {text:'Win2SdK',link :'/study/winsdk/My2Wrong'},
+            {text:'Win_Kr_Sdk_1',link:'/study/winsdk/WindowsSdk_Kr_1'},
+            {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',}
             ]},
         ]
       },

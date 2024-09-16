@@ -282,39 +282,37 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 | **WS_EX_TRANSPARENT**0x00000020L                             | 在绘制由同一线程) 创建的窗口下的同级 (之前，不应绘制窗口。 该窗口显示为透明，因为基础同级窗口的位已被绘制。 若要在不受这些限制的情况下实现透明度，请使用 [**SetWindowRgn**](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setwindowrgn) 函数。 |
 | **WS_EX_WINDOWEDGE**0x00000100L                              | 窗口的边框带有凸起的边缘。                                   |
 
-### 窗口样式
+### 窗口
 
-| 常用名称                | 常数值                                                       | 描述                                                         |
+| 常量名称                | 常量值                                                       | 说明                                                         |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **WS_BORDER**           | 0x00800000L                                                  | 窗口有细线边框                                               |
-| **WS_CAPTION**          | 0x00C00000L                                                  | 该窗口有一个标题栏（包括**WS_BORDER**样式）。                |
-| **WS_CHILD**            | 0x40000000L                                                  | **该窗口是子窗口。具有该样式的窗口不能有菜单栏。该样式不能与WS_POPUP**样式一起使用。 |
-| **WS_CHILDWINDOW**      | 0x40000000L                                                  | **与WS_CHILD**样式相同。                                     |
-| **WS_CLIPCHILDREN**     | 0x02000000L                                                  | 在父窗口内进行异构时排除子窗口所占领的区域。此样式在创建父窗口时使用。 |
-| **WS_CLIPSIBLINGS**     | 0x04000000L                                                  | [**相对于黄昏**](https://learn.microsoft.com/en-us/windows/win32/gdi/wm-paint)子窗口剪切出要的子窗口区域；若未指定**WS_CLIPSIBLINGS****且**子窗口重叠，则在子窗口的客户不平等时，可能会在子窗口的客户不平等。 |
-| **WS_DISABLED**         | 0x08000000L                                                  | 窗口最初取消状态。禁止的窗口无法接收用户的输入。要在创建窗口后更改此设置，请使用[**EnableWindow**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enablewindow)函数。 |
-| **WS_DLGFRAME**         | 0x00400000L                                                  | 窗口的熟悉样式通常用于对话框。具有此样式的窗口不能有标题栏。 |
-| **WS_GROUP**            | 0x00020000L                                                  | 窗口是控件组中的第一个控件。该组由第一个控件及其后面定义的所有控件组成，直到下一个具有**WS_GROUP**样式的控件。每个组中的第一个控件通常具有**WS_TABSTOP**样式，以便用户可以在组之间移动。另外，用户可以通过使用方向键将键盘焦点从组中的一个控件更改为组中的下一个控件。 您可以打开或关闭此样式以更改对话框导航。在创建窗口后更改此样式，请使用[**SetWindowLong**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlonga)函数。 |
-| **WS_HSCROLL**          | 0x00100000L                                                  | 窗口有一个水平滚动条。                                       |
-| **主題**                | 0x20000000L                                                  | 窗口最初是最小化的。与**WS_MINIMIZE**样式相同。              |
-| **WS_MAXIMIZE**         | 0x01000000L                                                  | Window最初是最大化的。                                       |
-| **WS_MAXIMIZEBOX**      | 0x00010000L                                                  | 窗口有一个提升按钮。不能与**WS_EX_CONTEXTHELP**样式结合使用。还必须指定**WS_SYSMENU样式。** |
-| **WS_MINIMIZE**         | 0x20000000L                                                  | 窗口最初是最小化的。与**WS_ICONIC**样式相同。                |
-| **WS_MINIMIZEBOX**      | 0x00020000L                                                  | 窗口有一个最小化按钮。不能与**WS_EX_CONTEXTHELP**样式结合使用。还必须指定**WS_SYSMENU样式。** |
-| **WS_OVERLAPPED**       | 0x00000000L                                                  | 该窗口是重叠窗口。重叠窗口有标题栏和彼此。与**WS_TILED**样式相同。 |
-| **WS_OVERLAPPEDWINDOW** | （WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX） | 该窗口是重叠窗口。与**WS_TILEDWINDOW**风格相同。             |
-| **视频**                | 0x80000000L                                                  | 该窗口是弹出窗口。此样式不能与**WS_CHILD**样式一起使用。     |
-| **WS_POPUPWINDOW**      | （WS_POPUP \| WS_BORDER \| WS_SYSMENU）                      | 该窗口是弹出窗口。必须结合使用**WS_CAPTION**和**WS_POPUPWINDOW**样式才能使窗口菜单可见。 |
-| **WS_SIZEBOX**          | 0x00040000L                                                  | 具有可调整大小的窗口。与**WS_THICKFRAME**样式相同。          |
-| **系统菜单**            | 0x00080000L                                                  | 窗口的标题栏上有窗口菜单。还必须指定**WS_CAPTION样式。**     |
-| **停止标签页**          | 0x00010000L                                                  | 窗口是当用户按 TAB 键时可以接收键盘焦点的控件。按 TAB 键将键盘焦点更改为下一个具有**WS_TABSTOP**样式的控件。 您可以打开或关闭此样式来更改对话框导航。在创建窗口后更改此样式，请使用[**SetWindowLong**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlonga)函数。要使用户创建的窗口和非模式对话框能够与制表位一起工作，请更改消息循环以调用[**IsDialogMessage**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-isdialogmessagea)函数。 |
-| **WS_THICKFRAME**       | 0x00040000L                                                  | 具有可调整大小的窗口。与**WS_SIZEBOX**样式相同。             |
-| **WS_TILED**            | 0x00000000L                                                  | 该窗口是重叠窗口。重叠窗口有标题栏和边框。与**WS_OVERLAPPED**样式相同。 |
-| **WS_TILEDWINDOW**      | （WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX） | 该窗口是重叠窗口。与**WS_OVERLAPPEDWINDOW**样式相同。        |
-| **WS_VISIBLE**          | 0x10000000L                                                  | 窗口最初是可见的。可以使用[**ShowWindow**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow)或[**SetWindowPos**](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos) 函数打开或关闭此样式。 |
-| **WS_VSCROLL**          | 0x00200000L                                                  | 窗口有一个垂直滚动条。                                       |
-
-
+| **WS_BORDER**           | 0x00800000L                                                  | 窗口具有细线边框                                             |
+| **WS_CAPTION**          | 0x00C00000L                                                  | 窗口具有标题栏（包括 **WS_BORDER** 样式）。                  |
+| WS_CHILD                | 0x40000000L                                                  | 窗口是子窗口。 具有此样式的窗口不能有菜单栏。 此样式不能与 **WS_POPUP** 样式一起使用。 |
+| **WS_CHILDWINDOW**      | 0x40000000L                                                  | 与 **WS_CHILD** 样式相同。                                   |
+| **WS_CLIPCHILDREN**     | 0x02000000L                                                  | 在父窗口内进行绘图时，不包括子窗口所占用的区域。 创建父窗口时使用此样式。 |
+| **WS_CLIPSIBLINGS**     | 0x04000000L                                                  | 相对于彼此剪裁子窗口；也就是说，当特定子窗口收到 [**WM_PAINT**](https://learn.microsoft.com/zh-cn/windows/win32/gdi/wm-paint) 消息时，**WS_CLIPSIBLINGS** 样式会将所有其他重叠的子窗口剪裁出要更新的子窗口的区域。 如果 **未指定 WS_CLIPSIBLINGS** 并且子窗口重叠，则在子窗口的工作区内绘图时，有可能在相邻子窗口的工作区内绘图。 |
+| WS_DISABLED             | 0x08000000L                                                  | 窗口最初处于禁用状态。 禁用的窗口无法接收用户的输入。 若要在创建窗口后更改此值，请使用 [**EnableWindow**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enablewindow) 函数。 |
+| **WS_DLGFRAME**         | 0x00400000L                                                  | 窗口的边框样式通常与对话框相同。 具有此样式的窗口不能有标题栏。 |
+| WS_GROUP                | 0x00020000L                                                  | 窗口是一组控件中的第一个控件。 该组包含此第一个控件及其之后定义的所有控件，直到下一个具有 **WS_GROUP** 样式的控件。 每个组中的第一个控件通常具有 **WS_TABSTOP** 样式，以便用户可以从组移动到组。 随后，用户可以使用方向键将键盘焦点从组中的一个控件切换为组中的下一个控件。 您可以打开和关闭此样式以更改对话框导航。 若要在创建窗口后更改此样式，请使用 [**SetWindowLong**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setwindowlonga) 函数。 |
+| **WS_HSCROLL**          | 0x00100000L                                                  | 窗口具有水平滚动条。                                         |
+| **WS_ICONIC**           | 0x20000000L                                                  | 窗口最初是最小化的。 与 **WS_MINIMIZE** 样式相同。           |
+| **WS_MAXIMIZE**         | 0x01000000L                                                  | 窗口最初是最大化的。                                         |
+| **WS_MAXIMIZEBOX**      | 0x00010000L                                                  | 窗口具有最大化按钮。 不能与 **WS_EX_CONTEXTHELP** 样式组合。 还必须指定 **WS_SYSMENU** 样式。 |
+| **WS_MINIMIZE**         | 0x20000000L                                                  | 窗口最初是最小化的。 与 **WS_ICONIC** 样式相同。             |
+| **WS_MINIMIZEBOX**      | 0x00020000L                                                  | 窗口具有最小化按钮。 不能与 **WS_EX_CONTEXTHELP** 样式组合。 还必须指定 **WS_SYSMENU** 样式。 |
+| **WS_OVERLAPPED**       | 0x00000000L                                                  | 窗口是重叠的窗口。 重叠的窗口带有标题栏和边框。 与 **WS_TILED** 样式相同。 |
+| **WS_OVERLAPPEDWINDOW** | (WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX) | 窗口是重叠的窗口。 与 **WS_TILEDWINDOW** 样式相同。          |
+| **WS_POPUP**            | 0x80000000L                                                  | 窗口是弹出窗口。 此样式不能与 **WS_CHILD** 样式一起使用。    |
+| **WS_POPUPWINDOW**      | (WS_POPUP \| WS_BORDER \| WS_SYSMENU)                        | 窗口是弹出窗口。 必须组合 **WS_CAPTION** 和 **WS_POPUPWINDOW** 样式以使窗口菜单可见。 |
+| **WS_SIZEBOX**          | 0x00040000L                                                  | 窗口具有大小调整边框。 与 **WS_THICKFRAME** 样式相同。       |
+| **WS_SYSMENU**          | 0x00080000L                                                  | 该窗口的标题栏上有一个窗口菜单。 还必须指定 **WS_CAPTION** 样式。 |
+| WS_TABSTOP              | 0x00010000L                                                  | 窗口是一个控件，当用户按下 Tab 键时，该控件可以接收键盘焦点。 按下 Tab 键可将键盘焦点更改为具有 **WS_TABSTOP** 样式的下一个控件。 您可以打开和关闭此样式以更改对话框导航。 若要在创建窗口后更改此样式，请使用 [**SetWindowLong**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setwindowlonga) 函数。 要使用户创建的窗口和无模式对话框能够使用制表位，请更改消息循环以调用 [**IsDialogMessage**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-isdialogmessagea) 函数。 |
+| **WS_THICKFRAME**       | 0x00040000L                                                  | 窗口具有大小调整边框。 与 **WS_SIZEBOX** 样式相同。          |
+| **WS_TILED**            | 0x00000000L                                                  | 窗口是重叠的窗口。 重叠的窗口带有标题栏和边框。 与 **WS_OVERLAPPED** 样式相同。 |
+| **WS_TILEDWINDOW**      | (WS_OVERLAPPED \| WS_CAPTION \| WS_SYSMENU \| WS_THICKFRAME \| WS_MINIMIZEBOX \| WS_MAXIMIZEBOX) | 窗口是重叠的窗口。 与 **WS_OVERLAPPEDWINDOW** 样式相同。     |
+| WS_VISIBLE              | 0x10000000L                                                  | 窗口最初可见。 可以使用 [**ShowWindow**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-showwindow) 或 [**SetWindowPos**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setwindowpos) 函数打开和关闭此样式。 |
+| **WS_VSCROLL**          | 0x00200000L                                                  | 窗口具有垂直滚动条。                                         |
 
 ### 窗口内容
 
@@ -334,7 +332,7 @@ HWND WINAPI CreateWindow(
 );
 ```
 
-### 风格
+### 风格CS
 
 | **类风格**         | **含义**                                                     |
 | ------------------ | ------------------------------------------------------------ |
@@ -512,7 +510,7 @@ _转自微软官方_
  我制作了个简易的方便观看
 
 ```c++
-#include <Windows.h>
+ #include <Windows.h>
  LRESULT CALLBACK MainWindowProc(HWND, UINT, WPARAM, LPARAM);
 INT WINAPI WinMain (HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {   // 注册窗口
@@ -526,7 +524,7 @@ INT WINAPI WinMain (HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wndclass.hIcon = NULL; //icon 为null
 	wndclass.hCursor = NULL;
 	wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW; //设置北京颜色
-	wndclass.hbrBackground = (HBRUSH)COLOR_WINDOW;
+
 	wndclass.lpszMenuName = NULL;
 	wndclass.lpszClassName = L"示例程序";
 	wndclass.hIconSm = NULL; 
