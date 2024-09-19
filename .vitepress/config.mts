@@ -141,7 +141,7 @@ export default defineConfig({
 
 
 	sitemap: {
-		hostname: 'e1elibrary.com',
+		hostname: 'e1elibrary.com'
 	},
 
 
