@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base:"/docsx/",
+  base:"/",
   head: [["link", { rel: "icon", href: "/docsx/logo.svg" }]],
   title: "Library",
   description: "MyLibrary",
