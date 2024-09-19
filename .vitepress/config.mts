@@ -140,11 +140,6 @@ export default defineConfig({
   },
 
 
-	sitemap: {
-		hostname: 'e1elibrary.com'
-	},
-
-
 
 
 })
