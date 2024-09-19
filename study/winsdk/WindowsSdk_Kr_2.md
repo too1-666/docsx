@@ -157,4 +157,141 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 WM_MOVE消息 
 
- 之前提过一句 再次提一下 LOWORAD(低字节) 的lParam 是x 轴  HIWORD(高字节)的lParam 是y轴
+ 之前提过一句 再次提一下 LOWORAD(低字节) 的lParam 是x 轴  HIWORD(高字节)的lParam 是y轴\
+
+所以根据 这个原理 通过传参可以获取窗口的移动 参数
+
+```c++
+#include <Windows.h>
+#include <stdio.h>
+#include<tchar.h>
+LRESULT CALLBACK WindowProc(  HWND hWnd,UINT uMSG, WPARAM wParam,    LPARAM lParam) ;// 回调
+/*
+    键盘消息
+    鼠标消息
+    快捷键消息
+    菜单消息
+
+    客户区域
+    */
+
+
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) // 第二个句柄保留适配老版本
+{
+    TCHAR szWndClassName[] = { _T("Text") };
+
+    WNDCLASSEX wc = { 0 };
+    wc.cbSize = sizeof(WNDCLASSEX);
+    wc.style = CS_VREDRAW | CS_HREDRAW; //窗口类型
+    wc.lpfnWndProc = WindowProc; // 窗口过程 (回调函数) -> 处理 消息
+    wc.hInstance = hInstance;
+    wc.hIcon = LoadIcon(NULL,IDI_SHIELD);
+    wc.hCursor = LoadCursor(NULL,IDC_CROSS);
+    wc.hbrBackground = CreateSolidBrush(RGB(255, 0, 0));
+    wc.lpszMenuName = NULL;
+    wc.lpszClassName = szWndClassName;
+    if (RegisterClassEx(&wc) == 0) {
+        return 0;
+    }
+
+    //创建窗口
+
+    TCHAR szWndName[] = { _T("Windows") };
+    HWND hWnd = CreateWindowEx(
+        0,
+        szWndClassName,
+        szWndName,
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+    if (hWnd == NULL)
+        return 0;
+
+
+
+
+    ShowWindow(hWnd, SW_SHOWNORMAL);
+   // SetClassLong(hWnd, GCL_HCURSOR, (LONG)LoadCursor(NULL,IDC_HAND)); 
+    // 二次修改光标
+
+
+
+
+
+    //消息循环
+    BOOL bRet;
+    MSG  msg;
+    while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)  // 接收所有 的消息
+    {
+        if (bRet == -1)
+        {
+            break;
+        }
+        else
+        {
+            TranslateMessage(&msg);//虚拟
+            DispatchMessage(&msg); //派发消息
+        }
+    }
+    return (msg.wParam); // 接收消息
+
+}LRESULT OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    ::MessageBox(NULL, _T("ONCreate"), _T("Create"), MB_OK);
+    return TRUE;
+}
+LRESULT OnClose(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    ::MessageBox(NULL, _T("Close"), _T("Close"), MB_OK);
+    return FALSE;
+}
+LRESULT OnDestroy(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    ::MessageBox(NULL, _T("Destory"), _T("SUCCESS"), MB_OK);
+    PostMessage(hWnd, WM_QUIT, wParam, lParam);  //关闭消息  WM_Destory消息, 传参到 wParam  
+    return TRUE;
+}
+LRESULT OnMove(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    int xPos = (int)(short)LOWORD(lParam);
+    int yPos = (int)(short)HIWORD(lParam);
+    TCHAR Space[MAXBYTE];
+    wsprintf(Space, _T("xPos:%d yPos:%d"), xPos, yPos);
+    ::MessageBox(NULL, Space, _T("too1-666.github.io/docsx/"),MB_OK);
+    return TRUE;
+}
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    LRESULT lResult = FALSE;
+    switch (uMsg) {
+    case WM_CREATE:
+        lResult = OnCreate(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_CLOSE:
+        lResult = OnClose(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_DESTROY:  // 窗口销毁
+        lResult = OnDestroy(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_MOVE:
+        lResult = OnMove(hWnd, uMsg, wParam, lParam);
+        break;
+    }
+    if (!lResult)
+    {
+        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    }
+    return lResult;
+}
+
+```
+
+本章节代码展示
+
+---
+
+
+

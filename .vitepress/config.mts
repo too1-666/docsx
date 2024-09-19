@@ -77,6 +77,7 @@ export default defineConfig({
             {text:'WinSdK',link :'/study/winsdk/myWrong'},
             {text:'Win2SdK',link :'/study/winsdk/My2Wrong'},
             {text:'Win_Kr_Sdk_1',link:'/study/winsdk/WindowsSdk_Kr_1'},
+            {text:'Win_Kr_Sdk_2',link:'/study/winsdk/WindowsSdk_Kr_2'},
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',}
             ]},
         ]
@@ -136,6 +137,15 @@ export default defineConfig({
     footer:{
     copyright:"Copyright © 2024 "
     }
-  }
+  },
+
+
+	sitemap: {
+		hostname: 'e1elibrary.com',
+	},
+
+
+
+
 })
 //...
