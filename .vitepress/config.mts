@@ -6,7 +6,7 @@ const links: { url: string; lastmod: PageData['lastUpdated'] }[] = []
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base:"/",
-  head: [["link", { rel: "icon", href: "/docsx/logo.svg" }]],
+  head: [["link", { rel: "icon", href: "/logo.svg" }]],
   title: "Library",
   description: "MyLibrary",
   themeConfig: {
