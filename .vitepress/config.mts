@@ -1,5 +1,8 @@
-import { defineConfig } from 'vitepress'
-
+import { createWriteStream } from 'node:fs'
+import { resolve } from 'node:path'
+import { SitemapStream } from 'sitemap'
+import { defineConfig, PageData } from 'vitepress'
+const links: { url: string; lastmod: PageData['lastUpdated'] }[] = []
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base:"/",
@@ -138,9 +141,26 @@ export default defineConfig({
     copyright:"Copyright © 2024 "
     }
   },
-
-
-
-
+/* 站点地图 */
+  transformHtml: (_, id, { pageData }) => {
+    if (!/[\\/]404\.html$/.test(id))
+      links.push({
+        url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
+        lastmod: pageData.lastUpdated
+      })
+  },
+  buildEnd: async ({ outDir }) => {
+    // hostname 为线上域名
+    const sitemap = new SitemapStream({ hostname: 'https://e1elibrary.com/' })
+    const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
+    sitemap.pipe(writeStream)
+    links.forEach((link) => sitemap.write(link))
+    sitemap.end()
+    await new Promise((r) => writeStream.on('finish', r))
+  }
 })
-//...
+
+
+
+
+//....
