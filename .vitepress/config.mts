@@ -2,6 +2,7 @@ import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
 import { SitemapStream } from 'sitemap'
 import { defineConfig, PageData } from 'vitepress'
+
 const links: { url: string; lastmod: PageData['lastUpdated'] }[] = []
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -159,7 +160,7 @@ export default defineConfig({
     await new Promise((r) => writeStream.on('finish', r))
   }
   
-  
+
 
 })
 

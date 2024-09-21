@@ -476,3 +476,23 @@ _点击表格上的按钮消息即可查看返回值_
 | **IDI_INFORMATION** MAKEINTRESOURCE (32516) | ![img](https://learn.microsoft.com/zh-cn/windows/win32/menurc/images/idi_information.png) “信息”图标 |
 | **IDI_WINLOGO** MAKEINTRESOURCE (32517)     | ![img](https://learn.microsoft.com/zh-cn/windows/win32/menurc/images/idi_winlogo.png) Windows 徽标图标 |
 | **IDI_SHIELD** MAKEINTRESOURCE (32518)      | ![img](https://learn.microsoft.com/zh-cn/windows/win32/menurc/images/idi_shield.png) 安全防护图标 |
+
+### WM_LBUTTONDOWN 
+
+>  鼠标消息捕获
+
+| 值                    | 含义                  |
+| :-------------------- | :-------------------- |
+| **MK_CONTROL**0x0008  | 按下了 CTRL 键。      |
+| MK_LBUTTON0x0001      | 按下了鼠标左键。      |
+| MK_MBUTTON0x0010      | 按下了鼠标中键。      |
+| MK_RBUTTON0x0002      | 按下了鼠标右键。      |
+| MK_SHIFT0x0004        | 按下了 SHIFT 键。     |
+| **MK_XBUTTON1**0x0020 | 按下了第一个 X 按钮。 |
+| **MK_XBUTTON2**0x0040 | 按下了第二个 X 按钮。 |
+
+*lParam*
+
+> 低序字指定光标的 x 坐标。 坐标相对于工作区的左上角。
+
+>  高序字指定光标的 y 坐标。 坐标相对于工作区的左上角。
