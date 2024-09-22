@@ -496,3 +496,351 @@ _点击表格上的按钮消息即可查看返回值_
 > 低序字指定光标的 x 坐标。 坐标相对于工作区的左上角。
 
 >  高序字指定光标的 y 坐标。 坐标相对于工作区的左上角。
+
+----
+
+### 键盘API
+
+| 名称                                                         | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**ActivateKeyboardLayout**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-activatekeyboardlayout) | 设置调用线程或当前进程的输入区域设置标识符（以前称为键盘布局句柄）。 输入区域设置标识符指定区域设置以及键盘的物理布局。 |
+| [BlockInput](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-blockinput) | 阻止键盘和鼠标输入事件到达应用程序。                         |
+| [EnableWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enablewindow) | 启用或禁用指定窗口或控件的鼠标和键盘输入。 禁用输入时，窗口不会接收鼠标单击和按键等输入。 启用输入时，窗口会接收所有输入。 |
+| [GetActiveWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getactivewindow) | 检索附加到调用线程消息队列中的活动窗口的句柄。               |
+| [GetAsyncKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getasynckeystate) | 确定调用函数时键是向上还是向下，以及上次调用 [GetAsyncKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getasynckeystate) 后是否按下了该键。 |
+| [GetFocus](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getfocus) | 如果窗口附加到调用线程的消息队列，则检索具有键盘焦点的窗口的句柄。 |
+| [**GetKeyboardLayout**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayout) | 检索指定线程的活动输入区域设置标识符（以前称为键盘布局）。 如果 idThread 参数为零，则返回活动线程的输入区域设置标识符。 |
+| [**GetKeyboardLayoutList**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutlist) | 检索与系统中的当前输入区域设置集相对应的输入区域设置标识符（以前称为键盘布局句柄）。 该函数将标识符复制到指定的缓冲区。 |
+| [**GetKeyboardLayoutName**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutnamea) | 检索活动输入区域设置标识符的名称（以前称为键盘布局）。       |
+| [GetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardstate) | 将 256 个虚拟密钥的状态复制到指定的缓冲区。                  |
+| [GetKeyNameText](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeynametexta) | 检索表示键的名称的字符串。                                   |
+| [**GetKeyState**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeystate) | 检索指定虚拟键的状态。 状态指定键是向上、向下还是切换（每次按键时交替打开、关闭）。 |
+| [GetLastInputInfo](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getlastinputinfo) | 检索最后一个输入事件的时间。                                 |
+| [IsWindowEnabled](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-iswindowenabled) | 确定是否针对鼠标和键盘输入启用指定的窗口。                   |
+| [LoadKeyboardLayout](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-loadkeyboardlayouta) | 将新的输入区域设置标识符（以前称为键盘布局）加载到系统中。 一次可以加载多个输入区域设置标识符，但每个进程一次只有一个处于活动状态。 加载多个输入区域设置标识符可以在它们之间快速切换。 |
+| [**MapVirtualKey**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeya) | 将虚拟键代码转换为（映射到）扫描代码或字符值，或将扫描代码转换为虚拟键代码。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [MapVirtualKeyEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeyexa) 函数。 |
+| [MapVirtualKeyEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeyexa) | 将虚拟键代码映射到扫描代码或字符值，或将扫描代码转换为虚拟键代码。 该函数使用输入语言和输入区域设置标识符转换代码。 |
+| [OemKeyScan](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-oemkeyscan) | 将 OEMASCII 代码 0 到 0x0FF 映射到 OEM 扫描代码和偏移状态。 该函数提供的信息允许程序通过模拟键盘输入将 OEM 文本发送到另一个程序。 |
+| [RegisterHotKey](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-registerhotkey) | 定义系统范围内的热键。                                       |
+| [**SendInput**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendinput) | 合成键击、鼠标动作和按钮单击。                               |
+| [SetActiveWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setactivewindow) | 激活窗口。 窗口必须附加到调用线程的消息队列。                |
+| [SetFocus](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setfocus) | 将键盘焦点设置为指定的窗口。 窗口必须附加到调用线程的消息队列。 |
+| [SetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setkeyboardstate) | 将键盘键状态的 256 字节数组复制到调用线程的键盘输入状态表中。 这是由 [GetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardstate) 和 [GetKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeystate) 函数访问的同一个表。 对此表所做的更改不会影响任何其他线程的键盘输入。 |
+| [ToAscii](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toascii) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个字符。 该函数使用输入语言和由键盘布局句柄标识的物理键盘布局转换代码。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [ToAsciiEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toasciiex) 函数。 |
+| [ToAsciiEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toasciiex) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个字符。 该函数使用输入语言和由输入区域设置标识符标识的物理键盘布局转换代码。 |
+| [**ToUnicode**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicode) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个 Unicode 字符。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [ToUnicodeEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicodeex) 函数。 |
+| [ToUnicodeEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicodeex) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个 Unicode 字符。 |
+| [UnloadKeyboardLayout](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-unloadkeyboardlayout) | 卸载输入区域设置标识符（以前称为键盘布局）。                 |
+| [UnregisterHotKey](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-unregisterhotkey) | 释放以前由调用线程注册的热键。                               |
+| [VkKeyScanEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-vkkeyscanexa) | 将字符转换为相应的虚拟键代码和偏移状态。 该函数使用输入语言和由输入区域设置标识符标识的物理键盘布局转换字符。 |
+
+ [Windows](https://learn.microsoft.com/zh-cn/windows/) [应用](https://learn.microsoft.com/zh-cn/windows/apps/) [Win32](https://learn.microsoft.com/zh-cn/windows/win32/) [桌面技术](https://learn.microsoft.com/zh-cn/windows/win32/desktop-app-technologies) [桌面应用用户界面](https://learn.microsoft.com/zh-cn/windows/win32/windows-application-ui-development) [用户交互](https://learn.microsoft.com/zh-cn/windows/win32/user-interaction) [旧功能](https://learn.microsoft.com/zh-cn/windows/win32/legacy-user-interaction-features) [键盘和鼠标输入](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/user-input) 
+
+[使用英语阅读](https://learn.microsoft.com/en-us/windows/win32/inputdev/keyboard-input)
+
+<details class="popover popover-right add-item-popover" style="box-sizing: inherit; outline-color: inherit; display: inline-block; position: relative;"><summary class="button button-clear button-sm button-primary display-none display-inline-flex-tablet" data-list-type="collection" data-list-item-title="键盘输入 - Win32 apps | Microsoft Learn" data-list-item-url="/windows/win32/inputdev/keyboard-input" data-list-source="module" data-resource-type="" data-bi-name="add-to-list" aria-describedby="popover-content" aria-expanded="false" style="box-sizing: inherit; outline-color: inherit; display: inline-flex !important; cursor: pointer; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; position: relative; background-color: rgba(0, 0, 0, 0); color: var(--theme-primary-base); text-align: center; font-weight: 600; text-decoration: none; list-style: none;"><span class="icon margin-none" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; margin: 0px !important; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-circle-addition" style="box-sizing: inherit; outline-color: inherit; font-family: docons; font-size: inherit; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="collection-status is-visually-hidden" style="box-sizing: inherit; outline-color: inherit; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%); height: 1px; width: 1px; overflow-wrap: normal; border: 0px; margin: -1px; padding: 0px; position: absolute; overflow: hidden;">保存</span></summary><div class="popover-content has-z-index-one" style="box-sizing: inherit; outline-color: inherit; z-index: 1060; width: 224px; border: 1px solid var(--theme-border); background-color: var(--theme-body-background); box-shadow: 0 6.4px 14.4px 0 var(--theme-box-shadow-medium),0 1.2px 3.6px 0 var(--theme-box-shadow-light); border-radius: 0.25rem; margin-block-start: 0.5rem; padding: 1rem; position: absolute; inset-inline-end: 0px;"><ul class="list-unstyled" style="box-sizing: inherit; outline-color: inherit; margin: 0px; padding: 0px; list-style: none;"><li style="box-sizing: inherit; outline-color: inherit; margin: 0px; padding: 0px; outline-style: initial; outline-width: 0px;"><button class="button button-clear button-sm button-primary" data-list-type="collection" data-list-item-title="键盘输入 - Win32 apps | Microsoft Learn" data-list-item-url="/windows/win32/inputdev/keyboard-input" data-bi-name="add-to-collections" data-pressed="false" title="将 键盘输入 - Win32 apps | Microsoft Learn 添加到集合" style="box-sizing: inherit; outline-color: inherit; margin: 0px; font-family: inherit; font-size: 0.875rem; line-height: 1.5; overflow: visible; text-transform: none; appearance: none; color: var(--theme-primary-base); background-color: rgba(0, 0, 0, 0); cursor: pointer; user-select: none; min-height: 2.25em; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; display: inline-flex; position: relative; text-align: center; font-weight: 600; text-decoration: none;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-circle-addition" style="box-sizing: inherit; outline-color: inherit; font-family: docons; font-size: inherit; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="collection-status" style="box-sizing: inherit; outline-color: inherit;"></span></button></li><li style="box-sizing: inherit; outline-color: inherit; margin: 0px; padding: 0px; outline-style: initial; outline-width: 0px;"><button class="button button-clear button-sm button-primary" data-list-type="plan" data-list-item-title="键盘输入 - Win32 apps | Microsoft Learn" data-list-item-url="/windows/win32/inputdev/keyboard-input" data-bi-name="add-to-plans" data-pressed="false" title="将 键盘输入 - Win32 apps | Microsoft Learn 添加到计划" style="box-sizing: inherit; outline-color: inherit; margin: 0px; font-family: inherit; font-size: 0.875rem; line-height: 1.5; overflow: visible; text-transform: none; appearance: none; color: var(--theme-primary-base); background-color: rgba(0, 0, 0, 0); cursor: pointer; user-select: none; min-height: 2.25em; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; display: inline-flex; position: relative; text-align: center; font-weight: 600; text-decoration: none;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-circle-addition" style="box-sizing: inherit; outline-color: inherit; font-family: docons; font-size: inherit; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="plan-status" style="box-sizing: inherit; outline-color: inherit;"></span></button></li></ul></div></details>
+
+<details class="popover popover-right" id="article-header-page-actions-overflow" style="box-sizing: inherit; outline-color: inherit; display: inline-block; position: relative;"><summary class="justify-content-flex-start button button-clear button-sm button-primary" aria-label="更多操作" title="更多操作" style="box-sizing: inherit; outline-color: inherit; display: inline-flex; cursor: pointer; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; position: relative; background-color: rgba(0, 0, 0, 0); color: var(--theme-primary-base); text-align: center; font-weight: 600; text-decoration: none; list-style: none;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin: 0px;"><span class="docon docon-more-vertical" style="box-sizing: inherit; outline-color: inherit; font-family: docons; font-size: inherit; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span></summary><div class="popover-content padding-xs" style="box-sizing: inherit; outline-color: inherit; padding: 1rem; width: 224px; border: 1px solid var(--theme-border); background-color: var(--theme-body-background); box-shadow: 0 6.4px 14.4px 0 var(--theme-box-shadow-medium),0 1.2px 3.6px 0 var(--theme-box-shadow-light); z-index: 1060; border-radius: 0.25rem; margin-block-start: 0.5rem; position: absolute; inset-inline-end: 0px;"><div aria-hidden="true" class="margin-none" data-page-action-item="overflow-all" style="box-sizing: inherit; outline-color: inherit; margin: 0px !important;"></div><h4 class="font-size-sm padding-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin: 0px; padding: 0px; font-size: 0.875rem !important; font-weight: 600; padding-inline-start: 0.5rem !important;"></h4><a class="button button-clear button-sm button-block has-inner-focus text-decoration-none justify-content-flex-start share-facebook" data-bi-name="facebook" data-page-action-item="overflow-all" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flearn.microsoft.com%2Fzh-cn%2Fwindows%2Fwin32%2Finputdev%2Fkeyboard-input%3FWT.mc_id%3Dfacebook" style="box-sizing: inherit; outline-color: inherit; color: currentcolor; cursor: pointer; overflow-wrap: break-word; text-decoration: none; background-color: rgba(0, 0, 0, 0); outline-style: initial; outline-width: 0px; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; display: flex; position: relative; text-align: center; font-weight: 600; width: 190.4px;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-facebook-share font-size-md color-primary" style="box-sizing: inherit; outline-color: inherit; color: var(--theme-primary-base) !important; font-size: inherit; font-family: docons; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="margin-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin-inline-start: 0.5rem !important;"></span></a><a class="button button-clear button-sm has-inner-focus button-block text-decoration-none justify-content-flex-start share-twitter" data-bi-name="twitter" data-page-action-item="overflow-all" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Flearn.microsoft.com%2Fzh-cn%2Fwindows%2Fwin32%2Finputdev%2Fkeyboard-input%3FWT.mc_id%3Dtwitter&amp;text=%E4%BB%8A%E5%A4%A9%E6%88%91%E5%AE%8C%E6%88%90%E4%BA%86%20%22%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%20-%20Win32%20apps%20%7C%20Microsoft%20Learn%22%EF%BC%81%20%E6%88%91%E5%BE%88%E8%87%AA%E8%B1%AA%E8%83%BD%E5%A4%9F%E5%BA%86%E7%A5%9D%E8%BF%99%E4%B8%80%E6%88%90%E5%B0%B1%EF%BC%8C%E5%B9%B6%E5%B8%8C%E6%9C%9B%E8%BF%99%E8%83%BD%E6%BF%80%E5%8A%B1%E4%BD%A0%E5%BC%80%E5%A7%8B%E8%87%AA%E5%B7%B1%E7%9A%84%20%40MicrosoftLearn%20%E6%97%85%E7%A8%8B%EF%BC%81&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Flearn.microsoft.com%2Fzh-cn%2Fwindows%2Fwin32%2Finputdev%2Fkeyboard-input%3FWT.mc_id%3Dtwitter" style="box-sizing: inherit; outline-color: inherit; color: currentcolor; cursor: pointer; overflow-wrap: break-word; text-decoration: none; background-color: rgba(0, 0, 0, 0); outline-style: initial; outline-width: 0px; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; display: flex; position: relative; text-align: center; font-weight: 600; width: 190.4px;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-xlogo-share font-size-xxs" style="box-sizing: inherit; outline-color: inherit; font-family: docons; font-size: inherit; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="margin-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin-inline-start: 0.5rem !important;"></span></a><a class="button button-clear button-sm has-inner-focus button-block text-decoration-none justify-content-flex-start share-linkedin" data-bi-name="linkedin" data-page-action-item="overflow-all" href="https://www.linkedin.com/feed/?shareActive=true&amp;text=%E4%BB%8A%E5%A4%A9%E6%88%91%E5%AE%8C%E6%88%90%E4%BA%86%20%22%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%20-%20Win32%20apps%20%7C%20Microsoft%20Learn%22%EF%BC%81%20%E6%88%91%E5%BE%88%E8%87%AA%E8%B1%AA%E8%83%BD%E5%A4%9F%E5%BA%86%E7%A5%9D%E8%BF%99%E4%B8%80%E6%88%90%E5%B0%B1%EF%BC%8C%E5%B9%B6%E5%B8%8C%E6%9C%9B%E8%BF%99%E8%83%BD%E6%BF%80%E5%8A%B1%E4%BD%A0%E5%BC%80%E5%A7%8B%E8%87%AA%E5%B7%B1%E7%9A%84%20%40MicrosoftLearn%20%E6%97%85%E7%A8%8B%EF%BC%81%0A%0D%0Ahttps%3A%2F%2Flearn.microsoft.com%2Fzh-cn%2Fwindows%2Fwin32%2Finputdev%2Fkeyboard-input%3FWT.mc_id%3Dlinkedin" style="box-sizing: inherit; outline-color: inherit; color: currentcolor; cursor: pointer; overflow-wrap: break-word; text-decoration: none; background-color: rgba(0, 0, 0, 0); outline-style: initial; outline-width: 0px; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; display: flex; position: relative; text-align: center; font-weight: 600; width: 190.4px;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-linked-in-logo font-size-sm color-primary" style="box-sizing: inherit; outline-color: inherit; color: var(--theme-primary-base) !important; font-size: inherit; font-family: docons; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="margin-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin-inline-start: 0.5rem !important;"></span></a><a class="button button-clear button-sm button-block has-inner-focus text-decoration-none justify-content-flex-start margin-bottom-xxs share-email" data-bi-name="email" data-page-action-item="overflow-all" href="mailto:?subject=%5B%E5%85%B1%E4%BA%AB%E6%96%87%E7%AB%A0%5D%20%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%20-%20Win32%20apps%20%7C%20Microsoft%20Learn&amp;body=%E4%BB%8A%E5%A4%A9%E6%88%91%E5%AE%8C%E6%88%90%E4%BA%86%20%22%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%20-%20Win32%20apps%20%7C%20Microsoft%20Learn%22%EF%BC%81%20%E6%88%91%E5%BE%88%E8%87%AA%E8%B1%AA%E8%83%BD%E5%A4%9F%E5%BA%86%E7%A5%9D%E8%BF%99%E4%B8%80%E6%88%90%E5%B0%B1%EF%BC%8C%E5%B9%B6%E5%B8%8C%E6%9C%9B%E8%BF%99%E8%83%BD%E6%BF%80%E5%8A%B1%E4%BD%A0%E5%BC%80%E5%A7%8B%E8%87%AA%E5%B7%B1%E7%9A%84%20%40MicrosoftLearn%20%E6%97%85%E7%A8%8B%EF%BC%81%0A%0D%0Ahttps%3A%2F%2Flearn.microsoft.com%2Fzh-cn%2Fwindows%2Fwin32%2Finputdev%2Fkeyboard-input%3FWT.mc_id%3Demail" style="box-sizing: inherit; outline-color: inherit; color: currentcolor; cursor: pointer; overflow-wrap: break-word; text-decoration: none; background-color: rgba(0, 0, 0, 0); outline-style: initial; outline-width: 0px; user-select: none; min-height: 2.25em; appearance: none; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; font-size: 0.875rem; line-height: 1.5; display: flex; position: relative; margin-block-end: 0.5rem !important; text-align: center; font-weight: 600; width: 190.4px;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-mail-message font-size-sm color-primary" style="box-sizing: inherit; outline-color: inherit; color: var(--theme-primary-base) !important; font-size: inherit; font-family: docons; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="margin-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin-inline-start: 0.5rem !important;"></span></a><hr style="box-sizing: inherit; outline-color: inherit; height: 0px; overflow: visible; margin: 0px; padding: 0px; border-style: solid; border-width: 1px 0px 0px; border-color: var(--theme-border);"><button class="button button-block button-clear button-sm justify-content-flex-start has-inner-focus margin-top-xxs" title="打印" type="button" aria-label="打印" data-bi-name="print" data-page-action-item="overflow-all" data-popover-close="" data-print-page="" data-check-hidden="true" style="box-sizing: inherit; outline-color: inherit; margin: 0px; font-family: inherit; font-size: 0.875rem; line-height: 1.5; overflow: visible; text-transform: none; appearance: button; color: currentcolor; background-color: rgba(0, 0, 0, 0); cursor: pointer; user-select: none; min-height: 2.25em; box-shadow: none; vertical-align: top; border: 1px solid rgba(0, 0, 0, 0); border-radius: 0.25rem; justify-content: center; align-items: center; padding-block: calc(0.375em - 1px); padding-inline: 0.75em; display: flex; position: relative; margin-block-start: 0.5rem !important; text-align: center; font-weight: 600; text-decoration: none; width: 190.4px;"><span class="icon" aria-hidden="true" style="box-sizing: inherit; outline-color: inherit; justify-content: center; align-items: center; display: inline-flex; width: 1em; height: 1em; font-size: 0.875em; margin-inline-end: 0.375em;"><span class="docon docon-print font-size-sm color-primary" style="box-sizing: inherit; outline-color: inherit; color: var(--theme-primary-base) !important; font-size: inherit; font-family: docons; speak: none; font-variant: normal; text-transform: none; text-align: center; direction: ltr; -webkit-font-smoothing: antialiased; font-style: normal; font-weight: 400; line-height: 16px; display: inline-block;"></span></span><span class="margin-left-xxs" style="box-sizing: inherit; outline-color: inherit; margin-inline-start: 0.5rem !important;"></span></button></div></details>
+
+# 键盘输入
+
+- 项目
+- 2024/02/06
+- 6 个参与者
+
+反馈
+
+本文内容[本节内容](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/keyboard-input#in-this-section)[另请参阅](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/keyboard-input#see-also)
+
+本部分介绍系统如何生成键盘输入，以及应用程序如何接收和处理该输入。
+
+
+
+## 本节内容
+
+展开表
+
+| 名称                                                         | 描述                       |
+| :----------------------------------------------------------- | :------------------------- |
+| [关于键盘输入](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/about-keyboard-input) | 讨论键盘输入。             |
+| [使用键盘输入](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/using-keyboard-input) | 涵盖与键盘输入关联的任务。 |
+| [键盘输入引用](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/keyboard-input-reference) | 包含 API 引用。            |
+
+
+
+### 函数
+
+展开表
+
+| 名称                                                         | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**ActivateKeyboardLayout**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-activatekeyboardlayout) | 设置调用线程或当前进程的输入区域设置标识符（以前称为键盘布局句柄）。 输入区域设置标识符指定区域设置以及键盘的物理布局。 |
+| [BlockInput](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-blockinput) | 阻止键盘和鼠标输入事件到达应用程序。                         |
+| [EnableWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enablewindow) | 启用或禁用指定窗口或控件的鼠标和键盘输入。 禁用输入时，窗口不会接收鼠标单击和按键等输入。 启用输入时，窗口会接收所有输入。 |
+| [GetActiveWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getactivewindow) | 检索附加到调用线程消息队列中的活动窗口的句柄。               |
+| [GetAsyncKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getasynckeystate) | 确定调用函数时键是向上还是向下，以及上次调用 [GetAsyncKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getasynckeystate) 后是否按下了该键。 |
+| [GetFocus](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getfocus) | 如果窗口附加到调用线程的消息队列，则检索具有键盘焦点的窗口的句柄。 |
+| [**GetKeyboardLayout**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayout) | 检索指定线程的活动输入区域设置标识符（以前称为键盘布局）。 如果 idThread 参数为零，则返回活动线程的输入区域设置标识符。 |
+| [**GetKeyboardLayoutList**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutlist) | 检索与系统中的当前输入区域设置集相对应的输入区域设置标识符（以前称为键盘布局句柄）。 该函数将标识符复制到指定的缓冲区。 |
+| [**GetKeyboardLayoutName**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutnamea) | 检索活动输入区域设置标识符的名称（以前称为键盘布局）。       |
+| [GetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardstate) | 将 256 个虚拟密钥的状态复制到指定的缓冲区。                  |
+| [GetKeyNameText](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeynametexta) | 检索表示键的名称的字符串。                                   |
+| [**GetKeyState**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeystate) | 检索指定虚拟键的状态。 状态指定键是向上、向下还是切换（每次按键时交替打开、关闭）。 |
+| [GetLastInputInfo](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getlastinputinfo) | 检索最后一个输入事件的时间。                                 |
+| [IsWindowEnabled](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-iswindowenabled) | 确定是否针对鼠标和键盘输入启用指定的窗口。                   |
+| [LoadKeyboardLayout](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-loadkeyboardlayouta) | 将新的输入区域设置标识符（以前称为键盘布局）加载到系统中。 一次可以加载多个输入区域设置标识符，但每个进程一次只有一个处于活动状态。 加载多个输入区域设置标识符可以在它们之间快速切换。 |
+| [**MapVirtualKey**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeya) | 将虚拟键代码转换为（映射到）扫描代码或字符值，或将扫描代码转换为虚拟键代码。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [MapVirtualKeyEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeyexa) 函数。 |
+| [MapVirtualKeyEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-mapvirtualkeyexa) | 将虚拟键代码映射到扫描代码或字符值，或将扫描代码转换为虚拟键代码。 该函数使用输入语言和输入区域设置标识符转换代码。 |
+| [OemKeyScan](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-oemkeyscan) | 将 OEMASCII 代码 0 到 0x0FF 映射到 OEM 扫描代码和偏移状态。 该函数提供的信息允许程序通过模拟键盘输入将 OEM 文本发送到另一个程序。 |
+| [RegisterHotKey](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-registerhotkey) | 定义系统范围内的热键。                                       |
+| [**SendInput**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendinput) | 合成键击、鼠标动作和按钮单击。                               |
+| [SetActiveWindow](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setactivewindow) | 激活窗口。 窗口必须附加到调用线程的消息队列。                |
+| [SetFocus](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setfocus) | 将键盘焦点设置为指定的窗口。 窗口必须附加到调用线程的消息队列。 |
+| [SetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setkeyboardstate) | 将键盘键状态的 256 字节数组复制到调用线程的键盘输入状态表中。 这是由 [GetKeyboardState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeyboardstate) 和 [GetKeyState](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkeystate) 函数访问的同一个表。 对此表所做的更改不会影响任何其他线程的键盘输入。 |
+| [ToAscii](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toascii) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个字符。 该函数使用输入语言和由键盘布局句柄标识的物理键盘布局转换代码。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [ToAsciiEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toasciiex) 函数。 |
+| [ToAsciiEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-toasciiex) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个字符。 该函数使用输入语言和由输入区域设置标识符标识的物理键盘布局转换代码。 |
+| [**ToUnicode**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicode) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个 Unicode 字符。 若要指定用于转换指定代码的键盘布局的句柄，请使用 [ToUnicodeEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicodeex) 函数。 |
+| [ToUnicodeEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-tounicodeex) | 将指定的虚拟键代码和键盘状态转换为相应的一个或多个 Unicode 字符。 |
+| [UnloadKeyboardLayout](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-unloadkeyboardlayout) | 卸载输入区域设置标识符（以前称为键盘布局）。                 |
+| [UnregisterHotKey](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-unregisterhotkey) | 释放以前由调用线程注册的热键。                               |
+| [VkKeyScanEx](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-vkkeyscanexa) | 将字符转换为相应的虚拟键代码和偏移状态。 该函数使用输入语言和由输入区域设置标识符标识的物理键盘布局转换字符。 |
+
+以下函数已过时。
+
+展开表
+
+| 函数                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**GetKBCodePage**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getkbcodepage) | 检索当前代码页。                                             |
+| [**keybd_event**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-keybd_event) | 合成键击。 系统可以使用这种合成的键击来生成 [WM_KEYUP](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keyup) 或 [WM_KEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown) 消息。 键盘驱动程序的中断处理程序调用 [keybd_event](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-keybd_event) 函数。 |
+| [**VkKeyScan**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-vkkeyscana) | 将字符转换为当前键盘的相应虚拟键代码和偏移状态。             |
+
+### 键盘消息
+
+| 名称                                                         | 描述                                                    |
+| :----------------------------------------------------------- | :------------------------------------------------------ |
+| [WM_GETHOTKEY](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-gethotkey) | 确定与窗口关联的热键。                                  |
+| [WM_SETHOTKEY](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-sethotkey) | 将热键与窗口相关联。 当用户按下热键时，系统会激活窗口。 |
+
+### 键盘的通知
+
+| 名称                                                         | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [WM_ACTIVATE](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-activate) | 同步发送到正在激活的窗口和正在停用的窗口。 如果窗口使用相同的输入队列，则消息将同步发送，首先发送到正在停用的顶级窗口的窗口过程，然后发送到正在激活的顶级窗口的窗口过程。 如果窗口使用不同的输入队列，则消息将异步发送，因此会立即激活窗口。 |
+| [WM_APPCOMMAND](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-appcommand) | 通知窗口用户生成了应用程序命令事件，例如，使用鼠标单击应用程序命令按钮或在键盘上键入应用程序命令键。 |
+| [WM_CHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-char) | 在 [TranslateMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-translatemessage) 函数对 [WM_KEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown) 消息进行转换后发布给具有键盘焦点的窗口。 [WM_CHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-char) 消息包含所按的键的字符代码。 |
+| [WM_DEADCHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-deadchar) | 在 [TranslateMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-translatemessage) 函数对 [WM_KEYUP](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keyup) 消息进行转换后发布给具有键盘焦点的窗口。 [WM_DEADCHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-deadchar) 指定由死键生成的字符代码。 死键是与其他字符组合形成复合字符的键，例如元音变音符（双点）。 例如，通过键入元音变音符的死键，然后键入 O 键，生成元音变音符 O 字符。 |
+| [WM_HOTKEY](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-hotkey) | 在用户按下通过 [RegisterHotKey](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-registerhotkey) 函数注册的热键时发送。 此消息放置在与注册了热键的线程关联的消息队列的顶部。 |
+| [WM_KEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown) | 按下非系统键时，使用键盘焦点发布到窗口。 非系统键是在未按下 ALT 键时按下的键。 |
+| [WM_KEYUP](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keyup) | 非系统键被释放时，发布到具有键盘焦点的窗口。 非系统键是未按下 ALT 键的情况下按下的键，或者当窗口具有键盘焦点时按下的键盘键。 |
+| [WM_KILLFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-killfocus) | 在失去键盘焦点之前立即发送到窗口。                           |
+| [WM_SETFOCUS](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-setfocus) | 在获得键盘焦点后发送到窗口。                                 |
+| [WM_SYSDEADCHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-sysdeadchar) | 在 [TranslateMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-translatemessage) 函数对 [WM_SYSKEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-syskeydown) 消息进行转换后，使用键盘焦点发送给窗口。 [WM_SYSDEADCHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-sysdeadchar) 指定系统死键的字符代码，即按住 ALT 键时按下的死键。 |
+| [WM_SYSKEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-syskeydown) | 当用户按下 F10 键（这将激活菜单栏）或按住 ALT 键然后按下另一个键时，发布到具有键盘焦点的窗口。 当目前没有窗口具有键盘焦点时也会发生这种情况；在这种情况下，[WM_SYSKEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-syskeydown) 消息被发送到活动窗口。 接收消息的窗口可以通过检查 lParam 参数中的上下文代码来区分这两个上下文。 |
+| [WM_SYSKEYUP](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-syskeyup) | 当用户释放在按住 ALT 键的同时按下的键时，发布到具有键盘焦点的窗口。 当目前没有窗口具有键盘焦点时也会发生这种情况；在这种情况下，[WM_SYSKEYUP](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-syskeyup) 消息被发送到活动窗口。 接收消息的窗口可以通过检查 lParam 参数中的上下文代码来区分这两个上下文。 |
+| [WM_UNICHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-unichar) | 在 [TranslateMessage](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-translatemessage) 函数对 [WM_KEYDOWN](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown) 消息进行转换后发布给具有键盘焦点的窗口。 [WM_UNICHAR](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-unichar) 消息包含所按的键的字符代码。 |
+
+----
+
+## HOTKEY 热键MOD_和 VK_ 的虚拟键代码
+
+| **值**                  | **含义**                                                     |
+| :---------------------- | :----------------------------------------------------------- |
+| **MOD_ALT** 0x0001      | 必须按住任一 ALT 键。                                        |
+| **MOD_CONTROL** 0x0002  | 必须按住 Ctrl 键。                                           |
+| **MOD_NOREPEAT** 0x4000 | 更改热键行为，使键盘自动重复不会生成多个热键通知。 **Windows Vista：不支持** 此标志。 |
+| **MOD_SHIFT** 0x0004    | 必须按住 Shift 键。                                          |
+| **MOD_WIN** 0x0008      | 必须按住任一 WINDOWS 密钥。 这些键标有 Windows 徽标。 涉及 WINDOWS 键的键盘快捷方式保留供操作系统使用。 |
+
+| 常数                     | Value   | 说明                                                         |
+| :----------------------- | :------ | :----------------------------------------------------------- |
+| `VK_LBUTTON`             | 0x01    | 鼠标左键                                                     |
+| `VK_RBUTTON`             | 0x02    | 鼠标右键                                                     |
+| `VK_CANCEL`              | 0x03    | 控制中断处理                                                 |
+| `VK_MBUTTON`             | 0x04    | 鼠标中键                                                     |
+| `VK_XBUTTON1`            | 0x05    | X1 鼠标按钮                                                  |
+| `VK_XBUTTON2`            | 0x06    | X2 鼠标按钮                                                  |
+| `-`                      | 0x07    | 保留                                                         |
+| `VK_BACK`                | 0x08    | BACKSPACE 键                                                 |
+| `VK_TAB`                 | 0x09    | Tab 键                                                       |
+| `-`                      | 0x0A-0B | 预留                                                         |
+| `VK_CLEAR`               | 0x0C    | CLEAR 键                                                     |
+| `VK_RETURN`              | 0x0D    | Enter 键                                                     |
+| `-`                      | 0x0E-0F | 未分配                                                       |
+| `VK_SHIFT`               | 0x10    | SHIFT 键                                                     |
+| `VK_CONTROL`             | 0x11    | CTRL 键                                                      |
+| `VK_MENU`                | 0x12    | Alt 键                                                       |
+| `VK_PAUSE`               | 0x13    | PAUSE 键                                                     |
+| `VK_CAPITAL`             | 0x14    | CAPS LOCK 键                                                 |
+| `VK_KANA`                | 0x15    | IME Kana 模式                                                |
+| `VK_HANGUL`              | 0x15    | IME Hanguel 模式                                             |
+| `VK_IME_ON`              | 0x16    | IME 打开                                                     |
+| `VK_JUNJA`               | 0x17    | IME Junja 模式                                               |
+| `VK_FINAL`               | 0x18    | IME 最终模式                                                 |
+| `VK_HANJA`               | 0x19    | IME Hanja 模式                                               |
+| `VK_KANJI`               | 0x19    | IME Kanji 模式                                               |
+| `VK_IME_OFF`             | 0x1A    | IME 关闭                                                     |
+| `VK_ESCAPE`              | 0x1B    | ESC 键                                                       |
+| `VK_CONVERT`             | 0x1C    | IME 转换                                                     |
+| `VK_NONCONVERT`          | 0x1D    | IME 不转换                                                   |
+| `VK_ACCEPT`              | 0x1E    | IME 接受                                                     |
+| `VK_MODECHANGE`          | 0x1F    | IME 模式更改请求                                             |
+| `VK_SPACE`               | 0x20    | 空格键                                                       |
+| `VK_PRIOR`               | 0x21    | PAGE UP 键                                                   |
+| `VK_NEXT`                | 0x22    | PAGE DOWN 键                                                 |
+| `VK_END`                 | 0x23    | END 键                                                       |
+| `VK_HOME`                | 0x24    | HOME 键                                                      |
+| `VK_LEFT`                | 0x25    | LEFT ARROW 键                                                |
+| `VK_UP`                  | 0x26    | UP ARROW 键                                                  |
+| `VK_RIGHT`               | 0x27    | RIGHT ARROW 键                                               |
+| `VK_DOWN`                | 0x28    | DOWN ARROW 键                                                |
+| `VK_SELECT`              | 0x29    | SELECT 键                                                    |
+| `VK_PRINT`               | 0x2A    | PRINT 键                                                     |
+| `VK_EXECUTE`             | 0x2B    | EXECUTE 键                                                   |
+| `VK_SNAPSHOT`            | 0x2C    | PRINT SCREEN 键                                              |
+| `VK_INSERT`              | 0x2D    | INS 键                                                       |
+| `VK_DELETE`              | 0x2E    | DEL 键                                                       |
+| `VK_HELP`                | 0x2F    | HELP 键                                                      |
+|                          | 0x30    | 0 键                                                         |
+|                          | 0x31    | 1 个键                                                       |
+|                          | 0x32    | 2 键                                                         |
+|                          | 0x33    | 3 键                                                         |
+|                          | 0x34    | 4 键                                                         |
+|                          | 0x35    | 5 键                                                         |
+|                          | 0x36    | 6 键                                                         |
+|                          | 0x37    | 7 键                                                         |
+|                          | 0x38    | 8 键                                                         |
+|                          | 0x39    | 9 键                                                         |
+| `-`                      | 0x3A-40 | Undefined                                                    |
+|                          | 0x41    | A 键                                                         |
+|                          | 0x42    | B 键                                                         |
+|                          | 0x43    | C 键                                                         |
+|                          | 0x44    | D 键                                                         |
+|                          | 0x45    | E 键                                                         |
+|                          | 0x46    | F 键                                                         |
+|                          | 0x47    | G 键                                                         |
+|                          | 0x48    | H 键                                                         |
+|                          | 0x49    | I 键                                                         |
+|                          | 0x4A    | J 键                                                         |
+|                          | 0x4B    | K 键                                                         |
+|                          | 0x4C    | L 键                                                         |
+|                          | 0x4D    | M 键                                                         |
+|                          | 0x4E    | N 键                                                         |
+|                          | 0x4F    | O 键                                                         |
+|                          | 0x50    | P 键                                                         |
+|                          | 0x51    | Q 键                                                         |
+|                          | 0x52    | R 键                                                         |
+|                          | 0x53    | S 键                                                         |
+|                          | 0x54    | T 键                                                         |
+|                          | 0x55    | U 键                                                         |
+|                          | 0x56    | V 键                                                         |
+|                          | 0x57    | W 键                                                         |
+|                          | 0x58    | X 键                                                         |
+|                          | 0x59    | Y 键                                                         |
+|                          | 0x5A    | Z 键                                                         |
+| `VK_LWIN`                | 0x5B    | 左 Windows 键                                                |
+| `VK_RWIN`                | 0x5C    | 右侧 Windows 键                                              |
+| `VK_APPS`                | 0x5D    | 应用程序密钥                                                 |
+| `-`                      | 0x5E    | 预留                                                         |
+| `VK_SLEEP`               | 0x5F    | 计算机休眠键                                                 |
+| `VK_NUMPAD0`             | 0x60    | 数字键盘 0 键                                                |
+| `VK_NUMPAD1`             | 0x61    | 数字键盘 1 键                                                |
+| `VK_NUMPAD2`             | 0x62    | 数字键盘 2 键                                                |
+| `VK_NUMPAD3`             | 0x63    | 数字键盘 3 键                                                |
+| `VK_NUMPAD4`             | 0x64    | 数字键盘 4 键                                                |
+| `VK_NUMPAD5`             | 0x65    | 数字键盘 5 键                                                |
+| `VK_NUMPAD6`             | 0x66    | 数字键盘 6 键                                                |
+| `VK_NUMPAD7`             | 0x67    | 数字键盘 7 键                                                |
+| `VK_NUMPAD8`             | 0x68    | 数字键盘 8 键                                                |
+| `VK_NUMPAD9`             | 0x69    | 数字键盘 9 键                                                |
+| `VK_MULTIPLY`            | 0x6A    | 乘号键                                                       |
+| `VK_ADD`                 | 0x6B    | 加号键                                                       |
+| `VK_SEPARATOR`           | 0x6C    | 分隔符键                                                     |
+| `VK_SUBTRACT`            | 0x6D    | 减号键                                                       |
+| `VK_DECIMAL`             | 0x6E    | 句点键                                                       |
+| `VK_DIVIDE`              | 0x6F    | 除号键                                                       |
+| `VK_F1`                  | 0x70    | F1 键                                                        |
+| `VK_F2`                  | 0x71    | F2 键                                                        |
+| `VK_F3`                  | 0x72    | F3 键                                                        |
+| `VK_F4`                  | 0x73    | F4 键                                                        |
+| `VK_F5`                  | 0x74    | F5 键                                                        |
+| `VK_F6`                  | 0x75    | F6 键                                                        |
+| `VK_F7`                  | 0x76    | F7 键                                                        |
+| `VK_F8`                  | 0x77    | F8 键                                                        |
+| `VK_F9`                  | 0x78    | F9 键                                                        |
+| `VK_F10`                 | 0x79    | F10 键                                                       |
+| `VK_F11`                 | 0x7A    | F11 键                                                       |
+| `VK_F12`                 | 0x7B    | F12 键                                                       |
+| `VK_F13`                 | 0x7C    | F13 键                                                       |
+| `VK_F14`                 | 0x7D    | F14 键                                                       |
+| `VK_F15`                 | 0x7E    | F15 键                                                       |
+| `VK_F16`                 | 0x7F    | F16 键                                                       |
+| `VK_F17`                 | 0x80    | F17 键                                                       |
+| `VK_F18`                 | 0x81    | F18 键                                                       |
+| `VK_F19`                 | 0x82    | F19 键                                                       |
+| `VK_F20`                 | 0x83    | F20 键                                                       |
+| `VK_F21`                 | 0x84    | F21 键                                                       |
+| `VK_F22`                 | 0x85    | F22 键                                                       |
+| `VK_F23`                 | 0x86    | F23 键                                                       |
+| `VK_F24`                 | 0x87    | F24 键                                                       |
+| `-`                      | 0x88-8F | 保留                                                         |
+| `VK_NUMLOCK`             | 0x90    | NUM LOCK 键                                                  |
+| `VK_SCROLL`              | 0x91    | SCROLL LOCK 键                                               |
+| `-`                      | 0x92-96 | OEM 特有                                                     |
+| `-`                      | 0x97-9F | 未分配                                                       |
+| `VK_LSHIFT`              | 0xA0    | 左 SHIFT 键                                                  |
+| `VK_RSHIFT`              | 0xA1    | 右 SHIFT 键                                                  |
+| `VK_LCONTROL`            | 0xA2    | 左 Ctrl 键                                                   |
+| `VK_RCONTROL`            | 0xA3    | 右 Ctrl 键                                                   |
+| `VK_LMENU`               | 0xA4    | 左 ALT 键                                                    |
+| `VK_RMENU`               | 0xA5    | 右 ALT 键                                                    |
+| `VK_BROWSER_BACK`        | 0xA6    | 浏览器后退键                                                 |
+| `VK_BROWSER_FORWARD`     | 0xA7    | 浏览器前进键                                                 |
+| `VK_BROWSER_REFRESH`     | 0xA8    | 浏览器刷新键                                                 |
+| `VK_BROWSER_STOP`        | 0xA9    | 浏览器停止键                                                 |
+| `VK_BROWSER_SEARCH`      | 0xAA    | 浏览器搜索键                                                 |
+| `VK_BROWSER_FAVORITES`   | 0xAB    | 浏览器收藏键                                                 |
+| `VK_BROWSER_HOME`        | 0xAC    | 浏览器“开始”和“主页”键                                       |
+| `VK_VOLUME_MUTE`         | 0xAD    | 静音键                                                       |
+| `VK_VOLUME_DOWN`         | 0xAE    | 音量减小键                                                   |
+| `VK_VOLUME_UP`           | 0xAF    | 音量增加键                                                   |
+| `VK_MEDIA_NEXT_TRACK`    | 0xB0    | 下一曲目键                                                   |
+| `VK_MEDIA_PREV_TRACK`    | 0xB1    | 上一曲目键                                                   |
+| `VK_MEDIA_STOP`          | 0xB2    | 停止媒体键                                                   |
+| `VK_MEDIA_PLAY_PAUSE`    | 0xB3    | 播放/暂停媒体键                                              |
+| `VK_LAUNCH_MAIL`         | 0xB4    | 启动邮件键                                                   |
+| `VK_LAUNCH_MEDIA_SELECT` | 0xB5    | 选择媒体键                                                   |
+| `VK_LAUNCH_APP1`         | 0xB6    | 启动应用程序 1 键                                            |
+| `VK_LAUNCH_APP2`         | 0xB7    | 启动应用程序 2 键                                            |
+| `-`                      | 0xB8-B9 | 预留                                                         |
+| `VK_OEM_1`               | 0xBA    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`;:`    |
+| `VK_OEM_PLUS`            | 0xBB    | 对于任何国家/地区，键`+`                                     |
+| `VK_OEM_COMMA`           | 0xBC    | 对于任何国家/地区，键`,`                                     |
+| `VK_OEM_MINUS`           | 0xBD    | 对于任何国家/地区，键`-`                                     |
+| `VK_OEM_PERIOD`          | 0xBE    | 对于任何国家/地区，键`.`                                     |
+| `VK_OEM_2`               | 0xBF    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`/?`    |
+| `VK_OEM_3`               | 0xC0    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键``~`    |
+| `-`                      | 0xC1-DA | 保留                                                         |
+| `VK_OEM_4`               | 0xDB    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`[{`    |
+| `VK_OEM_5`               | 0xDC    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`\\|`   |
+| `VK_OEM_6`               | 0xDD    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`]}`    |
+| `VK_OEM_7`               | 0xDE    | 用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`'"`    |
+| `VK_OEM_8`               | 0xDF    | 用于杂项字符；它可能因键盘而异。                             |
+| `-`                      | 0xE0    | 预留                                                         |
+| `-`                      | 0xE1    | OEM 特有                                                     |
+| `VK_OEM_102`             | 0xE2    | 美国标准键盘上的 `<>` 键，或非美国 102 键键盘上的 `\\|` 键   |
+| `-`                      | 0xE3-E4 | OEM 特有                                                     |
+| `VK_PROCESSKEY`          | 0xE5    | IME PROCESS 键                                               |
+| `-`                      | 0xE6    | OEM 特有                                                     |
+| `VK_PACKET`              | 0xE7    | 用于将 Unicode 字符当作键击传递。 `VK_PACKET` 键是用于非键盘输入法的 32 位虚拟键值的低位字。 有关更多信息，请参阅 [`KEYBDINPUT`](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-keybdinput)、[`SendInput`](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendinput)、[`WM_KEYDOWN`](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown) 和 [`WM_KEYUP`](https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keyup) 中的注释 |
+| `-`                      | 0xE8    | 未分配                                                       |
+| `-`                      | 0xE9-F5 | OEM 特有                                                     |
+| `VK_ATTN`                | 0xF6    | Attn 键                                                      |
+| `VK_CRSEL`               | 0xF7    | CrSel 键                                                     |
+| `VK_EXSEL`               | 0xF8    | ExSel 键                                                     |
+| `VK_EREOF`               | 0xF9    | Erase EOF 键                                                 |
+| `VK_PLAY`                | 0xFA    | Play 键                                                      |
+| `VK_ZOOM`                | 0xFB    | Zoom 键                                                      |
+| `VK_NONAME`              | 0xFC    | 预留                                                         |
+| `VK_PA1`                 | 0xFD    | PA1 键                                                       |
+| `VK_OEM_CLEAR`           | 0xFE    | Clear 键                                                     |

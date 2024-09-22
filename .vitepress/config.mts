@@ -62,7 +62,7 @@ export default defineConfig({
     sidebar: [
       {
         text: '學習類',
-        collapsed: true,
+        collapsed: false,
         items: [
           { text: '介紹',link:'/shouye_xuexi'},         
           { text: 'Markdown語法', link: '/markdown-examples' },
@@ -82,13 +82,14 @@ export default defineConfig({
             {text:'Win2SdK',link :'/study/winsdk/My2Wrong'},
             {text:'Win_Kr_Sdk_1',link:'/study/winsdk/WindowsSdk_Kr_1'},
             {text:'Win_Kr_Sdk_2',link:'/study/winsdk/WindowsSdk_Kr_2'},
+            {text:'Win_Kr_Sdk_2.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_2.5'},
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',}
             ]},
         ]
       },
       {
        text:'記錄類',
-       collapsed: true,
+       collapsed: false,
        items:[
        {text:'介紹',link:'shouye_jilu'},
        {text:'C++',
@@ -106,7 +107,7 @@ export default defineConfig({
       },
       {
       text:'雜項類',
-      collapsed: true,//折叠
+      collapsed: false,//折叠
       items:[{text:'介紹',link:'/shouye_zaxiang'},     
               {text:'ISCC国赛题解', 
               collapsed: true,
