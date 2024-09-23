@@ -17,13 +17,15 @@ hero:
       text: 放鬆一下吧
       link: https://www.bilibili.com/video/BV1uT4y1P7CX?p=1&vd_source=34dde2f2c727e84db53ba60a1814505f
 features:
-  - title: 推荐使用VIM 
+  - title: 赞美欧姆弥赛亚,赞美万机之神
     details: 越先进的东西他越慢 越古老的东西他运行越快
+    link: /oumGOD
   - title: 梅琳娜我的梅琳娜
     details: 我应该走癫火金针的
-  - title: 此库文档是记录
-    details: 有事情直接 email 给我 有时间我会回信的 
-    link: /baidu_verify_codeva-wStSgnxe8W
+    link: /oumGOD
+  - title: 火星机械神圣大贤者留
+    details: 代码不能运行可能是机魂不悦
+    link: /oumGOD
 ---
 
 
