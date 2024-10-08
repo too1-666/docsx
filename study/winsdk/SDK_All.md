@@ -1881,3 +1881,33 @@ _点击表格上的按钮消息即可查看返回值_
 - [**ES_LOWERCASE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/edit-control-styles)
 - [**ES_OEMCONVERT**](https://learn.microsoft.com/zh-cn/windows/win32/controls/edit-control-styles)
 - [**ES_UPPERCASE**](https://learn.microsoft.com/zh-cn/windows/win32/controls/edit-control-styles)
+
+### GetWindow GW
+
+| 值                   | 含义                                                         |
+| :------------------- | :----------------------------------------------------------- |
+| **GW_CHILD**5        | 如果指定的窗口是父窗口，则检索到的句柄标识 Z 顺序顶部的子窗口;否则，检索的句柄为 **NULL**。 函数仅检查指定窗口的子窗口。 它不检查后代窗口。 |
+| **GW_ENABLEDPOPUP**6 | 检索的句柄标识指定窗口拥有的已启用弹出窗口， (搜索使用 **GW_HWNDNEXT**) 找到的第一个此类窗口;否则，如果没有启用的弹出窗口，则检索到的句柄是指定窗口的句柄。 |
+| **GW_HWNDFIRST**0    | 检索的句柄标识 Z 顺序中最高类型的窗口。如果指定的窗口是最顶层的窗口，则句柄标识最顶层的窗口。 如果指定的窗口是顶级窗口，则句柄标识顶级窗口。 如果指定的窗口是子窗口，则句柄标识同级窗口。 |
+| **GW_HWNDLAST**1     | 检索到的句柄标识 Z 顺序中最低类型的窗口。如果指定的窗口是最顶层的窗口，则句柄标识最顶层的窗口。 如果指定的窗口是顶级窗口，则句柄标识顶级窗口。 如果指定的窗口是子窗口，则句柄标识同级窗口。 |
+| **GW_HWNDNEXT**2     | 检索的句柄按 Z 顺序标识指定窗口下方的窗口。如果指定的窗口是最顶层的窗口，则句柄标识最顶层的窗口。 如果指定的窗口是顶级窗口，则句柄标识顶级窗口。 如果指定的窗口是子窗口，则句柄标识同级窗口。 |
+| **GW_HWNDPREV**3     | 检索的句柄按 Z 顺序标识指定窗口上方的窗口。如果指定的窗口是最顶层的窗口，则句柄标识最顶层的窗口。 如果指定的窗口是顶级窗口，则句柄标识顶级窗口。 如果指定的窗口是子窗口，则句柄标识同级窗口。 |
+| **GW_OWNER**4        | 检索到的句柄标识指定窗口的所有者窗口（如果有）。 有关详细信息，请参阅 [拥有的 Windows](https://learn.microsoft.com/zh-cn/windows/desktop/winmsg/window-features)。 |
+
+### appendmenu MF 菜单选项
+
+| 值                             | 含义                                                         |
+| :----------------------------- | :----------------------------------------------------------- |
+| **MF_BITMAP**0x00000004L       | 使用位图作为菜单项。 *lpNewItem* 参数包含位图的句柄。        |
+| **MF_CHECKED**0x00000008L      | 在菜单项旁边放置一个检查标记。 如果应用程序提供检查标记位图 (请参阅 [SetMenuItemBitmaps](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setmenuitembitmaps)，则此标志在菜单项旁边显示检查标记位图。 |
+| **MF_DISABLED**0x00000002L     | 禁用菜单项，以便无法选择该菜单项，但标志不会将其灰显。       |
+| **MF_ENABLED**0x00000000L      | 启用菜单项，以便可以选择菜单项，并将其从灰显状态还原。       |
+| **MF_GRAYED**0x00000001L       | 禁用菜单项并将其灰显，使其无法选中。                         |
+| **MF_MENUBARBREAK**0x00000020L | 功能与菜单栏的 **MF_MENUBREAK** 标志相同。 对于下拉菜单、子菜单或快捷菜单，新列与旧列之间将用一条竖线分隔。 |
+| **MF_MENUBREAK**0x00000040L    | 将项放在菜单栏) 的新行 (上，或者放置在下拉菜单、子菜单或快捷菜单) 的新列 (中，而不分隔列。 |
+| **MF_OWNERDRAW**0x00000100L    | 指定该项是所有者绘制的项。 在首次显示菜单之前，拥有菜单的窗口会收到 [WM_MEASUREITEM](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/wm-measureitem) 消息，用于检索菜单项的宽度和高度。 然后，每当必须更新菜单项的外观时， [WM_DRAWITEM消息就会](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/wm-drawitem) 发送到所有者窗口的窗口过程。 |
+| **MF_POPUP**0x00000010L        | 指定菜单项打开下拉菜单或子菜单。 *uIDNewItem* 参数指定下拉菜单或子菜单的句柄。 此标志用于向菜单栏或向下拉菜单、子菜单或快捷菜单打开子菜单的菜单项添加菜单名称。 |
+| **MF_SEPARATOR**0x00000800L    | 绘制一条水平分割线。 此标志仅在下拉菜单、子菜单或快捷菜单中使用。 行不能灰显、禁用或突出显示。 *忽略 lpNewItem* 和 *uIDNewItem* 参数。 |
+| **MF_STRING**0x00000000L       | 指定菜单项为文本字符串; *lpNewItem* 参数是指向字符串的指针。 |
+| **MF_UNCHECKED**0x00000000L    | 不要在项旁边放置检查标记， (默认) 。 如果应用程序提供检查标记位图 (请参阅 [SetMenuItemBitmaps](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setmenuitembitmaps)) ，则此标志显示菜单项旁边的清除位图。 |
+
