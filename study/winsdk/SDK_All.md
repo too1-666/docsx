@@ -1911,3 +1911,18 @@ _点击表格上的按钮消息即可查看返回值_
 | **MF_STRING**0x00000000L       | 指定菜单项为文本字符串; *lpNewItem* 参数是指向字符串的指针。 |
 | **MF_UNCHECKED**0x00000000L    | 不要在项旁边放置检查标记， (默认) 。 如果应用程序提供检查标记位图 (请参阅 [SetMenuItemBitmaps](https://learn.microsoft.com/zh-cn/windows/desktop/api/winuser/nf-winuser-setmenuitembitmaps)) ，则此标志显示菜单项旁边的清除位图。 |
 
+---
+
+## ClassName预设值
+
+| 类                 | 含义                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| **BUTTON**         | 指定一个小矩形子窗口，该窗口表示用户可以单击以将其打开或关闭的按钮。 按钮控件可以单独使用，也可以成组使用，并且可以不带文本进行标记或显示。 当用户单击按钮控件时，按钮控件通常会更改外观。 有关详细信息，请参阅 [按钮](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/buttons)。有关可在 *dwStyle* 参数中指定的按钮样式表，请参阅 [按钮样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/button-styles)。 |
+| **COMBOBOX**       | 指定由列表框和类似于编辑控件的选择字段组成的控件。 使用此样式时，应用程序应随时显示列表框或启用下拉列表框。 如果列表框可见，在选择字段中键入字符会突出显示与键入的字符匹配的第一个列表框条目。 相反，选择列表框中的项会在选择字段中显示所选文本。 有关详细信息，请参阅 [组合框](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/combo-boxes)。有关可以在 *dwStyle* 参数中指定的组合框样式表，请参阅 [组合框样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/combo-box-styles)。 |
+| **EDIT**           | 指定用户可从键盘键入文本的矩形子窗口。 用户选择控件，并通过单击或按 Tab 键移动到控件来为控件提供键盘焦点。 当编辑控件显示闪烁的插入点时，用户可以键入文本;使用鼠标移动光标，选择要替换的字符，或定位光标以插入字符;或使用 键删除字符。 有关详细信息，请参阅 [编辑控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/edit-controls)。有关可在 *dwStyle* 参数中指定的编辑控件样式表，请参阅 [编辑控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/edit-control-styles)。 |
+| **LISTBOX**        | 指定字符串的列表。 每当应用程序必须提供用户可以从中选择的名称列表（如文件名）时，请指定此控件。 用户可以通过单击来选择字符串。 突出显示所选字符串，并将通知消息传递到父窗口。 有关详细信息，请参阅 [列表框](https://learn.microsoft.com/zh-cn/windows/desktop/uxguide/ctrl-list-boxes)。有关可以在 *dwStyle* 参数中指定的列表框样式表，请参阅 [列表框样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/list-box-styles)。 |
+| **MDICLIENT**      | 指定 MDI 客户端窗口。 此窗口接收控制 MDI 应用程序的子窗口的消息。 建议的样式位 **是WS_CLIPCHILDREN** 和 **WS_CHILD**。 指定 **WS_HSCROLL** 和 **WS_VSCROLL** 样式以创建允许用户将 MDI 子窗口滚动到视图中的 MDI 客户端窗口。 有关详细信息，请参阅 [多文档接口](https://learn.microsoft.com/zh-cn/windows/desktop/winmsg/multiple-document-interface)。 |
+| **RichEdit**       | 指定 Microsoft Rich Edit 1.0 控件。 此窗口允许用户使用字符和段落格式查看和编辑文本，并且可以将嵌入式组件对象模型 (COM) 对象。 有关详细信息，请参阅 [Rich Edit 控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-controls)。有关可在 *dwStyle* 参数中指定的丰富编辑控件样式的表，请参阅 [Rich Edit 控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-control-styles)。 |
+| **RICHEDIT_CLASS** | 指定 Microsoft Rich Edit 2.0 控件。 此控件允许用户使用字符和段落格式查看和编辑文本，并且可以包含嵌入的 COM 对象。 有关详细信息，请参阅 [Rich Edit 控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-controls)。有关可在 *dwStyle* 参数中指定的丰富编辑控件样式的表，请参阅 [Rich Edit 控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-control-styles)。 |
+| **SCROLLBAR**      | 指定一个矩形，该矩形包含一个滚动框，并在两端都有方向箭头。 每当用户单击控件时，滚动条就会向其父窗口发送通知消息。 如有必要，父窗口负责更新滚动框的位置。 有关详细信息，请参阅 [滚动条](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/scroll-bars)。有关可在 *dwStyle* 参数中指定的滚动条控件样式表，请参阅 [滚动条控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/scroll-bar-control-styles)。 |
+| **STATIC**         | 指定用于标记、框或分隔其他控件的简单文本字段、框或矩形。 静态控件不采用任何输入，也不提供输出。 有关详细信息，请参阅 [静态控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/static-controls)。有关可以在 *dwStyle* 参数中指定的静态控件样式表，请参阅 [静态控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/static-control-styles)。 |

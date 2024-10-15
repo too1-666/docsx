@@ -142,7 +142,7 @@ GDI 对象会一直增长 内存占用也会增大
 我在OnChar 里使用 这个TextOut
 HDC hdc = GetDC(hWnd); // 用法
 TextOut(hdc, 0, 0, _T("e1elibrary.com"), 14);
-return TRUE; ;
+return TRUE;
 ```
 
   ![TextOut](/winSDK/krre/TextOut.png)
