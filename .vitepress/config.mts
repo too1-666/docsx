@@ -86,7 +86,8 @@ export default defineConfig({
             {text:'Win_Kr_Sdk_3',link:'/study/winsdk/WindowsSdk_Kr_3'},
             {text:'Win_Kr_Sdk_3.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_3.5'},
             {text:'Win_Kr_Sdk_4.0',link:'/study/winsdk/WindowsSdk_Kr_4'},
-            {text:'Win_Kr_Sdk_3.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_4.5'},
+            {text:'Win_Kr_Sdk_4.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_4.5'},
+             {text:'Win_Kr_Sdk_5.0',link:'/study/winsdk/WindowsSdk_Kr_5.0'},
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',}
             
             ]},

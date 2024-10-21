@@ -1926,3 +1926,95 @@ _点击表格上的按钮消息即可查看返回值_
 | **RICHEDIT_CLASS** | 指定 Microsoft Rich Edit 2.0 控件。 此控件允许用户使用字符和段落格式查看和编辑文本，并且可以包含嵌入的 COM 对象。 有关详细信息，请参阅 [Rich Edit 控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-controls)。有关可在 *dwStyle* 参数中指定的丰富编辑控件样式的表，请参阅 [Rich Edit 控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/rich-edit-control-styles)。 |
 | **SCROLLBAR**      | 指定一个矩形，该矩形包含一个滚动框，并在两端都有方向箭头。 每当用户单击控件时，滚动条就会向其父窗口发送通知消息。 如有必要，父窗口负责更新滚动框的位置。 有关详细信息，请参阅 [滚动条](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/scroll-bars)。有关可在 *dwStyle* 参数中指定的滚动条控件样式表，请参阅 [滚动条控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/scroll-bar-control-styles)。 |
 | **STATIC**         | 指定用于标记、框或分隔其他控件的简单文本字段、框或矩形。 静态控件不采用任何输入，也不提供输出。 有关详细信息，请参阅 [静态控件](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/static-controls)。有关可以在 *dwStyle* 参数中指定的静态控件样式表，请参阅 [静态控件样式](https://learn.microsoft.com/zh-cn/windows/desktop/Controls/static-control-styles)。 |
+
+---
+
+### Dialog 对话框函数参考
+
+| 名称                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**CreateDialog**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-createdialoga) | 从对话框模板资源创建无模式对话框。                           |
+| [**CreateDialogIndirect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-createdialogindirecta) | 从内存中的对话框模板创建无模式对话框。                       |
+| [**CreateDialogIndirectParam**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-createdialogindirectparama) | 从内存中的对话框模板创建无模式对话框。 在显示对话框之前，函数将应用程序定义的值作为[**WM_INITDIALOG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-initdialog)消息的 *lParam* 参数传递给对话框过程。 应用程序可以使用此值来初始化对话框控件。 |
+| [**CreateDialogParam**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-createdialogparama) | 从对话框模板资源创建无模式对话框。 在显示对话框之前，函数将应用程序定义的值作为[**WM_INITDIALOG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-initdialog)消息的 *lParam* 参数传递给对话框过程。 应用程序可以使用此值来初始化对话框控件。 |
+| [**DefDlgProc**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-defdlgprocw) | 调用默认对话框窗口过程，为具有专用窗口类的对话框不处理的任何窗口消息提供默认处理。 |
+| [**DialogBox**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxa) | 从对话框模板资源创建模式对话框。 在指定的回调函数通过调用 [**EndDialog**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-enddialog) 函数终止模式对话框之前，[**DialogBox**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxa) 不会返回控件。 |
+| [**DialogBoxIndirect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxindirecta) | 从内存中的对话框模板创建模式对话框。 在指定的回调函数通过调用 [**EndDialog**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-enddialog) 函数终止模式对话框之前，[**DialogBoxIndirect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxindirecta) 不会返回控件。 |
+| [**DialogBoxIndirectParam**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxindirectparama) | 从内存中的对话框模板创建模式对话框。 在显示对话框之前，函数将应用程序定义的值作为[**WM_INITDIALOG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-initdialog)消息的 *lParam* 参数传递给对话框过程。 应用程序可以使用此值来初始化对话框控件。 |
+| [**DialogBoxParam**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxparama) | 从对话框模板资源创建模式对话框。 在显示对话框之前，函数将应用程序定义的值作为[**WM_INITDIALOG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-initdialog)消息的 *lParam* 参数传递给对话框过程。 应用程序可以使用此值来初始化对话框控件。 |
+| [*DialogProc*](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nc-winuser-dlgproc) | 与 [**CreateDialog**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-createdialoga) 和 [**DialogBox**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-dialogboxa) 函数系列一起使用的应用程序定义的回调函数。 它处理发送到模式或无模式对话框的消息。 **DLGPROC** 类型定义指向此回调函数的指针。 [*DialogProc*](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nc-winuser-dlgproc) 是应用程序定义的函数名称的占位符。 |
+| [**EndDialog**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-enddialog) | 销毁模式对话框，导致系统结束对对话框的任何处理。             |
+| [**GetDialogBaseUnits**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getdialogbaseunits) | 检索系统的对话框基单位，即系统字体中字符的平均宽度和高度。 对于使用系统字体的对话框，可以使用这些值在对话框模板单位和像素之间进行转换。 对于不使用系统字体的对话框，从对话框模板单位转换为像素取决于对话框使用的字体。 |
+| [**GetDlgCtrlID**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getdlgctrlid) | 检索指定控件的标识符。                                       |
+| [**GetDlgItem**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getdlgitem) | 检索指定对话框中控件的句柄。                                 |
+| [**GetDlgItemInt**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getdlgitemint) | 将对话框中指定控件的文本转换为整数值。                       |
+| [**GetDlgItemText**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getdlgitemtexta) | 检索与对话框中的控件关联的标题或文本。                       |
+| [**GetNextDlgGroupItem**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getnextdlggroupitem) | 检索一组控件中第一个控件的句柄，该控件位于 (或) 对话框中的指定控件之后。 |
+| [**GetNextDlgTabItem**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-getnextdlgtabitem) | 检索第一个控件的句柄，该控件的 **WS_TABSTOP** 样式位于 (或) 指定控件之后。 |
+| [**IsDialogMessage**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-isdialogmessagea) | 确定消息是否适用于指定的对话框，如果是，则处理该消息。       |
+| [**MapDialogRect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-mapdialogrect) | 将指定的对话框单位转换为屏幕单位 (像素) 。 函数将指定的 [**RECT**](https://learn.microsoft.com/zh-cn/windows/win32/api/windef/ns-windef-rect) 结构中的坐标替换为转换后的坐标，从而允许使用结构创建对话框或在对话框中放置控件。 |
+| [**MessageBox**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-messagebox) | 显示一个模式对话框，其中包含一个系统图标、一组按钮和一条简短的应用程序特定消息，例如状态或错误信息。 消息框返回一个整数值，指示用户单击的按钮。 |
+| [**MessageBoxEx**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-messageboxexa) | 创建、显示和操作消息框。 消息框包含应用程序定义的消息和标题，以及预定义图标和按钮的任意组合。 按钮采用系统用户界面的语言。 |
+| [**MessageBoxIndirect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-messageboxindirecta) | 创建、显示和操作消息框。 消息框包含应用程序定义的消息文本和标题、任何图标以及预定义按钮的任意组合。 |
+| [**SendDlgItemMessage**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-senddlgitemmessagea) | 将消息发送到对话框中的指定控件。                             |
+| [**SetDlgItemInt**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-setdlgitemint) | 将对话框中控件的文本设置为指定整数值的字符串表示形式。       |
+| [**SetDlgItemText**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-setdlgitemtexta) | 设置对话框中控件的标题或文本。                               |
+
+
+
+### 对话框消息
+
+展开表
+
+| 名称                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**DM_GETDEFID**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dm-getdefid) | 检索对话框的默认按钮控件的标识符。                           |
+| [**DM_REPOSITION**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dm-reposition) | 重新定位顶级对话框，使其适合桌面区域。 应用程序可以在调整对话框大小后将此消息发送到对话框，以确保整个对话框保持可见。 |
+| [**DM_SETDEFID**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dm-setdefid) | 更改对话框的默认按钮的标识符。                               |
+
+
+
+### 对话框通知
+
+展开表
+
+| 名称                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**WM_CTLCOLORDLG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-ctlcolordlg) | 在系统绘制对话框之前，已发送到对话框。 通过响应此消息，对话框可以使用指定的显示设备上下文句柄设置其文本和背景色。 |
+| [**WM_ENTERIDLE**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-enteridle) | 发送到进入空闲状态的模式对话框或菜单的所有者窗口。 在处理一条或多条先前消息后，当其队列中没有消息处于等待状态时，模式对话框或菜单将进入空闲状态。 |
+| [**WM_GETDLGCODE**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-getdlgcode) | 发送到与控件关联的窗口过程。 默认情况下，系统会处理控件的所有键盘输入;系统将某些类型的键盘输入解释为对话框导航键。 若要替代此默认行为，控件可以响应 [**WM_GETDLGCODE**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-getdlgcode) 消息，以指示它自己要处理的输入类型。 |
+| [**WM_INITDIALOG**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-initdialog) | 在显示对话框之前立即发送到对话框过程。 对话框过程通常使用此消息来初始化控件并执行影响对话框外观的任何其他初始化任务。 |
+| [**WM_NEXTDLGCTL**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/wm-nextdlgctl) | 发送到对话框过程，以将键盘焦点设置为对话框中的其他控件。     |
+
+
+
+### 对话框结构
+
+展开表
+
+| 名称                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [**DLGITEMTEMPLATE**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/ns-winuser-dlgitemtemplate) | 定义对话框中控件的尺寸和样式。 其中一个或多个结构与 [**DLGTEMPLATE**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/ns-winuser-dlgtemplate) 结构组合在一起，形成对话框的标准模板。 |
+| [**DLGITEMTEMPLATEEX**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dlgitemtemplateex) | 描述扩展对话框。 有关扩展对话框模板格式的说明，请参阅 [**DLGTEMPLATEEX**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dlgtemplateex)。 |
+| [**DLGTEMPLATE**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/ns-winuser-dlgtemplate) | 定义对话框的尺寸和样式。 此结构始终是对话框的标准模板中的第一个结构，还指定对话框中的控件数，因此指定模板中后续 [**DLGITEMTEMPLATE**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/ns-winuser-dlgitemtemplate) 结构的数目。 |
+| [**DLGTEMPLATEEX**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dlgtemplateex) | 扩展对话框模板以 **DLGTEMPLATEEX** 标头开头，该标头描述对话框并指定对话框中的控件数。 对于对话框中的每个控件，扩展对话框模板都有一个数据块，该块使用 [**DLGITEMTEMPLATEEX**](https://learn.microsoft.com/zh-cn/windows/win32/dlgbox/dlgitemtemplateex) 格式来描述控件。 |
+| [**MSGBOXPARAMS**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-msgboxparamsa) | 包含用于显示消息框的信息。 [**MessageBoxIndirect**](https://learn.microsoft.com/zh-cn/windows/desktop/api/Winuser/nf-winuser-messageboxindirecta) 函数使用此结构。 |
+
+----
+
+## ShowWindow 的 参数
+
+| 值                                     | 含义                                                         |
+| :------------------------------------- | :----------------------------------------------------------- |
+| **SW_HIDE** 0                          | 隐藏窗口并激活另一个窗口。                                   |
+| **SW_SHOWNORMAL** **SW_NORMAL** 1      | 激活并显示窗口。 如果窗口最小化、最大化或排列，系统会将其还原到其原始大小和位置。 应用程序应在首次显示窗口时指定此标志。 |
+| **SW_SHOWMINIMIZED** 2                 | 激活窗口并将其显示为最小化窗口。                             |
+| **SW_SHOWMAXIMIZED** **SW_MAXIMIZE** 3 | 激活窗口并显示最大化的窗口。                                 |
+| **SW_SHOWNOACTIVATE** 4                | 以最近的大小和位置显示窗口。 此值类似于 **SW_SHOWNORMAL**，只是窗口未激活。 |
+| **SW_SHOW** 5                          | 激活窗口并以当前大小和位置显示窗口。                         |
+| **SW_MINIMIZE** 6                      | 最小化指定的窗口，并按 Z 顺序激活下一个顶级窗口。            |
+| **SW_SHOWMINNOACTIVE** 7               | 将窗口显示为最小化窗口。 此值类似于 **SW_SHOWMINIMIZED**，但窗口未激活。 |
+| **SW_SHOWNA** 8                        | 以当前大小和位置显示窗口。 此值类似于 **SW_SHOW**，只是窗口未激活。 |
+| **SW_RESTORE** 9                       | 激活并显示窗口。 如果窗口最小化、最大化或排列，系统会将其还原到其原始大小和位置。 还原最小化窗口时，应用程序应指定此标志。 |
+| **SW_SHOWDEFAULT** 10                  | 根据启动应用程序的程序传递给 [CreateProcess](https://learn.microsoft.com/zh-cn/windows/desktop/api/processthreadsapi/nf-processthreadsapi-createprocessa) 函数的 [STARTUPINFO](https://learn.microsoft.com/zh-cn/windows/desktop/api/processthreadsapi/ns-processthreadsapi-startupinfoa) 结构中指定的**SW_**值设置显示状态。 |
+| **SW_FORCEMINIMIZE** 11                | 最小化窗口，即使拥有窗口的线程没有响应。 仅当最小化不同线程的窗口时，才应使用此标志。 |

@@ -354,3 +354,267 @@ if (nIndex != -1) {
 
 # END
 
+1-5 的代码演示
+
+```c++
+#include <Windows.h>
+#include <stdio.h>
+#include <tchar.h>
+#include <windowsx.h>
+#include <fstream>
+#include <string>
+#define ID_CLOSE 103  // IDM
+#define IDM_SAVE 118
+#define IDM_OPEN 196
+#define TIME_ID_1 328 //TIME
+#define TIME_ID_2 329
+#define TIME_ID_3 330
+#define IDB_BUTTON_1  108
+#define IDB_BUTTON_2  109
+#define IDE_EDIT  110
+#define WM_MSGS WM_USER+1
+#define ID_LISTBOX 111
+HINSTANCE g_hInstance = NULL;  //放全局好维护
+using namespace std;
+#ifdef _DEBUG    // debug定义宏
+    #define OUTPUT OutputDebugStringA
+#else
+    #define OUTPUT
+
+#endif // DEBUG
+
+string g_text;
+TEXTMETRIC g_tm; //字体信息
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMSG, WPARAM wParam, LPARAM lParam);// 回调
+BOOL CreateControl(HWND hWnd) {
+    HWND hButton = CreateWindowEx(0, "BUTTON", "e1elibrary.com", WS_VISIBLE | WS_CHILD | BS_CHECKBOX, 0, 0, 100, 50, hWnd, (HMENU)IDB_BUTTON_1, g_hInstance, NULL);  //按钮窗口控件
+    HWND hButton2 = CreateWindowEx(0, "BUTTON", "粘贴", WS_VISIBLE | WS_CHILD, 110, 0, 100, 50, hWnd, (HMENU)IDB_BUTTON_2, g_hInstance, NULL);  //按钮窗口控件
+    HWND hEdit = CreateWindowEx(0, "Edit", NULL, WS_VISIBLE | WS_CHILD | WS_VSCROLL | ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL, 0, 60, 200, 100, hWnd, (HMENU)IDE_EDIT, g_hInstance, NULL);
+    HWND hListBox = CreateWindowEx(0, "ListBox", "编程列表", WS_VISIBLE | WS_CHILD | WS_VSCROLL| LBS_DISABLENOSCROLL|LBS_NOTIFY, 0, 300, 300, 500, hWnd,(HMENU)ID_LISTBOX, g_hInstance, NULL);
+    SendMessage(hButton, BM_SETCHECK, BST_UNCHECKED, NULL);//发送消息 hButton 取消打钩 打钩消息
+    SendMessage(hListBox,LB_ADDSTRING,0,(LPARAM)"C语言"); // 列表框内容
+    SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)"C++"); 
+    SendMessage(hListBox,LB_ADDSTRING,0,(LPARAM)"ASM"); //发送字符串消息
+    return TRUE;
+}
+
+
+
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow){ // 第二个句柄保留适配老版本
+    g_hInstance = hInstance;
+    WNDCLASSEX wc = { 0 };
+    wc.cbSize = sizeof(WNDCLASSEX);
+    wc.style = CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS; //窗口类型
+    wc.lpfnWndProc = WindowProc; // 窗口过程 (回调函数) -> 处理 消息
+    wc.hInstance = hInstance;
+    wc.hIcon = LoadIcon(NULL, IDI_SHIELD);
+    wc.hCursor = LoadCursor(NULL, IDC_CROSS);
+    wc.hbrBackground = CreateSolidBrush(RGB(255, 255, 255));
+    wc.lpszMenuName = NULL;
+    wc.lpszClassName = "Text";
+    if (RegisterClassEx(&wc) == 0){
+       return 0;
+    }
+   //创建窗口
+   HWND hWnd = CreateWindowEx( 0, "Text", "e1elibrary.com", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);
+    //编辑框窗口控件
+   CreateControl(hWnd);
+    HWND hListBox = CreateWindowEx(0, "ListBox", NULL, WS_VISIBLE | WS_CHILD | WS_VSCROLL, 0, 130, 200, 100, hWnd, NULL, hInstance, NULL);
+    
+   //主菜单
+   HMENU hMenu = CreateMenu();
+   HMENU hSubMenu = CreatePopupMenu(); //主菜单1
+   HMENU hSubMenu_2 = CreatePopupMenu();//主菜单2
+   AppendMenu(hMenu, MF_STRING | MF_POPUP,(UINT_PTR)hSubMenu, "菜单(&F)");//主菜单1
+   AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT_PTR)hSubMenu_2, "编辑(&E)");//主菜单2
+   AppendMenu(hSubMenu, MF_STRING, ID_CLOSE, "关闭");//子菜单 主菜单1
+   AppendMenu(hSubMenu, MF_STRING, IDM_SAVE, "保存");//子菜单 主菜单1
+   AppendMenu(hSubMenu, MF_STRING, IDM_OPEN, "打开");//子菜单 主菜单1
+    ACCEL* pAccelNews = (ACCEL*)HeapAlloc(GetProcessHeap(), 0, sizeof(ACCEL) * 2);  // 使用HeapAlloc 进行分配堆地址  创建快捷键
+    if (pAccelNews == NULL) {
+       // 内存分配失败，处理错误  
+       return 1;
+    }
+    pAccelNews[0].fVirt = FCONTROL | FVIRTKEY;   // 快捷键CTROL + 任意键 + ID
+    pAccelNews[0].key = 'S';
+    pAccelNews[0].cmd = IDM_SAVE;
+    pAccelNews[1].fVirt = FCONTROL | FVIRTKEY;
+    pAccelNews[1].key = 'O';
+    pAccelNews[1].cmd = IDM_OPEN;
+    HACCEL hAccel = CreateAcceleratorTable (pAccelNews, 2);
+    if (hAccel == NULL){
+        HeapFree(GetProcessHeap(), 0, pAccelNews);// 创建加速键表失败，处理错误  
+        return 1;
+    }
+    if (hWnd == NULL){
+        DWORD Werror = GetLastError();
+        return 0;
+    }
+SetMenu(hWnd, hMenu);
+    if (hWnd == NULL){
+        DWORD Werror = GetLastError();
+        return 0;
+    }
+    ShowWindow(hWnd, SW_SHOWNORMAL);  
+    UpdateWindow(hWnd); // 兼容低版本 现在自带功能
+    // SetClassLong(hWnd, GCL_HCURSOR, (LONG)LoadCursor(NULL,IDC_HAND)); 
+     //消息循环
+    BOOL bRet;
+    MSG  msg;
+    while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0){  // 接收所有 的消息
+        if (bRet == -1){
+            break;
+        }
+        else{  //转换快捷键消息WM_COMMAND
+            if (!TranslateAccelerator(hWnd, hAccel, &msg)){
+                TranslateMessage(&msg);//虚拟
+                DispatchMessage(&msg); //派发消息
+            }
+        }
+    }
+    DestroyAcceleratorTable(hAccel);
+    HeapFree(GetProcessHeap(), 0, pAccelNews);
+    return (msg.wParam); // 接收消息
+}
+LRESULT OnChar(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+     if ((char)wParam == '\r') {
+         g_text += ((char)wParam);                                                     
+         g_text += '\n';
+    }
+     else if (((char)wParam) == '\b'){
+         if (!g_text.empty())
+         g_text.pop_back();
+     }
+    else {
+        g_text += ((char)wParam);
+    }
+    return TRUE;
+     TRUE; ;
+}
+LRESULT OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    SetTimer(hWnd, TIME_ID_1, 1000, nullptr);  //创建一个定时器消息 1000ms发送一次
+    SetTimer(hWnd, TIME_ID_2, 1000, nullptr);
+    SetTimer(hWnd, TIME_ID_3, 1000, nullptr);
+    return TRUE;
+}
+LRESULT OnDestroy(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    MessageBox(NULL, _T("Destroy|UnregisterHotKey OK"), _T("e1elibrary.com"), MB_OK);
+    KillTimer(hWnd, TIME_ID_1);  //销毁定时器消息
+    PostMessage(hWnd, WM_QUIT, 0, NULL);  //关闭消息  WM_Destory消息, 传参到 wParam  
+    return TRUE;
+}
+LRESULT OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {  //绘制消息
+    PAINTSTRUCT ps;    //PAINTSTRUCT 结构包含应用程序的信息。 此信息可用于绘制该应用程序拥有的窗口的工作区。
+    HDC hdc = BeginPaint(hWnd, &ps);
+    RECT rc;
+    OutputDebugString(g_text.c_str());
+    GetClientRect(hWnd, &rc);
+    DrawText(hdc, g_text.c_str(), g_text.length(), &rc, DT_LEFT);
+    ReleaseDC(hWnd, hdc);    
+    EndPaint(hWnd, &ps);
+    return TRUE; 
+}
+    LRESULT OnCommand(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+           WORD WID = LOWORD(wParam);  //控制标识符 ID
+           WORD wNotfityCode = HIWORD(wParam);  // 控件通知代码
+           HWND hControl = (HWND)lParam;  // 控件句柄
+           LRESULT lResult = SendMessage(hControl, BM_GETCHECK, 0, 0);  // 获取单选按钮或者检查状态
+           if (hControl != NULL){  //判断是不是句柄
+               if (WID == IDB_BUTTON_1) {  // 是不是复选框
+                   if (wNotfityCode == BN_CLICKED) {  //检测点击
+                   
+                       if (BST_CHECKED == lResult) {
+                           SendMessage(hControl, BM_SETCHECK, BST_UNCHECKED, NULL);  // 点击了就发送设置点击消息确认取消点击消息到hControl 
+                           MessageBox(hWnd, _T("取消点击"), _T("e1elibrary.com"), MB_OK);
+                       }
+                       else if (BST_UNCHECKED == lResult) {
+                           SendMessage(hControl, BM_SETCHECK, BST_CHECKED, NULL);  // // 点击了就发送设置点击消息确认点击消息到hControl 
+                           MessageBox(hWnd, _T("点击"), _T("e1elibrary.com"), MB_OK);
+                       
+                       }
+                   }
+               }
+               else if (WID == IDB_BUTTON_2) {
+                   if (wNotfityCode == BN_CLICKED) {  //检测点击
+                       HWND hEdit = GetDlgItem(hWnd, IDE_EDIT); //Edit的句柄 
+                       SendMessage(hEdit, WM_SETTEXT, 0, (LPARAM)" ");  // 清空Edit
+                     
+                       SendMessage(hEdit, WM_PASTE, 0, 0);  // 粘贴Edit
+                   }
+               }
+               else if (WID == ID_LISTBOX && wNotfityCode==LBN_SELCHANGE) {
+                        
+               int nIndex = SendMessage(hControl,LB_GETCURSEL,0,0);// 获取单选列表框中当前所选项的索引  int 值
+               if (nIndex != -1) {
+                   int nlen = SendMessage(hControl, LB_GETTEXTLEN, nIndex, 0); // 获取长度 长度为 nIndex
+                   LPVOID lpBuff = malloc(nlen+1);// 没有算\n符号
+                   SendMessage(hControl, LB_GETTEXT, nIndex, (LPARAM)lpBuff);// 获取单选列表框中当前所选项的索引  int 值
+                   MessageBox(hWnd, (char*)lpBuff, _T("e1elibrary.com"), MB_OK);
+                   free(lpBuff);
+                    }
+               }
+               
+           }
+           switch (WID){
+               case IDM_SAVE:
+                   MessageBox(NULL, _T("打开了"), _T("保存"), MB_OK);
+                   break;
+               case IDM_OPEN:
+                   MessageBox(NULL, _T("打开了"), _T("打开"), MB_OK);
+                   break;
+               case ID_CLOSE:
+                   SendMessage(hWnd, WM_USER + 1, NULL, NULL);
+                   PostQuitMessage(0);
+                   break;
+           }
+        return TRUE;
+    }
+LRESULT OnTimer(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    WORD Times = wParam;
+    if(Times == TIME_ID_1){
+        HWND hDesktop = GetDesktopWindow();   //获取桌面句柄
+        HDC hdc = GetDC(hDesktop);  // 获取桌面的HDC 句柄
+        OUTPUT("YES_TIME!\n");  // 每秒往桌面打水印
+        ReleaseDC(hDesktop,hdc);  //释放
+    }
+    else if (Times == TIME_ID_2) {
+        OUTPUT("YES_TIMEss!\n");
+    }
+    else if (Times == TIME_ID_3){
+        OUTPUT("YES_TIMEs!\n");
+    }
+    return TRUE;
+}
+
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam){
+    LRESULT lResult = FALSE; // 初始化lResult为0，以便在switch语句中未找到匹配项时返回  
+    switch (uMsg) {
+    case WM_CREATE: //创建消息
+        lResult = OnCreate(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_DESTROY:  //销毁消息
+        lResult = OnDestroy(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_CHAR:
+        lResult = OnChar(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_PAINT:  //绘制消息
+        lResult = OnPaint(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_COMMAND:
+        lResult = OnCommand(hWnd, uMsg, wParam, lParam);
+        break;
+    case WM_TIMER:
+        lResult = OnTimer(hWnd, uMsg, wParam, lParam);
+        break;
+    
+    }
+    if (!lResult){
+        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    }
+    return lResult;
+}
+
+```
+
