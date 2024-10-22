@@ -82,11 +82,11 @@ export default defineConfig({
             {text:'Win2SdK',link :'/study/winsdk/My2Wrong'},
             {text:'Win_Kr_Sdk_1',link:'/study/winsdk/WindowsSdk_Kr_1'},
             {text:'Win_Kr_Sdk_2',link:'/study/winsdk/WindowsSdk_Kr_2'},
-            {text:'Win_Kr_Sdk_2_ProMax',link:'/study/winsdk/WindowsSdk_Kr_2.5'},
+            {text:'Win_Kr_Sdk_2.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_2.5'},
             {text:'Win_Kr_Sdk_3',link:'/study/winsdk/WindowsSdk_Kr_3'},
-            {text:'Win_Kr_Sdk_3_ProMax',link:'/study/winsdk/WindowsSdk_Kr_3.5'},
+            {text:'Win_Kr_Sdk_3.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_3.5'},
             {text:'Win_Kr_Sdk_4',link:'/study/winsdk/WindowsSdk_Kr_4'},
-            {text:'Win_Kr_Sdk_4_ProMax',link:'/study/winsdk/WindowsSdk_Kr_4.5'},
+            {text:'Win_Kr_Sdk_4.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_4.5'},
              {text:'Win_Kr_Sdk_5',link:'/study/winsdk/WindowsSdk_Kr_5.0'},
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',}
             
