@@ -92,12 +92,104 @@ LRESULT OnCommand(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 > 所以是 LoadCursor()\
 
-设置并替换Cursor 案例如下
+设置并替换Cursor 案例如下TVINSERTSTRUCT
 
 ```c++
 HCURSOR hCursor = LoadCursor(g_hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
 SetCursor(hCursor);
 SetClassLongPtr(hDialog, GCLP_HCURSOR, (LONG_PTR)hCursor);  // 旧版本是SetClassLong  第三个参数是 LONG而不是LONG PTR
 SetMenu(hDialog,hMenu);
+```
+
+----
+
+### TreeItem
+
+这个比较麻烦需要新的头文件
+
+```c++
+#include <commctrl.h>
+```
+
+然后呢需要获取子句柄 hTree的
+
+```c++
+HWND hTree = GetDlgItem(hWnd,IDC_TREE1)  // 父句柄和 获取的控件ID  ,作用为遍历然后获取指定的ID 句柄
+```
+
+再然后就要获取一个消息**TVM_INSERTITEM **,在树视图控件中插入新项。 可以显式发送此消息;
+
+发现要一个结构体 **TVINSERTSTRUCT**
+
+```c++
+TVINSERTSTRUCTA ts;
+ts.hParent = TVI_ROOT ;  // 根节点
+ts.item.pszText = szText; // 设置文本
+ts.item.mask = TVIF_TEXT; // 文本输出
+ts.hInsertAfter=TVI_LAST;
+ts.item.cchTextMax = sizeof(szText + 1); //文本长度 我用的时候好像可以不用
+
+```
+
+这样再进行 HRTREEITEM
+
+```c++
+HTREEITEM hTreeItem = (HTREEITEM) SendMessage(hTree,TVM_INSERTITEM,NULL,(LPARAM) &ts);
+```
+
+就可以输出了,然后我们设立一个子树 ,由于结构体可以重复使用 至于为什么 他是在里面复制一个 新的
+
+```c++
+char szText2[] = { "Noobs2" };  // 子节点
+ts.hParent = hTreeItem;
+ts.item.pszText = szText2; // 设置文本
+ts.item.mask = TVIF_TEXT; // 文本输出
+ts.hInsertAfter = TVI_LAST;
+ts.item.cchTextMax = sizeof(szText2 + 1); //文本长度 我用的时候好像可以不用
+HTREEITEM hchild = (HTREEITEM)SendMessage(hTree, TVM_INSERTITEM, NULL, (LPARAM)&ts);
+```
+
+子节点的子节点
+
+```c++
+	char szText3[] = { "Noobs3" };  // 子节点
+	ts.hParent = hchild;
+	ts.item.pszText = szText3; // 设置文本
+	ts.item.mask = TVIF_TEXT; // 文本输出
+	ts.hInsertAfter = TVI_LAST;
+	ts.item.cchTextMax = sizeof(szText3 + 1); //文本长度 我用的时候好像可以不用
+	HTREEITEM hchild2 = (HTREEITEM)SendMessage(hTree, TVM_INSERTITEM, NULL, (LPARAM)&ts);
+}
+```
+
+样式 除了用维新派还可以用传统派来进行修改样式 GetWindowLong()来获取样式
+
+```c++
+SetWindowLongPtr(hTree, GWL_STYLE, GetWindowLongPtr(hTree, GWL_STYLE) | TVS_HASLINES);
+```
+
+这个含义是添加样式 因为SetWindowLongPtr是设置一个样式 GetWindowPtr是遍历窗口样式在通过或语句进行添加新的 样式  类似于 MB_OK|MB_CANCEL这种
+
+-------
+
+### 补充 还记得之前写的吗 
+
+Notify作为高级消息过来
+
+使用case Notify 接收 会发现Notify一直来 所以我们需要做个判断
+
+```c++
+if (wParam == IDC_TREE1) {
+	
+	MessageBox(NULL, _T("来了"), _T("Notify"), MB_OK);
+}
+```
+
+但是发现每次来的都是他 所以需要再次进行过滤
+
+在Notify里面 lParam 要进行转换成NMTREEVIEW才合适哦 在WM_Notify里面
+
+```c++
+	NMTREEVIEW *NM = (NMTREEVIEW*)lParam;
 ```
 
