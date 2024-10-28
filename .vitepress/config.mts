@@ -89,8 +89,14 @@ export default defineConfig({
             {text:'Win_Kr_Sdk_4.5_ProMax',link:'/study/winsdk/WindowsSdk_Kr_4.5'},
             {text:'Win_Kr_Sdk_5',link:'/study/winsdk/WindowsSdk_Kr_5.0'},
             {text:'Win_Kr_Sdk_5.5ProMax',link:'/study/winsdk/WindowsSdk_Kr_5.5'},
-            {text:'WindowsSdk 6.0 (即将完结)',link:'/study/winsdk/WindowsSdk_Kr_6'},
+            {text:'WindowsSdk 6.0 (完结)',link:'/study/winsdk/WindowsSdk_Kr_6'},
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',},
+            
+            ]},
+        { text: 'Windows_MFC开发',
+            collapsed: true,
+            items:[
+            {text:'WindowsMFC_01',link :'/study/MFC/WindowsMFC_01'},
             
             ]},
         ]
