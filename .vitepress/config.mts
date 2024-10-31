@@ -97,7 +97,7 @@ export default defineConfig({
             collapsed: true,
             items:[
             {text:'WindowsMFC_01',link :'/study/MFC/WindowsMFC_01'},
-            
+            {text:'WindowsMFC_1.5_ProMax',link :'/study/MFC/WindowsMFC_1.5'},
             ]},
         ]
         
