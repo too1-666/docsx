@@ -99,6 +99,8 @@ export default defineConfig({
             {text:'WindowsMFC_01',link :'/study/MFC/WindowsMFC_01'},
             {text:'WindowsMFC_1.5_ProMax',link :'/study/MFC/WindowsMFC_1.5'},
             {text:'WindowsMFC_02',link :'/study/MFC/WindowsMFC_02'},
+            {text:'WindowsMFC_2.5_ProMax',link :'/study/MFC/WindowsMFC_2.5'},
+            {text:'WindowsMFC_3.0_MINI',link :'/study/MFC/WindowsMFC_3.0'},
             ]},
         ]
         
@@ -116,7 +118,7 @@ export default defineConfig({
              {text:'C++(4)',link:'/jilu/C++/c++_(4)'},
              {text:'C++(5)',link:'/jilu/C++/c++_(5)'},
              {text:'C++(6)',link:'/jilu/C++/c++_(6)'},
-             {text:'c++文件流',link:'/jilu/C++/c++1'}
+             {text:'c++文件流',link:'/jilu/C++/c++1'},
        ]},
        
        ]
