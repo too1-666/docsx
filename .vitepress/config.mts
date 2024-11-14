@@ -101,6 +101,7 @@ export default defineConfig({
             {text:'WindowsMFC_02',link :'/study/MFC/WindowsMFC_02'},
             {text:'WindowsMFC_2.5_ProMax',link :'/study/MFC/WindowsMFC_2.5'},
             {text:'WindowsMFC_3.0_MINI',link :'/study/MFC/WindowsMFC_3.0'},
+            {text:'WindowsMFC_4.0_MINI',link :'/study/MFC/WindowsMFC_4.0'},
             ]},
         ]
         

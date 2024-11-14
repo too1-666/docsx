@@ -269,7 +269,7 @@ void CAboutDlg::OnBnClickedButton1()
 ===
 ```
 
-这样就可以实现了  **UpdateData** 是重要的东西 他相当于 SetClintRc
+这样就可以实现了  **UpdateData** 是重要的东西
 
 UpdateData其实调用的是 F12一下就可以或者查看调用堆栈就行
 
@@ -283,6 +283,8 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON1, m_Button1);
 }
 ```
+
+发现是Sub一个窗口
 
 ## END!!!!
 
