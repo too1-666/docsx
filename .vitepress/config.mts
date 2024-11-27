@@ -103,6 +103,7 @@ export default defineConfig({
             {text:'WindowsMFC_3.0_MINI',link :'/study/MFC/WindowsMFC_3.0'},
             {text:'WindowsMFC_4.0',link :'/study/MFC/WindowsMFC_4.0'},
             {text:'WindowsMFC_4.5',link :'/study/MFC/WindowsMFC_4.5'},
+            {text:'WindowsMFC_5.0',link :'/study/MFC/WindowsMFC_5.0'},
             ]},
         ]
         
