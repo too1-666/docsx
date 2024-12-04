@@ -105,7 +105,7 @@ export default defineConfig({
             {text:'WindowsMFC_4.5',link :'/study/MFC/WindowsMFC_4.5'},
             {text:'WindowsMFC_5.0',link :'/study/MFC/WindowsMFC_5.0'},
              {text:'WindowsMFC_5.5(双缓)',link :'/study/MFC/WindowsMFC_5.5'},
-            },
+            
         ]
         
       },
