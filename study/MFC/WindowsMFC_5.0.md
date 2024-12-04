@@ -436,3 +436,6 @@ void CCADView::OnDraw(CDC* pDC)
 ---
 
 # END
+
+--------
+

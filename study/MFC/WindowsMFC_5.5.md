@@ -36,7 +36,6 @@ private:
 然后讲point 里面的坐标 存入这两个里面  开始和结尾保存好
 
 ```c++
-
 void CCADView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
@@ -86,8 +85,6 @@ void CCADView::OnLButtonUp(UINT nFlags, CPoint point)
 ```
 
 这样就能画直线了
-
----
 
 ### 鼠标效果 使用例
 
@@ -154,15 +151,11 @@ HWND SetCapture(
 
 这个使用来捕获鼠标 当然了还有 不再不捕获鼠标 
 
-```c++
-BOOL ReleaseCapture();  // 直接用 函数成功返回非0 
-```
+> BOOL ReleaseCapture;  // 直接用 函数成功返回非0 
 
 -----
 
 ```c++
-
-
 void CCADView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
@@ -207,6 +200,8 @@ void CCADView::OnLButtonUp(UINT nFlags, CPoint point)
 
 当然了 MFC 贴心的加上了CList 链表 
 
+当然了 MFC 贴心的加上了CList 链表 
+
 ```c++
 //链表初始化
 // This code defines myList as a list of strings
@@ -221,7 +216,7 @@ CList<int, int> myList2(128);
 
 所以我们初始化应该是	
 
-**CList <int> MyList;**, 这样的初始化  然后 开20个空间  (举例)
+**CList < list > MyList;**, 这样的初始化  然后 开20个空间  (举例)
 
 ```c++
 for (int i = 0; i < 20; i++) {
@@ -230,6 +225,8 @@ for (int i = 0; i < 20; i++) {
 ```
 
 然后查询头部元素
+
+
 
 ```c++
 POSITION pos = MyList.GetHeadPosition();  // 获取头部元素  空则返回NULL
@@ -262,6 +259,8 @@ typedef struct PointLines {
 ```
 
 然后就是保存输出了
+
+
 
 ```c++
 pDC->MoveTo(m_ptBegin);  // 绘制当前直线
