@@ -143,3 +143,9 @@ void CCADView::OnMouseMove(UINT nFlags, CPoint point)
 ```
 
 这样就可以实现了
+
+---
+
+### 补档 工具栏实现 
+
+通过CMainFrame 的protected 的嵌入成员来修改
