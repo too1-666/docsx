@@ -107,6 +107,8 @@ export default defineConfig({
             {text:'WindowsMFC_5.5',link :'/study/MFC/WindowsMFC_5.5'},
             {text:'WindowsMFC_5.5.1简易实验',link :'/study/MFC/WindowsMFC_5.5.1'},
             {text:'WindowsMFC_6.0初探序列化反序列化',link :'/study/MFC/WindowsMFC_6.0'},
+             {text:'WindowsMFC_EX_A',link :'/study/MFC/WindowsMFC_EX_A'},
+        
         ]},
         ]
         
