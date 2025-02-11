@@ -18,23 +18,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # ✅ 升级到 v4（关键修复）
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # 关键修复点：升级 pnpm/action-setup 到 v3
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3  # ✅ 从 v2 → v3（关键修改）
         with:
-          version: 8.6.12
+          version: 8.15.7  # 可选：升级到最新 pnpm 版本
 
       - name: Setup Node
-        uses: actions/setup-node@v4  # ✅ 升级到 v4（关键修复）
+        uses: actions/setup-node@v4
         with:
-          node-version: 20  # 建议升级到当前 LTS 版本
+          node-version: 20
           cache: pnpm
 
+      # 显式声明 upload-artifact 版本
+      - name: Force override artifact dependency
+        uses: actions/upload-artifact@v4  # ✅ 显式覆盖旧版本依赖
+
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # ✅ 升级到 v4（关键修复）
+        uses: actions/configure-pages@v4
       
       - name: Install dependencies
         run: pnpm install
@@ -42,10 +47,11 @@ jobs:
       - name: Build with VitePress
         run: |
           pnpm run docs:build
-          touch .vitepress/dist/.nojekyll  # ✅ 必须在构建目录内创建
+          echo "Generating .nojekyll file..."
+          touch .vitepress/dist/.nojekyll && ls -la .vitepress/dist/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 保持 v2（官方最新）
+        uses: actions/upload-pages-artifact@v2
         with:
           path: .vitepress/dist
 
@@ -59,4 +65,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # ✅ 使用最新 v4
+        uses: actions/deploy-pages@v4
