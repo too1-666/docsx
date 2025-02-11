@@ -42,6 +42,14 @@ jobs:
         run: |
           pnpm run docs:build # 启动项目
           touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
+      - name: Remove symlinks
+        run: |
+          echo "移除符号链接..."
+          find .vitepress/dist/ -type l -delete
+          echo "验证移除结果："
+          find .vitepress/dist/ -type l -ls
+
+    
       - name: Upload artifact
         uses: actions/upload-artifact@v4  # 上传构建产物
         with:
