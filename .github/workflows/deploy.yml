@@ -22,38 +22,45 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 关键修复点：升级 pnpm/action-setup 到 v3
+      # 关键修复：使用新依赖链
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3  # ✅ 从 v2 → v3（关键修改）
+        uses: pnpm/action-setup@v3
         with:
-          version: 8.15.7  # 可选：升级到最新 pnpm 版本
+          version: 8.15.7 # 强制最新 pnpm 版本
+          run_install: false # 禁用自动安装
+
+      - name: Clean node_modules cache
+        run: |
+          rm -rf node_modules
+          rm -f pnpm-lock.yaml
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-      # 显式声明 upload-artifact 版本
-      - name: Force override artifact dependency
-        uses: actions/upload-artifact@v4  # ✅ 显式覆盖旧版本依赖
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Build with VitePress
         run: |
           pnpm run docs:build
-          echo "Generating .nojekyll file..."
-          touch .vitepress/dist/.nojekyll && ls -la .vitepress/dist/
+          echo "验证 .nojekyll 文件位置："
+          touch .vitepress/dist/.nojekyll
+          ls -la .vitepress/dist/
 
+      # 使用通用上传方式替代 upload-pages-artifact
       - name: Upload artifact
-        uses: upload-artifact@v4
+        uses: actions/upload-artifact@v4 # ✅ 完全替代 upload-pages-artifact
         with:
+          name: vitepress-site
           path: .vitepress/dist
+          retention-days: 1
 
   deploy:
     environment:
@@ -61,8 +68,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vitepress-site
+          path: .vitepress/dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
