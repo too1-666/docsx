@@ -51,7 +51,7 @@ jobs:
           touch .vitepress/dist/.nojekyll && ls -la .vitepress/dist/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: upload-artifact@v4
         with:
           path: .vitepress/dist
 
