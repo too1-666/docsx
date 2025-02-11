@@ -94,12 +94,7 @@ export default defineConfig({
             
             ]},
         
-          { text: 'Windows',
-            collapsed: true,
-            items:[
-            {text:'WinSdK',link :'/study/Windows/Windows_1'},
-           
-            ]},
+        
         
         { text: 'Windows_MFC开发',
             collapsed: true,
@@ -118,6 +113,13 @@ export default defineConfig({
             {text:'WindowsMFC_EX_A',link :'/study/MFC/WindowsMFC_EX_A'},
         
         ]},
+        { text: 'Windows',
+            collapsed: true,
+            items:[
+            {text:'WinSdK',link :'/study/Windows/Windows_1'},
+           
+            ]},
+        
         ]
         
 },
