@@ -93,6 +93,14 @@ export default defineConfig({
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',},
             
             ]},
+        
+          { text: 'Windows',
+            collapsed: true,
+            items:[
+            {text:'WinSdK',link :'/study/Windows/Windows_1'},
+           
+            ]},
+        
         { text: 'Windows_MFC开发',
             collapsed: true,
             items:[
@@ -107,7 +115,7 @@ export default defineConfig({
             {text:'WindowsMFC_5.5',link :'/study/MFC/WindowsMFC_5.5'},
             {text:'WindowsMFC_5.5.1简易实验',link :'/study/MFC/WindowsMFC_5.5.1'},
             {text:'WindowsMFC_6.0初探序列化反序列化',link :'/study/MFC/WindowsMFC_6.0'},
-             {text:'WindowsMFC_EX_A',link :'/study/MFC/WindowsMFC_EX_A'},
+            {text:'WindowsMFC_EX_A',link :'/study/MFC/WindowsMFC_EX_A'},
         
         ]},
         ]
