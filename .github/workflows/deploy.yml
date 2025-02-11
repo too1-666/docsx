@@ -4,103 +4,58 @@ on:
   push:
     branches: [main]
 
+# 设置tokenn访问权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
         with:
-          version: 8.6.12
-
+          version: 8.6.12 # 指定需要的 pnpm 版本
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: pnpm
-
+          cache: pnpm # 设置缓存
       - name: Setup Pages
-        uses: actions/configure-pages@v3
-
+        uses: actions/configure-pages@v3  # 在工作流程自动配置GithubPages
       - name: Install dependencies
-        run: pnpm install
-
+        run: pnpm install # 安装依赖
       - name: Build with VitePress
         run: |
-          pnpm run docs:build
-          touch .vitepress/dist/.nojekyll
-
-      - name: Remove symlinks
-        run: |
-          echo "Step 1: 删除符号链接..."
-          find .vitepress/dist/ -type l -delete
-          echo "Step 2: 二次验证符号链接已移除..."
-          if find .vitepress/dist/ -type l | grep -q '.'; then
-            echo "错误：检测到残留符号链接！"
-            find .vitepress/dist/ -type l -ls
-            exit 1
-          else
-            echo "验证通过：无符号链接残留。"
-          fi
-
-      - name: Check and remove hard links
-        run: |
-          echo "Step 1: 检查硬链接..."
-          hard_links=$(find .vitepress/dist/ -type f -links +1)
-          if [ -n "$hard_links" ]; then
-            echo "发现硬链接，正在替换为独立文件..."
-            for file in $hard_links; do
-              cp --remove-destination "$file" "$file.tmp"
-              mv "$file.tmp" "$file"
-            done
-          else
-            echo "无硬链接存在。"
-          fi
-
-      - name: Compress assets
-        run: |
-          echo "压缩 HTML/CSS/JS 文件..."
-          find .vitepress/dist/ -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec gzip -9 {} \; -exec mv {}.gz {} \;
-
-      - name: Fix permissions
-        run: |
-          echo "修复文件权限..."
-          find .vitepress/dist/ -type f -exec chmod 644 {} \;
-          find .vitepress/dist/ -type d -exec chmod 755 {} \;
-
-      - name: Check artifact size
-        run: |
-          echo "构建产物大小："
-          du -sh .vitepress/dist/
-
+          pnpm run docs:build # 启动项目
+          touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v4  # 上传构建产物
         with:
-          name: github-pages
-          path: .vitepress/dist
+          path: .vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
 
+  # 部署工作
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+      url: ${{ steps.deployment.outputs.page_url }} # 从后续的输出中获取部署后的页面URL
+    needs: build    # 在build后面完成
+    runs-on: ubuntu-latest  # 运行在最新版本的ubuntu系统上
     name: Deploy
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        id: deployment  # 指定id
+        uses: actions/deploy-pages@v24# 将之前的构建产物部署到github pages中
