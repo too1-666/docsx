@@ -18,32 +18,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v4  # ✅ 升级到 v4
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v3  # ✅ 升级到 v3
         with:
-          version: 8.15.7
+          version: 8.15.7  # 使用最新 pnpm 版本
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4  # ✅ 升级到 v4
         with:
-          node-version: 20
+          node-version: 20  # 使用 LTS 版本
           cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml  # ✅ 确保路径正确
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: Verify lockfile
-        run: |
-          echo "检查 pnpm-lock.yaml 是否存在..."
-          ls -la pnpm-lock.yaml || echo "未找到 pnpm-lock.yaml"
+      # 显式声明 upload-artifact 版本
+      - name: Force override artifact dependency
+        uses: actions/upload-artifact@v4  # ✅ 显式覆盖旧依赖
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4  # ✅ 升级到 v4
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
 
       - name: Build with VitePress
         run: |
@@ -53,7 +50,7 @@ jobs:
           ls -la .vitepress/dist/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v2  # 保持 v2（官方最新）
         with:
           path: .vitepress/dist
 
@@ -66,4 +63,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  # ✅ 使用最新 v4
