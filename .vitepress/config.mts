@@ -93,7 +93,12 @@ export default defineConfig({
             {text:'WindowsSDK查表(持续更新同步)',link:'/study/winsdk/SDK_All',},
             
             ]},
-        
+         { text: 'Windows',
+            collapsed: true,
+            items:[
+            {text:'Win1',link :'/study/Windows/Windows_1'},
+           
+            ]},
         
         
         { text: 'Windows_MFC开发',
@@ -113,12 +118,7 @@ export default defineConfig({
             {text:'WindowsMFC_EX_A',link :'/study/MFC/WindowsMFC_EX_A'},
         
         ]},
-        { text: 'Windows',
-            collapsed: true,
-            items:[
-            {text:'WinSdK',link :'/study/Windows/Windows_1'},
-           
-            ]},
+       
         
         ]
         
