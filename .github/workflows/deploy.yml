@@ -21,39 +21,72 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8.6.12
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: pnpm
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Build with VitePress
         run: |
           pnpm run docs:build
-          touch .nojekyll
+          touch .vitepress/dist/.nojekyll
+
       - name: Remove symlinks
         run: |
-          echo "Removing symlinks..."
+          echo "Step 1: 删除符号链接..."
           find .vitepress/dist/ -type l -delete
-          echo "Verifying symlinks removal:"
-          find .vitepress/dist/ -type l -ls
-          echo "Checking for hard links:"
-          find .vitepress/dist/ -type f -links +1
-      - name: Debug Artifact
+          echo "Step 2: 二次验证符号链接已移除..."
+          if find .vitepress/dist/ -type l | grep -q '.'; then
+            echo "错误：检测到残留符号链接！"
+            find .vitepress/dist/ -type l -ls
+            exit 1
+          else
+            echo "验证通过：无符号链接残留。"
+          fi
+
+      - name: Check and remove hard links
         run: |
-          echo "Listing files in .vitepress/dist/"
-          ls -R .vitepress/dist/
-          echo "Checking for symlinks again..."
-          find .vitepress/dist/ -type l -ls
-          echo "Checking for hard links..."
-          find .vitepress/dist/ -type f -links +1
+          echo "Step 1: 检查硬链接..."
+          hard_links=$(find .vitepress/dist/ -type f -links +1)
+          if [ -n "$hard_links" ]; then
+            echo "发现硬链接，正在替换为独立文件..."
+            for file in $hard_links; do
+              cp --remove-destination "$file" "$file.tmp"
+              mv "$file.tmp" "$file"
+            done
+          else
+            echo "无硬链接存在。"
+          fi
+
+      - name: Compress assets
+        run: |
+          echo "压缩 HTML/CSS/JS 文件..."
+          find .vitepress/dist/ -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec gzip -9 {} \; -exec mv {}.gz {} \;
+
+      - name: Fix permissions
+        run: |
+          echo "修复文件权限..."
+          find .vitepress/dist/ -type f -exec chmod 644 {} \;
+          find .vitepress/dist/ -type d -exec chmod 755 {} \;
+
+      - name: Check artifact size
+        run: |
+          echo "构建产物大小："
+          du -sh .vitepress/dist/
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
