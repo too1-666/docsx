@@ -4,77 +4,58 @@ on:
   push:
     branches: [main]
 
+# 设置tokenn访问权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-
-      # 关键修复：使用新依赖链
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
         with:
-          version: 8.15.7 # 强制最新 pnpm 版本
-          run_install: false # 禁用自动安装
-
-      - name: Clean node_modules cache
-        run: |
-          rm -rf node_modules
-          rm -f pnpm-lock.yaml
-
+          version: 8.6.12 # 指定需要的 pnpm 版本
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
+          node-version: 18
+          cache: pnpm # 设置缓存
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-
+        uses: actions/configure-pages@v3  # 在工作流程自动配置GithubPages
+      - name: Install dependencies
+        run: pnpm install # 安装依赖
       - name: Build with VitePress
         run: |
-          pnpm run docs:build
-          echo "验证 .nojekyll 文件位置："
-          touch .vitepress/dist/.nojekyll
-          ls -la .vitepress/dist/
-
-      # 使用通用上传方式替代 upload-pages-artifact
+          pnpm run docs:build # 启动项目
+          touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
       - name: Upload artifact
-        uses: actions/upload-artifact@v4 # ✅ 完全替代 upload-pages-artifact
+        uses: actions/upload-pages-artifact@v4  # 上传构建产物
         with:
-          name: vitepress-site
-          path: .vitepress/dist
-          retention-days: 1
+          path: .vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
 
+  # 部署工作
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+      url: ${{ steps.deployment.outputs.page_url }} # 从后续的输出中获取部署后的页面URL
+    needs: build    # 在build后面完成
+    runs-on: ubuntu-latest  # 运行在最新版本的ubuntu系统上
+    name: Deploy
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vitepress-site
-          path: .vitepress/dist
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        id: deployment  # 指定id
+        uses: actions/deploy-pages@v2 # 将之前的构建产物部署到github pages中
