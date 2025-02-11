@@ -50,7 +50,7 @@ jobs:
           ls -la .vitepress/dist/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 保持 v2（官方最新）
+        uses: actions/upload-pages-artifact@v4  # 保持 v2（官方最新）
         with:
           path: .vitepress/dist
 
