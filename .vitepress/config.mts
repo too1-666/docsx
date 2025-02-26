@@ -96,8 +96,9 @@ export default defineConfig({
          { text: 'Windows',
             collapsed: true,
             items:[
-                  {text:'Win_1',link:'/study/Windows/Windows_1'},
-                  {text:'Win_2',link:'/study/Windows/Windows_2'},
+                {text:'Win_1',link:'/study/Windows/Windows_1'},
+                {text:'Win_2',link:'/study/Windows/Windows_2'},
+                {text:'Win_3',link:'/study/Windows/Windows_3'},
             ]},
         
         
